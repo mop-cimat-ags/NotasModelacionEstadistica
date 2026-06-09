@@ -27,10 +27,9 @@ jobs:
           r-version: "4.4"
           use-public-rspm: true
 
-      - name: Instalar dependencias R
+      - name: Instalar paquetes R
         run: |
-          install.packages(c("knitr", "rmarkdown"), repos = "https://cloud.r-project.org")
-        shell: Rscript {0}
+          Rscript -e 'install.packages(c("rmarkdown", "knitr"), repos = "https://cloud.r-project.org")'
 
       - name: Instalar Quarto
         uses: quarto-dev/quarto-actions/setup@v2
