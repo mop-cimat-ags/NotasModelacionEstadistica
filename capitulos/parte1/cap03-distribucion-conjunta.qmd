@@ -1,0 +1,388 @@
+# Distribución Conjunta y Esperanza {#cap-conjunta}
+
+## Independencia {#sec-independencia}
+
+::: {.callout-important}
+## Definición
+
+Las variables $X$ e $Y$ son **independientes** si y solo si para todo $x, y$:
+
+$$F_{X,Y}(x,y) = F_X(x)\cdot F_Y(y)$$
+
+Equivalentemente: $f(x,y)=f_X(x)\cdot f_Y(y)$ (continuo) o $p(x,y)=p_X(x)\cdot p_Y(y)$ (discreto).
+:::
+
+Si $X \perp Y$: $\quad \mathrm{E}[XY]=\mathrm{E}[X]\cdot\mathrm{E}[Y]$ $\quad$ y $\quad$ $\mathrm{Var}(X+Y)=\mathrm{Var}(X)+\mathrm{Var}(Y)$
+
+```{r}
+#| label: fig-independencia
+#| fig-cap: "Variables independientes vs dependientes"
+#| fig-width: 9
+#| fig-height: 4
+
+set.seed(42)
+n <- 600
+
+X_ind <- rnorm(n); Y_ind <- rnorm(n)
+X_dep <- rnorm(n); Y_dep <- 0.85*X_dep + sqrt(1-0.85^2)*rnorm(n)
+
+par(mfrow = c(1, 2))
+plot(X_ind, Y_ind, pch=16, col=adjustcolor("#4472C4",0.4),
+     main=paste0("Independientes  (r=",round(cor(X_ind,Y_ind),2),")"),
+     xlab="X", ylab="Y")
+abline(lm(Y_ind~X_ind), col="red", lwd=2)
+
+plot(X_dep, Y_dep, pch=16, col=adjustcolor("#ED7D31",0.4),
+     main=paste0("Dependientes  (r=",round(cor(X_dep,Y_dep),2),")"),
+     xlab="X", ylab="Y")
+abline(lm(Y_dep~X_dep), col="red", lwd=2)
+par(mfrow = c(1, 1))
+```
+
+---
+
+## Densidad Conjunta {#sec-densidad-conjunta}
+
+### Caso discreto
+
+$$\sum_i\sum_j p(x_i,y_j)=1 \qquad p_X(x)=\sum_j p(x,y_j), \quad p_Y(y)=\sum_i p(x_i,y)$$
+
+### Caso continuo
+
+$$\int_{-\infty}^\infty\int_{-\infty}^\infty f(x,y)\,dx\,dy=1$$
+
+$$f_X(x)=\int_{-\infty}^\infty f(x,y)\,dy, \qquad f_{Y|X}(y\mid x)=\frac{f(x,y)}{f_X(x)}$$
+
+```{r}
+#| label: tabla-conjunta-discreta
+
+# Tabla de distribución conjunta
+p_xy <- matrix(c(0.10, 0.15, 0.05,
+                 0.20, 0.25, 0.10,
+                 0.05, 0.05, 0.05),
+               nrow = 3, byrow = TRUE,
+               dimnames = list(X=0:2, Y=0:2))
+
+cat("=== Distribución conjunta P(X=x, Y=y) ===\n")
+print(p_xy)
+
+# Marginales
+cat("\nMarginal de X: P(X=x)\n")
+print(rowSums(p_xy))
+
+cat("\nMarginal de Y: P(Y=y)\n")
+print(colSums(p_xy))
+
+# Verificar independencia
+cat("\n¿Independientes? (P(X,Y) ≈ P(X)·P(Y))\n")
+independ <- outer(rowSums(p_xy), colSums(p_xy))
+cat("Máxima diferencia:", round(max(abs(p_xy - independ)), 6), "\n")
+cat("→", ifelse(max(abs(p_xy - independ)) < 1e-10,
+                "Son independientes", "No son independientes"), "\n")
+```
+
+---
+
+## Esperanza de la Suma de Variables Aleatorias {#sec-esperanza-suma}
+
+::: {.callout-important}
+## Linealidad del Valor Esperado
+
+Para cualesquiera variables $X_1,\ldots,X_n$ (no necesariamente independientes):
+
+$$\mathrm{E}\!\left[\sum_{i=1}^n a_i X_i + b\right] = \sum_{i=1}^n a_i\,\mathrm{E}[X_i] + b$$
+:::
+
+Si $X\perp Y$: $\mathrm{E}[XY]=\mathrm{E}[X]\cdot\mathrm{E}[Y]$
+
+**Desigualdad de Jensen**: si $g$ es convexa, $g(\mathrm{E}[X])\leq\mathrm{E}[g(X)]$.
+
+```{r}
+#| label: esperanza-suma-sim
+
+set.seed(100)
+n <- 50000
+
+X <- rnorm(n, 3, 1)
+Y <- 2*X + rnorm(n, 0, 0.5)   # dependientes
+
+cat("E[X]      =", round(mean(X), 4),     " (teórico: 3)\n")
+cat("E[Y]      =", round(mean(Y), 4),     " (teórico: 6)\n")
+cat("E[X+Y]    =", round(mean(X+Y), 4),  " (teórico: 9)\n")
+cat("E[X]+E[Y] =", round(mean(X)+mean(Y),4), "\n\n")
+
+# Jensen: g(x)=x² convexa → g(E[X]) ≤ E[g(X)]
+cat("g(E[X]) = E[X]² =", round(mean(X)^2, 4), "\n")
+cat("E[g(X)] = E[X²] =", round(mean(X^2), 4), "\n")
+cat("¿Jensen cumplida?", mean(X)^2 <= mean(X^2), "\n")
+```
+
+---
+
+## Covarianza, Varianza de Sumas y Correlaciones {#sec-covarianza}
+
+::: {.callout-important}
+## Covarianza y Correlación
+
+$$\mathrm{Cov}(X,Y)=\mathrm{E}[(X-\mu_X)(Y-\mu_Y)]=\mathrm{E}[XY]-\mathrm{E}[X]\mathrm{E}[Y]$$
+
+$$\rho(X,Y)=\frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\,\mathrm{Var}(Y)}}\in[-1,1]$$
+:::
+
+**Varianza de sumas**:
+
+$$\mathrm{Var}\!\left(\sum_{i=1}^n X_i\right)=\sum_{i=1}^n\mathrm{Var}(X_i)+2\sum_{i<j}\mathrm{Cov}(X_i,X_j)$$
+
+Si son independientes: $\mathrm{Var}\!\left(\sum X_i\right)=\sum\mathrm{Var}(X_i)$
+
+```{r}
+#| label: cov-cor-calculo
+
+set.seed(42)
+n <- 1000
+
+X <- rnorm(n, 5, 2)
+Y <- 0.7*X + sqrt(1-0.7^2)*rnorm(n, 5, 2)  # ρ ≈ 0.7
+
+# Covarianza manual
+cov_manual <- mean((X - mean(X))*(Y - mean(Y)))
+
+cat("Cov(X,Y) manual =", round(cov_manual, 4), "\n")
+cat("Cov(X,Y) R base =", round(cov(X,Y), 4), "\n")
+cat("Cor(X,Y) =",        round(cor(X,Y), 4), "\n\n")
+
+# Var(X+Y) con dependencia
+cat("Var(X+Y) directo =",   round(var(X+Y), 4), "\n")
+cat("Var(X)+Var(Y)+2Cov =", round(var(X)+var(Y)+2*cov(X,Y), 4), "\n")
+```
+
+```{r}
+#| label: fig-correlaciones
+#| fig-cap: "Dispersión con tres niveles de correlación"
+#| fig-width: 12
+#| fig-height: 4
+
+set.seed(7)
+n <- 400
+
+make_pair <- function(rho) {
+  X <- rnorm(n)
+  Y <- rho*X + sqrt(1-rho^2)*rnorm(n)
+  list(X=X, Y=Y)
+}
+
+par(mfrow = c(1, 3))
+for (rho in c(-0.85, 0, 0.85)) {
+  d <- make_pair(rho)
+  plot(d$X, d$Y, pch=16, col=adjustcolor("#4472C4",0.4),
+       main=bquote(rho == .(rho)),
+       xlab="X", ylab="Y", xlim=c(-3,3), ylim=c(-3,3))
+  abline(lm(d$Y ~ d$X), col="red", lwd=2)
+}
+par(mfrow = c(1, 1))
+```
+
+::: {.callout-note icon=false}
+## Ejercicio 3.1
+
+Si $X\sim\mathcal{N}(0,1)$ y $Y=X^2$:
+
+a) Calcula $\mathrm{Cov}(X,Y)$ teóricamente.
+b) Verifica con simulación en R.
+c) ¿Son independientes? ¿Contradice el resultado de la covarianza?
+:::
+
+---
+
+## Esperanza Condicional y Varianza Condicional {#sec-esp-cond}
+
+::: {.callout-important}
+## Definición (continuo)
+
+$$\mathrm{E}[Y\mid X=x]=\int_{-\infty}^\infty y\,f_{Y|X}(y\mid x)\,dy$$
+:::
+
+### Leyes de esperanza y varianza totales
+
+$$\mathrm{E}[Y]=\mathrm{E}[\mathrm{E}[Y\mid X]]$$
+
+$$\mathrm{Var}(Y)=\mathrm{E}[\mathrm{Var}(Y\mid X)]+\mathrm{Var}(\mathrm{E}[Y\mid X])$$
+
+```{r}
+#| label: esp-cond-sim
+
+set.seed(42)
+n <- 80000
+
+# Modelo: X ~ Unif(0,10), Y|X ~ N(3X, 4)
+X <- runif(n, 0, 10)
+Y <- 3*X + rnorm(n, 0, 2)
+
+# E[Y|X≈5] ≈ 15
+idx <- abs(X - 5) < 0.15
+cat("E[Y|X≈5] empírico =", round(mean(Y[idx]), 3),
+    " (teórico: 15)\n")
+
+# Ley esperanza total: E[Y] = E[3X] = 3·E[X] = 3·5 = 15
+cat("E[Y] empírico =", round(mean(Y), 3),
+    " (teórico: 15)\n\n")
+
+# Ley varianza total: Var(Y) = E[Var(Y|X)] + Var(E[Y|X])
+#   = E[4] + Var(3X) = 4 + 9·Var(X) = 4 + 9·(100/12)
+teorico <- 4 + 9*(10^2/12)
+cat("Var(Y) empírico =", round(var(Y), 3),
+    " (teórico:", round(teorico, 3), ")\n")
+```
+
+---
+
+## Teorema de Bayes {#sec-bayes}
+
+::: {.callout-important}
+## Teorema de Bayes
+
+Si $\{B_1,\ldots,B_k\}$ es una partición de $\Omega$ con $P(B_i)>0$:
+
+$$P(B_j\mid A)=\frac{P(A\mid B_j)\,P(B_j)}{\sum_{i=1}^k P(A\mid B_i)\,P(B_i)}$$
+:::
+
+```{r}
+#| label: bayes-ejemplo
+
+# Prueba diagnóstica
+prev   <- 0.02   # P(Enfermo) = 2%
+sensib <- 0.95   # P(+|E)
+especif <- 0.90  # P(-|S)  →  P(+|S) = 0.10
+
+P_E <- prev;  P_S <- 1 - prev
+P_pos_E <- sensib
+P_pos_S <- 1 - especif
+
+P_pos <- P_pos_E*P_E + P_pos_S*P_S          # ley total
+VPP   <- (P_pos_E * P_E) / P_pos            # Bayes
+
+cat("P(+)            =", round(P_pos, 4), "\n")
+cat("P(E|+) = VPP    =", round(VPP, 4), "\n")
+cat("Sin Bayes, se tendería a sobre-estimar a", sensib, "\n")
+
+# Efecto de la prevalencia sobre el VPP
+prev_seq <- seq(0.001, 0.50, 0.001)
+VPP_seq  <- (sensib*prev_seq) /
+            (sensib*prev_seq + (1-especif)*(1-prev_seq))
+
+plot(prev_seq, VPP_seq, type="l", lwd=2, col="#4472C4",
+     main="VPP en función de la prevalencia",
+     xlab="Prevalencia", ylab="VPP = P(Enfermo | Positivo)")
+abline(v=prev, lty=2, col="red")
+abline(h=VPP,  lty=3, col="red")
+grid()
+```
+
+---
+
+## Función Generatriz de Momentos {#sec-fgm}
+
+::: {.callout-important}
+## Definición
+
+$$M_X(t)=\mathrm{E}[e^{tX}], \quad t\in(-h,h)$$
+
+Los momentos se obtienen derivando: $\;\mathrm{E}[X^k]=M_X^{(k)}(0)$
+:::
+
+### FGMs comunes
+
+| Distribución | $M_X(t)$ |
+|---|---|
+| $\mathcal{N}(\mu,\sigma^2)$ | $e^{\mu t + \sigma^2 t^2/2}$ |
+| $\text{Exp}(\lambda)$ | $\lambda/(\lambda-t)$, $\;t<\lambda$ |
+| $\text{Gamma}(\alpha,\beta)$ | $(\beta/(\beta-t))^\alpha$ |
+| $\text{Bin}(n,p)$ | $(1-p+pe^t)^n$ |
+| $\text{Poisson}(\lambda)$ | $e^{\lambda(e^t-1)}$ |
+
+**Propiedad**: si $X_1,\ldots,X_n$ independientes, $M_{X_1+\cdots+X_n}(t)=\prod_i M_{X_i}(t)$.
+
+```{r}
+#| label: fgm-derivadas
+
+# Verificar momentos de N(3,4) con derivadas numéricas de la FGM
+mu <- 3; sigma2 <- 4
+M  <- function(t) exp(mu*t + sigma2*t^2/2)
+
+h  <- 1e-5
+E1 <- (M(h) - M(-h)) / (2*h)                        # E[X]
+E2 <- (M(h) - 2*M(0) + M(-h)) / h^2                 # E[X²]
+E3 <- (M(2*h) - 2*M(h) + 2*M(-h) - M(-2*h)) / (2*h^3)  # E[X³]
+
+cat("E[X]   =", round(E1, 5), "  (teórico:", mu, ")\n")
+cat("E[X²]  =", round(E2, 5), "  (teórico:", mu^2+sigma2, ")\n")
+cat("Var(X) =", round(E2-E1^2, 5), "  (teórico:", sigma2, ")\n")
+```
+
+---
+
+## – 3.9 Leyes de los Grandes Números {#sec-lgn}
+
+::: {.callout-important}
+## Ley Débil (LDGN)
+
+$X_1,X_2,\ldots$ iid con $\mathrm{E}[X_i]=\mu$, $\mathrm{Var}(X_i)=\sigma^2<\infty$.
+Para todo $\varepsilon>0$:
+
+$$P\!\left(|\bar{X}_n-\mu|>\varepsilon\right)\xrightarrow{n\to\infty}0 \qquad (\bar{X}_n\xrightarrow{p}\mu)$$
+
+## Ley Fuerte (LFGN)
+
+$$P\!\left(\lim_{n\to\infty}\bar{X}_n=\mu\right)=1 \qquad (\bar{X}_n\xrightarrow{c.s.}\mu)$$
+:::
+
+**Desigualdad de Chebyshev**: $P(|X-\mu|\geq k\sigma)\leq 1/k^2$
+
+```{r}
+#| label: fig-lgn
+#| fig-cap: "Ley de los Grandes Números: convergencia de la media muestral"
+#| fig-width: 9
+#| fig-height: 5
+
+set.seed(2024)
+n_max <- 3000
+mu_teo <- 1/0.3   # E[Geom(0.3)] = 1/p
+
+col_sim <- adjustcolor(c("#4472C4","#ED7D31","#70AD47",
+                          "#E74C3C","#9B59B6"), 0.8)
+
+plot(1, type="n", xlim=c(1, n_max), ylim=c(1, 8),
+     main="Convergencia de X_n (media muestral) - Geometrica(0.3)",
+     xlab="n", ylab="Media acumulada")
+abline(h=mu_teo, lwd=2, lty=2)
+text(2700, mu_teo+0.25, bquote(mu == .(round(mu_teo,2))), cex=1)
+
+for (s in 1:5) {
+  x_sim  <- rgeom(n_max, 0.3) + 1
+  medias <- cumsum(x_sim) / seq_along(x_sim)
+  lines(1:n_max, medias, col=col_sim[s], lwd=1.2)
+}
+
+legend("topright", paste0("Sim ",1:5), col=col_sim, lty=1, lwd=1.5, cex=0.8)
+```
+
+```{r}
+#| label: chebyshev
+
+# Comparar cota Chebyshev con probabilidad real (Normal)
+cat(sprintf("%-4s | %-18s | %-15s\n", "k", "Cota Chebyshev", "P real N(0,1)"))
+cat(strrep("-", 42), "\n")
+for (k in 1:4) {
+  cat(sprintf("%-4d | %-18.4f | %-15.4f\n", k, 1/k^2, 2*pnorm(-k)))
+}
+```
+
+::: {.callout-note icon=false}
+## Ejercicio 3.2
+
+Sea $X_i \sim \text{Bernoulli}(p=0.3)$.
+
+a) Usando Chebyshev, ¿cuántos ensayos $n$ se necesitan para que
+   $P(|\bar{X}_n - 0.3| > 0.05) < 0.05$?
+b) Simula en R y verifica el resultado.
+:::

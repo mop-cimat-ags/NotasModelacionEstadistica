@@ -1,0 +1,314 @@
+# Introducción a la Estadística y Probabilidad {#cap-intro}
+
+## Estadística Descriptiva {#sec-descriptiva}
+
+La **estadística descriptiva** resume y describe un conjunto de datos sin ir
+más allá de lo observado [@wackerly2008].
+
+### Medidas de Localización
+
+**Media aritmética** de la muestra $x_1, x_2, \ldots, x_n$:
+
+$$\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i$$
+
+**Mediana**: valor que divide los datos ordenados en dos mitades iguales.
+
+$$\tilde{x} = \begin{cases} x_{(n+1)/2} & n \text{ impar} \\ \dfrac{x_{(n/2)} + x_{(n/2+1)}}{2} & n \text{ par} \end{cases}$$
+
+**Moda**: valor (o valores) que aparece con mayor frecuencia.
+
+```{r}
+#| label: medidas-localizacion
+
+x <- c(12, 15, 14, 10, 18, 22, 14, 16, 19, 13, 14, 20, 17, 11, 15)
+
+# Media
+mean(x)
+
+# Mediana
+median(x)
+
+# Moda (R base no tiene función directa)
+tab <- table(x)
+as.numeric(names(tab[tab == max(tab)]))
+```
+
+### Medidas de Dispersión
+
+**Varianza muestral**:
+
+$$s^2 = \frac{1}{n-1} \sum_{i=1}^{n}(x_i - \bar{x})^2$$
+
+**Desviación estándar**: $s = \sqrt{s^2}$
+
+**Rango**: $R = x_{(n)} - x_{(1)}$
+
+**Rango intercuartílico**: $RIC = Q_3 - Q_1$
+
+**Coeficiente de variación**: $CV = \dfrac{s}{\bar{x}} \times 100\%$
+
+```{r}
+#| label: medidas-dispersion
+
+var(x)           # varianza muestral
+sd(x)            # desviación estándar
+diff(range(x))   # rango
+IQR(x)           # rango intercuartílico
+sd(x)/mean(x)*100  # CV en %
+quantile(x)      # cuartiles
+```
+
+### Medidas de Forma
+
+**Asimetría** (skewness):
+
+$$g_1 = \frac{m_3}{s^3}, \qquad m_3 = \frac{1}{n}\sum(x_i-\bar{x})^3$$
+
+- $g_1 > 0$: cola a la derecha (asimetría positiva)
+- $g_1 < 0$: cola a la izquierda (asimetría negativa)
+- $g_1 = 0$: distribución simétrica
+
+**Curtosis** (kurtosis en exceso):
+
+$$g_2 = \frac{m_4}{s^4} - 3, \qquad m_4 = \frac{1}{n}\sum(x_i-\bar{x})^4$$
+
+- $g_2 > 0$: leptocúrtica (colas pesadas)
+- $g_2 < 0$: platicúrtica (colas ligeras)
+- $g_2 = 0$: mesocúrtica (normal)
+
+```{r}
+#| label: medidas-forma
+
+# Asimetría manual
+m3 <- mean((x - mean(x))^3)
+g1 <- m3 / sd(x)^3
+cat("Asimetría g1 =", round(g1, 4), "\n")
+
+# Curtosis en exceso
+m4 <- mean((x - mean(x))^4)
+g2 <- m4 / sd(x)^4 - 3
+cat("Curtosis  g2 =", round(g2, 4), "\n")
+```
+
+### Representaciones Gráficas
+
+```{r}
+#| label: fig-graficas-descriptivas
+#| fig-cap: "Representaciones gráficas básicas"
+#| fig-width: 10
+#| fig-height: 8
+
+set.seed(42)
+datos <- c(x, rnorm(35, mean(x), sd(x)))
+
+par(mfrow = c(2, 2))
+
+# Histograma
+hist(datos, breaks = 12, col = "#4472C4", border = "white",
+     main = "Histograma", xlab = "Valor", ylab = "Frecuencia",
+     freq = TRUE)
+abline(v = mean(datos),   col = "red",    lwd = 2, lty = 2)
+abline(v = median(datos), col = "green4", lwd = 2, lty = 3)
+legend("topright", c("Media", "Mediana"),
+       col = c("red", "green4"), lty = 2:3, lwd = 2, cex = 0.8)
+
+# Boxplot
+boxplot(datos, col = "#4472C4", main = "Diagrama de Caja",
+        ylab = "Valor", horizontal = FALSE)
+
+# Diagrama de puntos (dotplot)
+stripchart(datos, method = "jitter", pch = 16,
+           col = adjustcolor("#4472C4", 0.5),
+           main = "Diagrama de Puntos", xlab = "Valor")
+abline(v = mean(datos), col = "red", lwd = 2, lty = 2)
+
+# QQ-Plot (normalidad)
+qqnorm(datos, pch = 16, col = "#4472C4",
+       main = "Gráfica QQ-Normal")
+qqline(datos, col = "red", lwd = 2)
+
+par(mfrow = c(1, 1))
+```
+
+**Resumen completo** con `summary()`:
+
+```{r}
+#| label: summary
+
+summary(datos)
+```
+
+::: {.callout-note icon=false}
+## Ejercicio 1.1
+
+Dado el conjunto: $\{3, 7, 5, 13, 20, 23, 39, 23, 40, 23, 14, 12, 56, 23, 29\}$
+
+a) Calcula media, mediana y moda.
+b) Calcula varianza, desviación estándar y RIC.
+c) ¿La distribución es simétrica, asimétrica positiva o negativa?
+d) Haz el histograma y boxplot con R base.
+:::
+
+---
+
+## Introducción a la Probabilidad {#sec-prob-intro}
+
+Existen tres enfoques para definir la probabilidad:
+
+| Enfoque | Definición |
+|---------|-----------|
+| **Clásico** | $P(A) = \frac{\text{casos favorables}}{\text{casos posibles}}$ (equiprobabilidad) |
+| **Frecuentista** | $P(A) = \lim_{n\to\infty} \frac{n_A}{n}$ |
+| **Subjetivo** | Grado de creencia basado en evidencia disponible |
+
+```{r}
+#| label: prob-frecuentista
+
+# Verificación frecuentista: lanzar una moneda
+set.seed(1)
+n      <- 10000
+moneda <- sample(c("Cara", "Sello"), n, replace = TRUE)
+
+# Probabilidad empírica de Cara
+cumsum(moneda == "Cara") / seq_along(moneda) |>
+  tail(1)  # ≈ 0.5
+```
+
+---
+
+## Espacio Muestral y Eventos {#sec-espacio}
+
+::: {.callout-important}
+## Definición
+
+El **espacio muestral** $\Omega$ es el conjunto de todos los resultados posibles
+de un experimento aleatorio. Un **evento** $A$ es cualquier subconjunto $A \subseteq \Omega$.
+:::
+
+### Operaciones con eventos
+
+| Operación | Símbolo | Descripción |
+|-----------|---------|-------------|
+| Unión | $A \cup B$ | Ocurre $A$ **o** $B$ |
+| Intersección | $A \cap B$ | Ocurren $A$ **y** $B$ |
+| Complemento | $A^c$ | **No** ocurre $A$ |
+| Diferencia | $A \setminus B$ | $A$ pero no $B$ |
+
+```{r}
+#| label: operaciones-conjuntos
+
+# Simular dos dados y aplicar operaciones de conjuntos
+set.seed(42)
+n  <- 100000
+d1 <- sample(1:6, n, replace = TRUE)
+d2 <- sample(1:6, n, replace = TRUE)
+
+A <- d1 + d2 == 7   # suma = 7
+B <- d1 == 6        # primer dado = 6
+
+cat("P(A)         =", round(mean(A), 4), "  (teórico:", round(6/36, 4), ")\n")
+cat("P(B)         =", round(mean(B), 4), "  (teórico:", round(1/6, 4), ")\n")
+cat("P(A ∩ B)     =", round(mean(A & B), 4), "  (teórico:", round(1/36, 4), ")\n")
+cat("P(A ∪ B)     =", round(mean(A | B), 4), "\n")
+cat("P(A ∪ B) teó =", round(6/36 + 1/6 - 1/36, 4), "\n")
+```
+
+**Probabilidad condicional**:
+
+$$P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0$$
+
+```{r}
+#| label: prob-condicional
+
+# P(suma=7 | primer dado=3)
+idx <- d1 == 3
+cat("P(suma=7 | d1=3) =", round(mean((d1+d2)[idx] == 7), 4),
+    "  (teórico:", round(1/6, 4), ")\n")
+```
+
+---
+
+## Axiomas de Probabilidad {#sec-axiomas}
+
+::: {.callout-important}
+## Axiomas de Kolmogorov
+
+Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad. La función $P$ satisface:
+
+1. $P(A) \geq 0$ para todo $A \in \mathcal{F}$
+2. $P(\Omega) = 1$
+3. Si $A_1, A_2, \ldots$ son mutuamente excluyentes: $P\!\left(\bigcup_{i} A_i\right) = \sum_i P(A_i)$
+:::
+
+### Propiedades derivadas
+
+$$P(A^c) = 1 - P(A)$$
+$$P(\emptyset) = 0$$
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+
+### Ley de la probabilidad total
+
+Si $\{B_1,\ldots,B_k\}$ es una partición de $\Omega$ con $P(B_i)>0$:
+
+$$P(A) = \sum_{i=1}^k P(A \mid B_i)\, P(B_i)$$
+
+```{r}
+#| label: ley-total
+
+# Ejemplo: máquinas de producción
+P_M1 <- 0.60; P_def_M1 <- 0.02
+P_M2 <- 0.40; P_def_M2 <- 0.05
+
+P_def <- P_M1*P_def_M1 + P_M2*P_def_M2
+cat("P(defectuoso) =", P_def, "\n")
+
+# Bayes: P(M1 | defectuoso)
+P_M1_def <- (P_def_M1 * P_M1) / P_def
+cat("P(M1 | defecto) =", round(P_M1_def, 4), "\n")
+```
+
+---
+
+## Análisis Combinatorio {#sec-combinatorio}
+
+| Concepto | Fórmula | R |
+|----------|---------|---|
+| Factorial $n!$ | $n! = n(n-1)\cdots 1$ | `factorial(n)` |
+| Permutaciones $P(n,r)$ | $\dfrac{n!}{(n-r)!}$ | `factorial(n)/factorial(n-r)` |
+| Combinaciones $\binom{n}{r}$ | $\dfrac{n!}{r!(n-r)!}$ | `choose(n,r)` |
+| Perm. con repetición | $n^r$ | `n^r` |
+
+```{r}
+#| label: combinatoria
+
+# Permutaciones P(10, 3)
+factorial(10) / factorial(10 - 3)
+
+# Combinaciones C(52, 5): manos de póker
+choose(52, 5)
+
+# Coeficiente multinomial: n! / (n1! * n2! * ... * nk!)
+multinom <- function(n, grupos) factorial(n) / prod(factorial(grupos))
+multinom(10, c(3, 3, 4))  # dividir 10 en grupos de 3, 3, 4
+
+# Triángulo de Pascal
+pascal <- function(n) {
+  m <- matrix(0L, n, n)
+  m[1, 1] <- 1L
+  for (i in 2:n) {
+    m[i, 1] <- 1L
+    for (j in 2:i) m[i, j] <- m[i-1, j-1] + m[i-1, j]
+  }
+  m[1:n, 1:n]
+}
+pascal(6)
+```
+
+::: {.callout-note icon=false}
+## Ejercicio 1.2
+
+a) ¿De cuántas formas se pueden ordenar 5 personas en una fila?
+b) ¿De cuántas formas se pueden elegir 3 representantes de un grupo de 12?
+c) ¿Cuántas palabras distintas (con o sin significado) se pueden formar con las
+   letras de "ESTADÍSTICA"?
+:::

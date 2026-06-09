@@ -1,0 +1,238 @@
+/* =============================================================
+   estilos-cimat.css
+   Identidad visual CIMAT — Modelación Estadística
+
+   Paleta de colores (ajusta si los valores exactos cambian):
+     Verde principal : #006341
+     Verde oscuro    : #004D31
+     Dorado/acento   : #C8962E
+     Gris claro      : #F5F5F5
+     Texto oscuro    : #1A1A1A
+   ============================================================= */
+
+/* ---------- Variables globales ---------- */
+:root {
+  --cimat-verde:       #212529;
+  --cimat-verde-osc:   #000000;
+  --cimat-dorado:      #C8962E;
+  --cimat-dorado-clr:  #E8B84B;
+  --cimat-gris:        #F5F5F5;
+  --cimat-gris-med:    #E0E0E0;
+  --cimat-texto:       #1A1A1A;
+  --cimat-link:        #004D31;
+  --cimat-link-hover:  #C8962E;
+}
+
+/* ---------- Barra de navegación superior ---------- */
+.navbar {
+  background-color: var(--cimat-verde-osc) !important;
+  border-bottom: 3px solid var(--cimat-dorado);
+}
+
+.navbar-brand,
+.navbar-title {
+  color: #ffffff !important;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.navbar .nav-link {
+  color: rgba(255,255,255,0.88) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--cimat-dorado-clr) !important;
+}
+
+/* Logo en la navbar */
+.navbar-logo {
+  max-height: 40px;
+  margin-right: 10px;
+}
+
+/* ---------- Sidebar / tabla de contenidos ---------- */
+#quarto-sidebar {
+  background-color: #ffffff;
+  border-right: 1px solid var(--cimat-gris-med);
+}
+
+.sidebar-title {
+  color: var(--cimat-verde-osc) !important;
+  font-weight: 700;
+  border-bottom: 2px solid var(--cimat-dorado);
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+/* Capítulos activos en el sidebar */
+.sidebar-item .active > .sidebar-item-text {
+  color: var(--cimat-verde) !important;
+  font-weight: 600;
+}
+
+.sidebar-item .sidebar-item-text:hover {
+  color: var(--cimat-link-hover) !important;
+}
+
+/* Etiquetas de parte (Part I, Part II…) */
+.sidebar-item-section > .sidebar-item-text {
+  color: var(--cimat-verde-osc) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  border-top: 1px solid var(--cimat-gris-med);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+/* ---------- Contenido principal ---------- */
+body {
+  color: var(--cimat-texto);
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+/* Encabezados */
+h1, h2, h3, h4 {
+  color: var(--cimat-verde-osc);
+}
+
+h1.title {
+  font-size: 2.2rem;
+  border-bottom: 3px solid var(--cimat-dorado);
+  padding-bottom: 0.4rem;
+}
+
+h2 {
+  border-bottom: 1px solid var(--cimat-gris-med);
+  padding-bottom: 4px;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--cimat-link);
+}
+
+a:hover {
+  color: var(--cimat-link-hover);
+  text-decoration: underline;
+}
+
+/* ---------- Bloques de código ---------- */
+pre.sourceCode,
+div.sourceCode {
+  border-left: 4px solid var(--cimat-dorado);
+  background-color: #f8f8f5;
+}
+
+code {
+  color: var(--cimat-verde-osc);
+}
+
+/* ---------- Callouts (nota, tip, warning…) ---------- */
+.callout-note {
+  border-left-color: var(--cimat-verde) !important;
+}
+
+.callout-tip {
+  border-left-color: var(--cimat-dorado) !important;
+}
+
+/* ---------- Tablas ---------- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  background-color: var(--cimat-verde);
+  color: #ffffff;
+}
+
+th {
+  padding: 8px 12px;
+  font-weight: 600;
+}
+
+td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--cimat-gris-med);
+}
+
+tr:nth-child(even) {
+  background-color: var(--cimat-gris);
+}
+
+/* ---------- Numeración de secciones ---------- */
+.header-section-number {
+  color: var(--cimat-dorado);
+  margin-right: 6px;
+}
+
+/* ---------- Pie de página / footer ---------- */
+.nav-footer {
+  background-color: var(--cimat-verde-osc);
+  color: rgba(255,255,255,0.75);
+  border-top: 3px solid var(--cimat-dorado);
+  font-size: 0.85rem;
+}
+
+.nav-footer a {
+  color: var(--cimat-dorado-clr);
+}
+
+/* ---------- Botones (quarto-contrib) ---------- */
+.btn-primary,
+.btn-outline-primary {
+  border-color: var(--cimat-verde) !important;
+  color: var(--cimat-verde) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--cimat-verde) !important;
+  color: #fff !important;
+}
+
+/* ---------- TOC flotante (tabla de contenidos lateral) ---------- */
+#TOC .active {
+  color: var(--cimat-verde) !important;
+  font-weight: 600;
+  border-left: 3px solid var(--cimat-dorado);
+  padding-left: 6px;
+}
+
+#TOC a {
+  color: var(--cimat-link);
+}
+
+#TOC a:hover {
+  color: var(--cimat-link-hover);
+}
+
+/* ---------- Página de portada / index ---------- */
+.quarto-title-banner {
+  background: linear-gradient(135deg, var(--cimat-verde-osc) 60%, var(--cimat-dorado) 100%);
+  color: #ffffff;
+  padding: 3rem 2rem;
+}
+
+.quarto-title-banner .title {
+  color: #ffffff;
+  font-size: 2.8rem;
+}
+
+.quarto-title-banner .subtitle {
+  color: rgba(255,255,255,0.85);
+  font-size: 1.2rem;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 768px) {
+  .navbar-logo {
+    max-height: 30px;
+  }
+  h1.title {
+    font-size: 1.6rem;
+  }
+}

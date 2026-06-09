@@ -1,0 +1,16 @@
+_book/
+_book-pdf/
+_book-docx/
+_freeze/
+/.quarto/
+**/*_cache/
+**/*_files/
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.swp

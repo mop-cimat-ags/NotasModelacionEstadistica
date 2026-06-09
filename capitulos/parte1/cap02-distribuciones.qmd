@@ -1,0 +1,417 @@
+# Distribuciones de Probabilidad {#cap-distribuciones}
+
+## Definición de Variable Aleatoria {#sec-va-def}
+
+::: {.callout-important}
+## Definición
+
+Una **variable aleatoria** $X$ es una función $X: \Omega \to \mathbb{R}$ que
+asigna un número real a cada resultado del espacio muestral.
+:::
+
+### Función de Distribución Acumulada (FDA)
+
+$$F(x) = P(X \leq x), \quad x \in \mathbb{R}$$
+
+Propiedades: $F$ es no decreciente, continua por la derecha,
+$\lim_{x\to-\infty}F(x)=0$ y $\lim_{x\to+\infty}F(x)=1$.
+
+```{r}
+#| label: fig-fda-ejemplo
+#| fig-cap: "FDA de Binomial(10, 0.4)"
+
+x   <- 0:10
+cdf <- pbinom(x, size = 10, prob = 0.4)
+
+plot(x, cdf, type = "s", lwd = 2, col = "#4472C4",
+     main = "FDA — Binomial(10, 0.4)",
+     xlab = "x", ylab = "F(x) = P(X ≤ x)",
+     ylim = c(0, 1))
+points(x, cdf, pch = 16, col = "#4472C4")
+abline(h = c(0, 1), lty = 3, col = "grey70")
+```
+
+---
+
+## Variables Aleatorias Discretas {#sec-va-discretas}
+
+::: {.callout-important}
+## Función de Masa de Probabilidad (FMP)
+
+$$p(x_i) = P(X = x_i) \geq 0, \qquad \sum_i p(x_i) = 1$$
+:::
+
+### Valor esperado y varianza
+
+$$\mathrm{E}[X] = \sum_i x_i\, p(x_i)$$
+
+$$\mathrm{Var}(X) = \mathrm{E}[X^2] - (\mathrm{E}[X])^2$$
+
+```{r}
+#| label: va-discreta-calculo
+
+# FMP de X ~ Binomial(5, 0.4)
+x <- 0:5
+p <- dbinom(x, size = 5, prob = 0.4)
+
+# Esperanza y varianza manuales
+(mu    <- sum(x * p))
+(sigma2 <- sum(x^2 * p) - mu^2)
+
+cat("E[X] =", mu, "  (teórico: np =", 5*0.4, ")\n")
+cat("Var(X) =", sigma2, "  (teórico: np(1-p) =", 5*0.4*0.6, ")\n")
+```
+
+---
+
+## Distribuciones Discretas {#sec-dist-discretas}
+
+### Uniforme Discreta  $X \sim \text{Unif}\{1,\ldots,N\}$
+
+$$p(x) = \frac{1}{N}, \quad x=1,\ldots,N \qquad \mathrm{E}[X]=\frac{N+1}{2}, \quad \mathrm{Var}(X)=\frac{N^2-1}{12}$$
+
+### Binomial  $X \sim \text{Bin}(n,p)$
+
+$$p(x) = \binom{n}{x}p^x(1-p)^{n-x} \qquad \mathrm{E}[X]=np, \quad \mathrm{Var}(X)=np(1-p)$$
+
+### Poisson  $X \sim \text{Poisson}(\lambda)$
+
+$$p(x) = \frac{e^{-\lambda}\lambda^x}{x!}, \; x=0,1,2,\ldots \qquad \mathrm{E}[X]=\mathrm{Var}(X)=\lambda$$
+
+### Geométrica  $X \sim \text{Geom}(p)$
+
+$$p(x) = (1-p)^{x-1}p, \; x=1,2,\ldots \qquad \mathrm{E}[X]=\frac{1}{p}, \quad \mathrm{Var}(X)=\frac{1-p}{p^2}$$
+
+### Binomial Negativa  $X \sim \text{BinNeg}(r,p)$
+
+$$p(x)=\binom{x-1}{r-1}p^r(1-p)^{x-r}, \; x=r,r+1,\ldots \qquad \mathrm{E}[X]=\frac{r}{p}$$
+
+### Hipergeométrica  $X \sim \text{Hiper}(N,K,n)$
+
+$$p(x)=\frac{\binom{K}{x}\binom{N-K}{n-x}}{\binom{N}{n}} \qquad \mathrm{E}[X]=\frac{nK}{N}$$
+
+### Multinomial
+
+$$p(x_1,\ldots,x_k)=\frac{n!}{x_1!\cdots x_k!}\,p_1^{x_1}\cdots p_k^{x_k}$$
+
+### Comparativa en R base
+
+```{r}
+#| label: fig-dist-discretas
+#| fig-cap: "Función de masa de probabilidad — distribuciones discretas"
+#| fig-width: 10
+#| fig-height: 8
+
+par(mfrow = c(2, 3))
+
+# Binomial(20, 0.4)
+x <- 0:20
+barplot(dbinom(x, 20, 0.4), names.arg = x, col = "#4472C4",
+        main = "Binomial(20, 0.4)", xlab = "x", ylab = "P(X=x)")
+
+# Poisson(5)
+x <- 0:18
+barplot(dpois(x, 5), names.arg = x, col = "#ED7D31",
+        main = "Poisson(5)", xlab = "x", ylab = "P(X=x)")
+
+# Geométrica(0.3)
+x <- 1:15
+barplot(dgeom(x-1, 0.3), names.arg = x, col = "#70AD47",
+        main = "Geométrica(0.3)", xlab = "x", ylab = "P(X=x)")
+
+# Binomial Negativa(3, 0.4)
+x <- 3:20
+barplot(dnbinom(x-3, size=3, prob=0.4), names.arg = x, col = "#9B59B6",
+        main = "Bin. Negativa(3, 0.4)", xlab = "x", ylab = "P(X=x)")
+
+# Hipergeométrica(30, 10, 12)
+x <- 0:10
+barplot(dhyper(x, m=10, n=20, k=12), names.arg = x, col = "#E74C3C",
+        main = "Hipergeom.(30, 10, 12)", xlab = "x", ylab = "P(X=x)")
+
+# Uniforme Discreta(1..6) — dado
+barplot(rep(1/6, 6), names.arg = 1:6, col = "#1ABC9C",
+        main = "Uniforme Discreta(1..6)", xlab = "x", ylab = "P(X=x)")
+abline(h = 1/6, lty = 2, col = "red")
+
+par(mfrow = c(1, 1))
+```
+
+```{r}
+#| label: calculos-discretas
+
+# Funciones R base para distribuciones discretas
+cat("=== Binomial(20, 0.4) ===\n")
+cat("P(X=8) =",     round(dbinom(8, 20, 0.4), 6), "\n")
+cat("P(X<=10) =",   round(pbinom(10, 20, 0.4), 6), "\n")
+cat("Cuantil 90% =", qbinom(0.9, 20, 0.4), "\n\n")
+
+cat("=== Poisson(5) ===\n")
+cat("P(X=3) =",    round(dpois(3, 5), 6), "\n")
+cat("P(X>=8) =",   round(ppois(7, 5, lower.tail=FALSE), 6), "\n\n")
+
+cat("=== Hipergeom.(N=30, K=10, n=12) ===\n")
+cat("P(X=4) =",    round(dhyper(4, 10, 20, 12), 6), "\n")
+```
+
+::: {.callout-note icon=false}
+## Ejercicio 2.1
+
+Una línea de producción genera 4% de artículos defectuosos. Si se inspecciona
+una muestra de 50 artículos:
+
+a) ¿Cuál es la distribución de $X$ = número de defectuosos?
+b) Calcula $P(X=2)$, $P(X \leq 3)$ y $P(X > 5)$.
+c) Calcula $\mathrm{E}[X]$ y $\mathrm{Var}(X)$.
+d) ¿Qué distribución usarías si la muestra es pequeña respecto al lote (sin reemplazo)?
+:::
+
+---
+
+## Variables Aleatorias Continuas {#sec-va-continuas}
+
+::: {.callout-important}
+## Función de Densidad de Probabilidad (FDP)
+
+Una VA $X$ es **continua** si existe $f(x) \geq 0$ tal que:
+
+$$P(a \leq X \leq b) = \int_a^b f(x)\,dx, \qquad \int_{-\infty}^{\infty}f(x)\,dx=1$$
+:::
+
+Consecuencia: $P(X = x) = 0$ para todo $x$ puntual.
+
+### Valor esperado y varianza (continuo)
+
+$$\mathrm{E}[X] = \int_{-\infty}^{\infty} x\,f(x)\,dx$$
+
+$$\mathrm{Var}(X) = \mathrm{E}[X^2] - (\mathrm{E}[X])^2$$
+
+```{r}
+#| label: fig-fdp-fda-continua
+#| fig-cap: "FDP y FDA de Normal(3, 1.5²)"
+#| fig-width: 10
+#| fig-height: 4
+
+mu <- 3; sigma <- 1.5
+x  <- seq(mu - 4*sigma, mu + 4*sigma, length.out = 400)
+
+par(mfrow = c(1, 2))
+
+# FDP
+plot(x, dnorm(x, mu, sigma), type = "l", lwd = 2, col = "#4472C4",
+     main = "Función de Densidad f(x)",
+     xlab = "x", ylab = "f(x)")
+polygon(c(x, rev(x)), c(dnorm(x, mu, sigma), rep(0, length(x))),
+        col = adjustcolor("#4472C4", 0.2), border = NA)
+abline(v = mu, lty = 2, col = "red")
+
+# FDA
+plot(x, pnorm(x, mu, sigma), type = "l", lwd = 2, col = "#ED7D31",
+     main = "FDA F(x) = P(X ≤ x)",
+     xlab = "x", ylab = "F(x)")
+abline(h = c(0.25, 0.5, 0.75), lty = 3, col = "grey60")
+
+par(mfrow = c(1, 1))
+```
+
+---
+
+## Distribuciones Continuas {#sec-dist-continuas}
+
+### Uniforme Continua  $X \sim \text{Unif}(a,b)$
+
+$$f(x)=\frac{1}{b-a}, \; a \leq x \leq b \qquad \mathrm{E}[X]=\frac{a+b}{2}, \quad \mathrm{Var}(X)=\frac{(b-a)^2}{12}$$
+
+### Normal  $X \sim \mathcal{N}(\mu,\sigma^2)$
+
+$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+
+$$\mathrm{E}[X]=\mu, \quad \mathrm{Var}(X)=\sigma^2 \qquad \text{Estandarización: } Z=\frac{X-\mu}{\sigma}\sim\mathcal{N}(0,1)$$
+
+**Propiedad reproductiva**: si $X_i \sim \mathcal{N}(\mu_i,\sigma_i^2)$ independientes,
+$\sum a_i X_i \sim \mathcal{N}\!\left(\sum a_i\mu_i,\sum a_i^2\sigma_i^2\right)$.
+
+### Exponencial  $X \sim \text{Exp}(\lambda)$
+
+$$f(x)=\lambda e^{-\lambda x}, \; x\geq 0 \qquad \mathrm{E}[X]=\frac{1}{\lambda}, \quad \mathrm{Var}(X)=\frac{1}{\lambda^2}$$
+
+**Propiedad de falta de memoria**: $P(X > s+t \mid X > s) = P(X > t)$
+
+### Gamma  $X \sim \text{Gamma}(\alpha,\beta)$
+
+$$f(x)=\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}, \; x>0 \qquad \mathrm{E}[X]=\frac{\alpha}{\beta}, \quad \mathrm{Var}(X)=\frac{\alpha}{\beta^2}$$
+
+Casos especiales: $\text{Exp}(\lambda)=\text{Gamma}(1,\lambda)$; $\;\chi^2_\nu=\text{Gamma}(\nu/2,1/2)$.
+
+### Beta  $X \sim \text{Beta}(\alpha,\beta)$, soporte $(0,1)$
+
+$$f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1} \qquad \mathrm{E}[X]=\frac{\alpha}{\alpha+\beta}$$
+
+### Gráfica comparativa
+
+```{r}
+#| label: fig-dist-continuas
+#| fig-cap: "Familias de distribuciones continuas"
+#| fig-width: 11
+#| fig-height: 9
+
+par(mfrow = c(2, 3))
+
+# Normal
+curve(dnorm(x, 0, 1), -4, 4, lwd=2, col="#4472C4",
+      main="Normal(μ, σ²)", ylab="f(x)", ylim=c(0,0.55))
+curve(dnorm(x, 0, 2), add=TRUE, lwd=2, col="#ED7D31", lty=2)
+curve(dnorm(x, 2, 1), add=TRUE, lwd=2, col="#70AD47", lty=3)
+legend("topright", c("N(0,1)","N(0,4)","N(2,1)"),
+       col=c("#4472C4","#ED7D31","#70AD47"), lty=1:3, lwd=2, cex=0.8)
+
+# Exponencial
+curve(dexp(x, 1),   0, 6, lwd=2, col="#4472C4",
+      main="Exponencial(λ)", ylab="f(x)")
+curve(dexp(x, 0.5), add=TRUE, lwd=2, col="#ED7D31", lty=2)
+curve(dexp(x, 2),   add=TRUE, lwd=2, col="#70AD47", lty=3)
+legend("topright", c("λ=1","λ=0.5","λ=2"),
+       col=c("#4472C4","#ED7D31","#70AD47"), lty=1:3, lwd=2, cex=0.8)
+
+# Gamma
+curve(dgamma(x, 1, 1), 0, 12, lwd=2, col="#4472C4",
+      main="Gamma(α, 1)", ylab="f(x)")
+curve(dgamma(x, 2, 1), add=TRUE, lwd=2, col="#ED7D31", lty=2)
+curve(dgamma(x, 5, 1), add=TRUE, lwd=2, col="#70AD47", lty=3)
+legend("topright", c("α=1","α=2","α=5"),
+       col=c("#4472C4","#ED7D31","#70AD47"), lty=1:3, lwd=2, cex=0.8)
+
+# Beta
+curve(dbeta(x, 2, 2),     0, 1, lwd=2, col="#4472C4",
+      main="Beta(α, β)", ylab="f(x)", ylim=c(0,3))
+curve(dbeta(x, 0.5, 0.5), add=TRUE, lwd=2, col="#ED7D31", lty=2)
+curve(dbeta(x, 5, 2),     add=TRUE, lwd=2, col="#70AD47", lty=3)
+legend("top", c("(2,2)","(0.5,0.5)","(5,2)"),
+       col=c("#4472C4","#ED7D31","#70AD47"), lty=1:3, lwd=2, cex=0.8)
+
+# Uniforme
+curve(dunif(x, 0, 1), -0.5, 1.5, lwd=2, col="#4472C4",
+      main="Uniforme(a, b)", ylab="f(x)", ylim=c(0, 1.5))
+curve(dunif(x, 0, 3), add=TRUE, lwd=2, col="#ED7D31", lty=2)
+legend("topright", c("U(0,1)","U(0,3)"),
+       col=c("#4472C4","#ED7D31"), lty=1:2, lwd=2, cex=0.8)
+
+# FDA Normal acumulada
+x_seq <- seq(-4, 4, 0.01)
+plot(x_seq, pnorm(x_seq), type="l", lwd=2, col="#4472C4",
+     main="FDA — Normal(0,1)", xlab="x", ylab="F(x)")
+abline(h=c(0.025,0.5,0.975), lty=3, col="grey60")
+abline(v=c(-1.96,0,1.96),    lty=3, col="grey60")
+
+par(mfrow = c(1, 1))
+```
+
+```{r}
+#| label: calculos-continuas
+
+# Normal N(100, 225) — puntajes
+cat("=== Normal(100, 15) ===\n")
+cat("P(X < 120) =",       round(pnorm(120, 100, 15), 4), "\n")
+cat("P(85 < X < 115) =",  round(diff(pnorm(c(85,115), 100, 15)), 4), "\n")
+cat("Percentil 95 =",     round(qnorm(0.95, 100, 15), 2), "\n\n")
+
+# Exponencial
+cat("=== Exp(λ=0.5) ===\n")
+cat("P(X > 3) =",  round(pexp(3, 0.5, lower.tail=FALSE), 4), "\n")
+cat("Mediana =",   round(qexp(0.5, 0.5), 4), "\n\n")
+
+# Falta de memoria
+cat("=== Falta de memoria Exp(1) ===\n")
+cat("P(X>5) =",               round(pexp(5, 1, lower.tail=FALSE), 4), "\n")
+cat("P(X>3+2 | X>2) =",       round(pexp(5,1,lower.tail=FALSE)/pexp(2,1,lower.tail=FALSE),4),"\n")
+cat("P(X>3) =",               round(pexp(3, 1, lower.tail=FALSE), 4), "\n")
+```
+
+::: {.callout-note icon=false}
+## Ejercicio 2.2
+
+El tiempo de atención en una ventanilla sigue $\text{Exp}(\lambda=2)$ (en minutos).
+
+a) ¿Cuál es la probabilidad de ser atendido en menos de 1 minuto?
+b) ¿Cuál es la probabilidad de esperar más de 3 minutos?
+c) Dado que ya esperaste 2 minutos, ¿cuál es la probabilidad de esperar
+   al menos 3 minutos más?
+d) Calcula el percentil 90 del tiempo de espera.
+:::
+
+---
+
+## Distribuciones Muestrales {#sec-dist-muestrales}
+
+Las distribuciones muestrales describen el comportamiento de estadísticos
+calculados a partir de muestras aleatorias de poblaciones normales.
+
+### Chi-cuadrada  $\chi^2(\nu)$
+
+Si $Z_1,\ldots,Z_\nu \overset{iid}{\sim} \mathcal{N}(0,1)$:
+
+$$\chi^2_\nu = \sum_{i=1}^\nu Z_i^2 \qquad \mathrm{E}[\chi^2_\nu]=\nu, \quad \mathrm{Var}(\chi^2_\nu)=2\nu$$
+
+Relación con varianza muestral: $\dfrac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$
+
+### t de Student  $t(\nu)$
+
+Si $Z\sim\mathcal{N}(0,1)$ y $V\sim\chi^2(\nu)$ independientes:
+
+$$t_\nu = \frac{Z}{\sqrt{V/\nu}} \qquad \text{Para } \nu\text{ grande: }t_\nu\approx\mathcal{N}(0,1)$$
+
+### F de Snedecor  $F(\nu_1,\nu_2)$
+
+Si $V_1\sim\chi^2(\nu_1)$ y $V_2\sim\chi^2(\nu_2)$ independientes:
+
+$$F = \frac{V_1/\nu_1}{V_2/\nu_2}$$
+
+```{r}
+#| label: fig-dist-muestrales
+#| fig-cap: "Distribuciones muestrales: Chi², t de Student y F"
+#| fig-width: 12
+#| fig-height: 4
+
+par(mfrow = c(1, 3))
+
+# Chi-cuadrada
+curve(dchisq(x, 1),  0, 30, lwd=2, col="#4472C4", ylim=c(0,0.5),
+      main="Chi-cuadrada(ν)", xlab="x", ylab="f(x)")
+curve(dchisq(x, 5),  add=TRUE, lwd=2, col="#ED7D31", lty=2)
+curve(dchisq(x, 10), add=TRUE, lwd=2, col="#70AD47", lty=3)
+legend("topright", c("ν=1","ν=5","ν=10"),
+       col=c("#4472C4","#ED7D31","#70AD47"), lty=1:3, lwd=2, cex=0.8)
+
+# t de Student
+curve(dt(x,1),  -5,5, lwd=2, col="#4472C4",
+      main="t de Student(ν)", xlab="x", ylab="f(x)")
+curve(dt(x,5),  add=TRUE, lwd=2, col="#ED7D31", lty=2)
+curve(dnorm(x), add=TRUE, lwd=2, col="#70AD47", lty=3)
+legend("topright", c("ν=1","ν=5","Normal"),
+       col=c("#4472C4","#ED7D31","#70AD47"), lty=1:3, lwd=2, cex=0.8)
+
+# F de Snedecor
+curve(df(x,2,10),  0,5, lwd=2, col="#4472C4",
+      main="F de Snedecor(ν₁,ν₂)", xlab="x", ylab="f(x)")
+curve(df(x,5,20),  add=TRUE, lwd=2, col="#ED7D31", lty=2)
+curve(df(x,10,50), add=TRUE, lwd=2, col="#70AD47", lty=3)
+legend("topright", c("(2,10)","(5,20)","(10,50)"),
+       col=c("#4472C4","#ED7D31","#70AD47"), lty=1:3, lwd=2, cex=0.8)
+
+par(mfrow = c(1, 1))
+```
+
+```{r}
+#| label: cuantiles-muestrales
+
+cat("=== Cuantiles t(20) ===\n")
+cat("t_0.025 =", round(qt(0.025, 20), 4), "\n")
+cat("t_0.975 =", round(qt(0.975, 20), 4), "\n\n")
+
+cat("=== Cuantiles Chi²(10) ===\n")
+cat("χ²_0.025 =", round(qchisq(0.025, 10), 4), "\n")
+cat("χ²_0.975 =", round(qchisq(0.975, 10), 4), "\n\n")
+
+cat("=== Cuantil F(5,20) al 95% ===\n")
+cat("F_0.95 =", round(qf(0.95, 5, 20), 4), "\n")
+```

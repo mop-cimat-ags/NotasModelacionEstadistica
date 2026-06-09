@@ -1,0 +1,24 @@
+# Bienvenida {.unnumbered}
+
+Notas integradas de la materia **Modelación Estadística** para la Maestría en
+Optimización y Modelación de Procesos del **CIMAT**.
+
+## Contenido
+
+| Capítulo | Tema |
+|----------|------|
+| 1 | Introducción a la Estadística y Probabilidad |
+| 2 | Distribuciones de Probabilidad |
+| 3 | Distribución Conjunta y Esperanza |
+| 4 | Introducción a la Inferencia Estadística |
+
+## Cómo usar estas notas
+
+Cada capítulo combina teoría con código **R base** ejecutable directamente
+en la consola de R, sin necesidad de instalar paquetes adicionales.
+
+```{r}
+#| label: version-r
+#| echo: false
+cat("Versión de R:", R.version$major, ".", R.version$minor, "\n", sep="")
+```

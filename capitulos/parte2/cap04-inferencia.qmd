@@ -1,0 +1,381 @@
+# Introducción a la Inferencia Estadística {#cap-inferencia}
+
+## Parámetros y Estimadores {#sec-parametros}
+
+- **Parámetro** $\theta$: característica numérica de la población (fijo, desconocido).
+- **Estadístico**: función de la muestra $T=t(X_1,\ldots,X_n)$.
+- **Estimador** $\hat\theta$: estadístico usado para aproximar $\theta$.
+- **Estimación**: valor numérico $\hat\theta=t(x_1,\ldots,x_n)$.
+
+### Propiedades deseables
+
+**Insesgadez**: $\mathrm{E}[\hat\theta]=\theta$. El sesgo es $B(\hat\theta)=\mathrm{E}[\hat\theta]-\theta$.
+
+**Consistencia**: $\hat\theta_n\xrightarrow{p}\theta$ cuando $n\to\infty$.
+
+**Error Cuadrático Medio**:
+
+$$\mathrm{ECM}(\hat\theta)=\mathrm{Var}(\hat\theta)+[B(\hat\theta)]^2$$
+
+**Cota de Cramér-Rao** (estimadores insesgados):
+
+$$\mathrm{Var}(\hat\theta)\geq\frac{1}{nI(\theta)}, \qquad I(\theta)=\mathrm{E}\!\left[\left(\frac{\partial}{\partial\theta}\log f(X;\theta)\right)^2\right]$$
+
+```{r}
+#| label: sesgo-insesgado
+
+set.seed(42)
+n <- 15; N_sim <- 10000; sigma2_real <- 9
+
+# Generar N_sim muestras de tamaño n
+muestras <- matrix(rnorm(N_sim*n, 0, sqrt(sigma2_real)), nrow=N_sim)
+
+S2_ins   <- apply(muestras, 1, var)                   # divide n-1 (insesgado)
+S2_sesgo <- apply(muestras, 1, function(x)            # divide n (sesgado)
+                  mean((x - mean(x))^2))
+
+cat("σ² real        =", sigma2_real, "\n")
+cat("E[S²] insesgado=", round(mean(S2_ins),   4), "\n")
+cat("E[S²] sesgado  =", round(mean(S2_sesgo), 4),
+    " (sesgo =", round(mean(S2_sesgo)-sigma2_real, 4), ")\n\n")
+
+# ECM de cada estimador (target = sigma2_real)
+ECM_ins   <- mean((S2_ins   - sigma2_real)^2)
+ECM_sesgo <- mean((S2_sesgo - sigma2_real)^2)
+cat("ECM insesgado =", round(ECM_ins,   4), "\n")
+cat("ECM sesgado   =", round(ECM_sesgo, 4), "\n")
+```
+
+---
+
+## Métodos de Estimación {#sec-metodos}
+
+### Método de Momentos (MM)
+
+Igualar los momentos muestrales $m_k=\frac{1}{n}\sum X_i^k$ con los teóricos
+$\mu_k(\theta)=\mathrm{E}[X^k]$ y resolver para $\theta$.
+
+**Ejemplo — Gamma($\alpha,\beta$)**:
+
+$$\hat\beta_{MM}=\frac{\bar{X}}{S^2}, \qquad \hat\alpha_{MM}=\frac{\bar{X}^2}{S^2}$$
+
+### Máxima Verosimilitud (MV)
+
+::: {.callout-important}
+## Función de Verosimilitud
+
+$$L(\theta;\mathbf{x})=\prod_{i=1}^n f(x_i;\theta)$$
+
+El **EMV** $\hat\theta_{MV}$ maximiza $\ell(\theta)=\log L(\theta)$.
+:::
+
+```{r}
+#| label: mle-normal
+
+# EMV de Normal: μ̂ = X̄,  σ̂² = Σ(xi-x̄)²/n
+set.seed(7)
+muestra <- rnorm(60, mean=8, sd=3)
+
+cat("=== EMV Normal ===\n")
+cat("μ̂ = X̄  =", round(mean(muestra), 4), "\n")
+cat("σ̂² =",     round(mean((muestra-mean(muestra))^2), 4),
+    " (sesgado, divide n)\n\n")
+
+# MV numérico con optim()
+neg_loglik <- function(par, datos) {
+  mu    <- par[1]
+  sigma <- exp(par[2])   # exp para forzar sigma > 0
+  -sum(dnorm(datos, mu, sigma, log=TRUE))
+}
+opt <- optim(c(0, 0), neg_loglik, datos=muestra, method="BFGS")
+
+cat("=== MV numérico (optim) ===\n")
+cat("μ̂ =", round(opt$par[1], 4), "\n")
+cat("σ̂ =", round(exp(opt$par[2]), 4), "\n")
+```
+
+```{r}
+#| label: mle-poisson
+
+# EMV de Poisson: λ̂ = X̄
+set.seed(3)
+datos_pois <- rpois(200, lambda=4.5)
+cat("EMV Poisson: λ̂ = X̄ =", round(mean(datos_pois), 4),
+    "  (teórico: 4.5)\n")
+
+# MM de Gamma
+datos_gam <- rgamma(200, shape=3, rate=0.5)
+alpha_mm  <- mean(datos_gam)^2 / var(datos_gam)
+beta_mm   <- mean(datos_gam) / var(datos_gam)
+cat("\nMM Gamma: α̂ =", round(alpha_mm,3),
+    "  β̂ =", round(beta_mm,3),
+    "  (teórico: α=3, β=0.5)\n")
+```
+
+---
+
+## Distribución de Probabilidad Empírica {#sec-empirica}
+
+::: {.callout-important}
+## FDA Empírica
+
+$$\hat{F}_n(x)=\frac{1}{n}\sum_{i=1}^n\mathbf{1}(x_i\leq x)$$
+
+$\hat{F}_n(x)$ es estimador insesgado de $F(x)$:
+$\;\mathrm{E}[\hat{F}_n(x)]=F(x)$, $\;\mathrm{Var}(\hat{F}_n(x))=F(x)(1-F(x))/n$
+:::
+
+**Teorema de Glivenko-Cantelli**: $\sup_x|\hat{F}_n(x)-F(x)|\xrightarrow{c.s.}0$
+
+```{r}
+#| label: fig-fda-empirica
+#| fig-cap: "FDA empírica vs teórica para distintos tamaños de muestra"
+#| fig-width: 11
+#| fig-height: 4
+
+set.seed(2024)
+mu <- 5; sigma <- 2
+x_seq <- seq(mu-4*sigma, mu+4*sigma, 0.1)
+
+par(mfrow = c(1, 3))
+for (n in c(20, 100, 500)) {
+  muestra <- rnorm(n, mu, sigma)
+  Fn      <- ecdf(muestra)
+  plot(x_seq, Fn(x_seq), type="s", lwd=2, col="#4472C4",
+       main=paste0("n = ", n),
+       xlab="x", ylab="F(x)", ylim=c(0,1))
+  lines(x_seq, pnorm(x_seq, mu, sigma), lwd=2, col="#ED7D31", lty=2)
+  legend("topleft", c("Empírica","Teórica"),
+         col=c("#4472C4","#ED7D31"), lty=c(1,2), lwd=2, cex=0.8)
+}
+par(mfrow = c(1, 1))
+```
+
+```{r}
+#| label: ks-test
+
+# Prueba de Kolmogorov-Smirnov: ¿N(5,2)?
+set.seed(99)
+muestra <- rnorm(100, 5, 2)
+ks.test(muestra, "pnorm", mean=5, sd=2)
+```
+
+---
+
+## Distribución Muestral para la Media {#sec-dist-media}
+
+### Con $\sigma^2$ conocida (población normal)
+
+$$\bar{X}\sim\mathcal{N}\!\left(\mu,\frac{\sigma^2}{n}\right) \qquad Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\sim\mathcal{N}(0,1)$$
+
+### Con $\sigma^2$ desconocida
+
+$$T=\frac{\bar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)$$
+
+### Intervalo de confianza para $\mu$
+
+**$\sigma$ conocida**: $\;\bar{X}\pm z_{\alpha/2}\dfrac{\sigma}{\sqrt{n}}$
+
+**$\sigma$ desconocida**: $\;\bar{X}\pm t_{\alpha/2,\,n-1}\dfrac{S}{\sqrt{n}}$
+
+```{r}
+#| label: ic-media
+
+# Función IC con sigma desconocida
+ic_t <- function(x, nivel=0.95) {
+  n    <- length(x)
+  xbar <- mean(x)
+  s    <- sd(x)
+  tc   <- qt(1-(1-nivel)/2, df=n-1)
+  c(inferior = xbar - tc*s/sqrt(n),
+    superior = xbar + tc*s/sqrt(n))
+}
+
+set.seed(42)
+muestra <- rnorm(25, mean=10, sd=3)
+
+cat("X̄ =", round(mean(muestra),4),
+    "  S =", round(sd(muestra),4), "\n")
+cat("IC 90%:", round(ic_t(muestra, 0.90),4), "\n")
+cat("IC 95%:", round(ic_t(muestra, 0.95),4), "\n")
+cat("IC 99%:", round(ic_t(muestra, 0.99),4), "\n")
+```
+
+```{r}
+#| label: fig-cobertura-ic
+#| fig-cap: "Cobertura empírica del IC 95% — primeros 60 intervalos"
+#| fig-width: 8
+#| fig-height: 5
+
+set.seed(123)
+N_sim <- 200; n_ic <- 20; mu_real <- 10
+
+ic_mat <- t(replicate(N_sim, ic_t(rnorm(n_ic, mu_real, 3))))
+cubre  <- ic_mat[,1] <= mu_real & mu_real <= ic_mat[,2]
+
+cat("Cobertura empírica:", round(mean(cubre),4), "\n")
+
+# Graficar primeros 60
+sub  <- 1:60
+cols <- ifelse(cubre[sub], "#4472C4", "#E74C3C")
+
+plot(NA, xlim=range(ic_mat[sub,]), ylim=c(0,61),
+     main="ICs del 95% para μ=10  (rojo = no cubre)",
+     xlab="μ", ylab="Simulación")
+abline(v=mu_real, lty=2, lwd=2)
+for (i in sub) {
+  lines(ic_mat[i,], c(i,i), col=cols[i], lwd=1.5)
+  points(mean(ic_mat[i,]), i, pch=16, col=cols[i], cex=0.5)
+}
+```
+
+---
+
+## Teorema del Límite Central {#sec-tlc}
+
+::: {.callout-important}
+## Teorema del Límite Central (TLC)
+
+$X_1,X_2,\ldots$ iid con $\mathrm{E}[X_i]=\mu$ y $\mathrm{Var}(X_i)=\sigma^2<\infty$. Entonces:
+
+$$Z_n=\frac{\bar{X}_n-\mu}{\sigma/\sqrt{n}}\xrightarrow{d}\mathcal{N}(0,1)$$
+:::
+
+La convergencia es más rápida cuando la población es simétrica. Regla práctica: $n\geq 30$.
+
+```{r}
+#| label: fig-tlc
+#| fig-cap: "TLC: distribución de X̄ para distintas poblaciones y tamaños de muestra"
+#| fig-width: 12
+#| fig-height: 9
+
+set.seed(42)
+N_sim <- 4000
+ns    <- c(5, 15, 30, 100)
+
+simular_tlc <- function(gen_fn, mu, sigma, titulo) {
+  par(mfrow=c(1,4))
+  for (n in ns) {
+    medias <- replicate(N_sim, mean(gen_fn(n)))
+    z      <- (medias - mu) / (sigma/sqrt(n))
+    hist(z, breaks=40, freq=FALSE, col="#4472C4", border="white",
+         main=paste0(titulo, "\nn=", n),
+         xlab="Z estandarizado", ylim=c(0, 0.5))
+    curve(dnorm(x), add=TRUE, col="red", lwd=2)
+  }
+  par(mfrow=c(1,1))
+}
+
+simular_tlc(function(n) rexp(n, 1),        mu=1, sigma=1,      "Exp(1)")
+simular_tlc(function(n) rbinom(n,1,0.1),   mu=0.1, sigma=sqrt(0.09), "Bernoulli(0.1)")
+simular_tlc(function(n) runif(n,-1,1),     mu=0, sigma=sqrt(1/3),    "Unif(-1,1)")
+```
+
+```{r}
+#| label: tlc-aplicacion
+
+# Aplicación: tiempos de proceso con media=5min, sd=2min, n=64
+mu <- 5; sigma <- 2; n <- 64
+x0 <- 5.5  # ¿P(X̄ > 5.5)?
+
+z <- (x0 - mu) / (sigma/sqrt(n))
+cat("Z =", round(z, 4), "\n")
+cat("P(X̄ > 5.5) =", round(pnorm(z, lower.tail=FALSE), 4), "\n")
+
+# ¿Cuánto n para P(|X̄-5| < 0.3) > 0.95?
+# z_0.025 = 1.96 → n ≥ (1.96·σ/0.3)²
+n_min <- ceiling((qnorm(0.975)*sigma/0.3)^2)
+cat("n mínimo para margen 0.3 con 95% confianza:", n_min, "\n")
+```
+
+---
+
+## Distribución Muestral para la Diferencia de Medias {#sec-dif-medias}
+
+### Varianzas conocidas
+
+$$Z=\frac{(\bar{X}_1-\bar{X}_2)-(\mu_1-\mu_2)}{\sqrt{\sigma_1^2/n_1+\sigma_2^2/n_2}}\sim\mathcal{N}(0,1)$$
+
+### Varianzas desconocidas iguales (varianza pooled)
+
+$$S_p^2=\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}, \qquad T=\frac{(\bar{X}_1-\bar{X}_2)-(\mu_1-\mu_2)}{S_p\sqrt{1/n_1+1/n_2}}\sim t(n_1+n_2-2)$$
+
+### Varianzas desconocidas desiguales (Welch)
+
+$$T'=\frac{(\bar{X}_1-\bar{X}_2)-(\mu_1-\mu_2)}{\sqrt{S_1^2/n_1+S_2^2/n_2}}\sim t(\nu_W)$$
+
+```{r}
+#| label: ic-dif-medias
+
+set.seed(42)
+A <- rnorm(30, mean=12.5, sd=2.5)
+B <- rnorm(35, mean=11.0, sd=2.8)
+
+cat("=== Estadísticas ===\n")
+cat("Grupo A: X̄ =", round(mean(A),3), "  S =", round(sd(A),3),
+    "  n =", length(A), "\n")
+cat("Grupo B: X̄ =", round(mean(B),3), "  S =", round(sd(B),3),
+    "  n =", length(B), "\n\n")
+
+# t de Welch (R base, default)
+resultado <- t.test(A, B, conf.level=0.95)
+cat("=== Prueba t de Welch ===\n")
+cat("Diferencia de medias:", round(resultado$estimate[1]-resultado$estimate[2],4),"\n")
+cat("IC 95%: [", round(resultado$conf.int[1],4), ",",
+                 round(resultado$conf.int[2],4), "]\n")
+cat("p-valor:", round(resultado$p.value, 6), "\n")
+cat("Conclusión:", ifelse(resultado$p.value < 0.05,
+    "Se rechaza H0 (diferencia significativa al 5%)",
+    "No se rechaza H0"), "\n")
+```
+
+```{r}
+#| label: aplicacion-final
+
+# Comparar dos métodos de manufactura
+set.seed(99)
+M1 <- c(10.2, 9.8, 10.5, 10.1, 9.9, 10.3, 10.0, 10.4, 9.7, 10.2)
+M2 <- c(10.8, 10.5, 11.0, 10.7, 10.9, 10.6, 11.1, 10.4, 10.8, 10.9)
+
+cat("Método 1: X̄ =", round(mean(M1),3), "  S =", round(sd(M1),3), "\n")
+cat("Método 2: X̄ =", round(mean(M2),3), "  S =", round(sd(M2),3), "\n\n")
+
+# Supuesto de igualdad de varianzas
+vf <- var.test(M1, M2)
+cat("Prueba F para varianzas — p-valor:", round(vf$p.value, 4), "\n")
+cat("→", ifelse(vf$p.value > 0.05,
+    "Varianzas iguales (usar t pooled)",
+    "Varianzas distintas (usar Welch)"), "\n\n")
+
+# t pooled (varianzas iguales)
+print(t.test(M1, M2, var.equal=TRUE))
+```
+
+::: {.callout-note icon=false}
+## Ejercicio 4.1
+
+Dos grupos de estudiantes con métodos distintos de enseñanza:
+
+- Grupo 1 ($n_1=15$): $\bar{x}_1=78$, $s_1=8$
+- Grupo 2 ($n_2=18$): $\bar{x}_2=72$, $s_2=10$
+
+a) Construye un IC 95% para $\mu_1-\mu_2$ suponiendo varianzas desiguales.
+b) ¿Hay evidencia de que el método 1 es más efectivo?
+c) ¿Qué supuestos requiere la prueba? ¿Cómo los verificarías?
+:::
+
+::: {.callout-note icon=false}
+## Ejercicio 4.2 — Aplicación integradora
+
+Se tienen los tiempos de respuesta (en ms) de dos servidores:
+
+```r
+sv1 <- c(120, 135, 118, 142, 127, 131, 115, 138, 124, 129)
+sv2 <- c(145, 152, 138, 161, 148, 155, 142, 158, 147, 153)
+```
+
+a) Calcula estadísticas descriptivas de cada servidor.
+b) Estima la diferencia de medias con IC 95%.
+c) ¿Con qué nivel de confianza puedes afirmar que el servidor 1 es más rápido?
+d) Simula 10,000 diferencias de medias por bootstrap y compara con el IC paramétrico.
+:::

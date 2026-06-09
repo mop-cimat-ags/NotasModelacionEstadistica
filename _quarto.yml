@@ -1,0 +1,84 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Modelacion Estadistica"
+  subtitle: "Notas del Curso - Maestria OMP, CIMAT"
+  author: "Catedraticos CIMAT"
+  date: today
+  date-format: "MMMM YYYY"
+
+  sidebar:
+    search: true
+    style: "docked"
+
+  repo-url: https://github.com/vladimirjimenez-hub/NotasModelacionEstadistica
+  repo-actions: [edit, issue]
+
+  navbar:
+    logo: imagenes/logo-cimat.png
+    right:
+      - icon: github
+        href: https://github.com/vladimirjimenez-hub/NotasModelacionEstadistica
+        aria-label: GitHub
+
+  favicon: imagenes/logo-cimat.png
+
+  page-footer:
+    left: "Modelacion Estadistica - Maestria OMP, CIMAT"
+    right: "2024 CIMAT - Publicado con Quarto"
+
+  chapters:
+    - index.qmd
+    - part: "Parte I - Probabilidad y Distribuciones"
+      chapters:
+        - capitulos/parte1/cap01-intro-estadistica.qmd
+        - capitulos/parte1/cap02-distribuciones.qmd
+        - capitulos/parte1/cap03-distribucion-conjunta.qmd
+    - part: "Parte II - Inferencia Estadistica"
+      chapters:
+        - capitulos/parte2/cap04-inferencia.qmd
+    - referencias.qmd
+
+bibliography: referencias.bib
+
+format:
+  html:
+    theme: cosmo
+    css: estilos-cimat.css
+    toc: true
+    toc-depth: 3
+    toc-title: "En este capitulo"
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    highlight-style: github
+    smooth-scroll: true
+
+  pdf:
+    documentclass: scrbook
+    papersize: letter
+    fontsize: 11pt
+    geometry: [top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm]
+    toc: true
+    number-sections: true
+    colorlinks: true
+    include-in-header: latex/preamble.tex
+    include-before-body: latex/portada.tex
+
+  docx:
+    toc: true
+    number-sections: true
+
+execute:
+  echo: true
+  cache: true
+  freeze: auto
+  warning: false
+  message: false
+
+knitr:
+  opts_chunk:
+    comment: "#>"
+    collapse: true
