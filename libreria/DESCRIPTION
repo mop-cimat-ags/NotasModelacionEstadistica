@@ -1,0 +1,18 @@
+Package: modelEstCIMAT
+Title: Funciones y Datos para Modelacion Estadistica - CIMAT
+Version: 0.1.0
+Authors@R:
+    person("Catedraticos", "CIMAT", email = "vladimir.jimenez@cimat.mx",
+           role = c("aut", "cre"))
+Description: Paquete de apoyo para el curso de Modelacion Estadistica
+    de la Maestria en Optimizacion y Modelacion de Procesos del CIMAT.
+    Incluye funciones estadisticas, de inferencia, de simulacion y
+    conjuntos de datos usados en los capitulos del curso.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends: R (>= 4.1.0)
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

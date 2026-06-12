@@ -45,7 +45,8 @@ bibliography: referencias.bib
 
 format:
   html:
-    theme: cosmo
+    #theme: cosmo
+    theme: materia
     css: estilos-cimat.css
     toc: true
     toc-depth: 3
