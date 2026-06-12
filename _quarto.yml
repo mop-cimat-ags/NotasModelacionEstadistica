@@ -13,14 +13,14 @@ book:
     search: true
     style: "docked"
 
-  repo-url: https://github.com/vladimirjimenez-hub/NotasModelacionEstadistica
+  repo-url: https://github.com/mop-cimat-ags/NotasModelacionEstadistica
   repo-actions: [edit, issue]
 
   navbar:
     logo: imagenes/logo-cimat.png
     right:
       - icon: github
-        href: https://github.com/vladimirjimenez-hub/NotasModelacionEstadistica
+        href: https://github.com/mop-cimat-ags/NotasModelacionEstadistica
         aria-label: GitHub
 
   favicon: imagenes/logo-cimat.png
