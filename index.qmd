@@ -33,3 +33,13 @@ en la consola de R, sin necesidad de instalar paquetes adicionales.
 #| echo: false
 cat("Versión de R:", R.version$major, ".", R.version$minor, "\n", sep="")
 ```
+
+## Catedráticos colaboradores
+
+| Nombre | Correo |
+|---|---|
+| Dr. Sergio M. Nava Muñoz | nava@cimat.mx |
+| Dr. Magin Zúñiga Estrada | magin.zuniga@cimat.mx |
+| Dr. Humberto Martínez Bautista | humberto.martinez@cimat.mx |
+
+**Compilación y edición del repositorio:** Vladimir Jiménez Pérez (alumno) — vladimir.jimenez@cimat.mx
