@@ -1,9 +1,11 @@
 Package: modelEstCIMAT
 Title: Funciones y Datos para Modelacion Estadistica - CIMAT
 Version: 0.1.0
-Authors@R:
-    person("Catedraticos", "CIMAT", email = "vladimir.jimenez@cimat.mx",
-           role = c("aut", "cre"))
+Authors@R: c(
+    person("Sergio M.", "Nava Munoz", email = "nava@cimat.mx", role = c("aut", "cre")),
+    person("Magin", "Zuniga Estrada", email = "magin.zuniga@cimat.mx", role = "aut"),
+    person("Humberto", "Martinez Bautista", email = "humberto.martinez@cimat.mx", role = "aut"),
+    person("Vladimir", "Jimenez Perez", email = "vladimir.jimenez@cimat.mx", role = "ctb"))
 Description: Paquete de apoyo para el curso de Modelacion Estadistica
     de la Maestria en Optimizacion y Modelacion de Procesos del CIMAT.
     Incluye funciones estadisticas, de inferencia, de simulacion y

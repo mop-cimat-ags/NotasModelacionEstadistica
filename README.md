@@ -32,6 +32,8 @@ Notas del curso **Modelación Estadística** de la Maestría OMP del CIMAT Aguas
 | Dr. Magin Zúñiga Estrada | magin.zuniga@cimat.mx |
 | Dr. Humberto Martínez Bautista | humberto.martinez@cimat.mx |
 
+**Compilación y edición del repositorio:** Vladimir Jiménez Pérez (alumno) — vladimir.jimenez@cimat.mx
+
 ---
 
 ## Estructura del proyecto
@@ -245,4 +247,4 @@ Para agregar o editar contenido, revisa la **[Guía para Colaboradores](GUIA_COL
 
 ## Licencia
 
-MIT © Catedráticos CIMAT — Maestría OMP, Unidad Aguascalientes
+MIT © Dr. Sergio M. Nava Muñoz, Dr. Magin Zúñiga Estrada, Dr. Humberto Martínez Bautista — Maestría OMP, CIMAT Unidad Aguascalientes

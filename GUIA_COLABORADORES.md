@@ -15,6 +15,8 @@ Libro en línea: https://mop-cimat-ags.github.io/NotasModelacionEstadistica
 | Dr. Magin Zúñiga Estrada | magin.zuniga@cimat.mx |
 | Dr. Humberto Martínez Bautista | humberto.martinez@cimat.mx |
 
+**Compilación y edición del repositorio:** Vladimir Jiménez Pérez (alumno) — vladimir.jimenez@cimat.mx
+
 ---
 
 ## Contenido
