@@ -7,6 +7,14 @@ de Procesos (OMP), CIMAT Aguascalientes.
 Repositorio: https://github.com/mop-cimat-ags/NotasModelacionEstadistica  
 Libro en línea: https://mop-cimat-ags.github.io/NotasModelacionEstadistica
 
+### Catedráticos colaboradores
+
+| Nombre | Correo |
+|---|---|
+| Dr. Sergio M. Nava Muñoz | nava@cimat.mx |
+| Dr. Magin Zúñiga Estrada | magin.zuniga@cimat.mx |
+| Dr. Humberto Martínez Bautista | humberto.martinez@cimat.mx |
+
 ---
 
 ## Contenido

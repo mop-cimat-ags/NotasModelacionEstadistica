@@ -24,6 +24,16 @@ Notas del curso **Modelación Estadística** de la Maestría OMP del CIMAT Aguas
 
 ---
 
+## Catedráticos colaboradores
+
+| Nombre | Correo |
+|---|---|
+| Dr. Sergio M. Nava Muñoz | nava@cimat.mx |
+| Dr. Magin Zúñiga Estrada | magin.zuniga@cimat.mx |
+| Dr. Humberto Martínez Bautista | humberto.martinez@cimat.mx |
+
+---
+
 ## Estructura del proyecto
 
 ```
