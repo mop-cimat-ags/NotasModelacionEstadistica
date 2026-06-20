@@ -1171,7 +1171,7 @@ Cuando $\beta = 1$, la Weibull se reduce a la distribución Exponencial. Se
 usa frecuentemente para modelar tiempos de vida y de falla en análisis de
 confiabilidad.
 
-```{r weibull, echo=TRUE, fig.align='center', fig.width=7, fig.height=4.5}
+```{r, echo=TRUE, fig.align='center', fig.width=7, fig.height=4.5}
 #| label: fig-weibull
 #| fig-cap: "Función de densidad Weibull para distintos parámetros de forma (β)"
 library(ggplot2)
@@ -1208,7 +1208,7 @@ $f(x,y) = 4xy = (2x)(2y) = g(x)h(y)$, $X$ y $Y$ son independientes. En lugar
 de reproducir la imagen de la diapositiva, la superficie de densidad conjunta
 se genera directamente con código:
 
-```{r conjunta_continua, echo=TRUE, fig.align='center', fig.width=6, fig.height=5}
+```{r, echo=TRUE, fig.align='center', fig.width=6, fig.height=5}
 #| label: fig-conjunta-continua
 #| fig-cap: "Densidad conjunta f(x,y) = 4xy sobre el cuadrado unitario"
 library(ggplot2)

@@ -1722,7 +1722,7 @@ $$\text{Leyes de De Morgan:} \quad \overline{A \cup B} = \overline{A} \cap \over
 A continuación se recrea, mediante código, un diagrama de Venn para ilustrar la
 unión y la intersección de dos eventos $A$ y $B$ dentro del espacio muestral $S$:
 
-```{r venn_diagrama, echo=TRUE, fig.align='center', fig.width=6, fig.height=5}
+```{r, echo=TRUE, fig.align='center', fig.width=6, fig.height=5}
 #| label: fig-venn
 #| fig-cap: "Diagrama de Venn generado por código: eventos A y B en el espacio muestral S"
 library(ggplot2)
@@ -1761,7 +1761,7 @@ $P(\overline{A}) = 1 - \dfrac{365 \times 364 \times \cdots \times (365 - r + 1)}
 En vez de reutilizar la imagen de la diapositiva, esta probabilidad se calcula y
 grafica directamente con código para distintos tamaños de grupo:
 
-```{r paradoja_cumpleanos, echo=TRUE, fig.align='center', fig.width=7, fig.height=4.5}
+```{r, echo=TRUE, fig.align='center', fig.width=7, fig.height=4.5}
 #| label: fig-cumpleanos
 #| fig-cap: "Probabilidad de coincidencia de cumpleaños según el tamaño del grupo"
 r <- 1:60
@@ -1824,7 +1824,7 @@ no importa cambiar, pero el Teorema de Bayes muestra que cambiar duplica la
 probabilidad de ganar. En vez de mostrar el enunciado como imagen, se simula
 el juego miles de veces para comparar ambas estrategias:
 
-```{r monty_hall, echo=TRUE, fig.align='center', fig.width=6, fig.height=4.5}
+```{r, echo=TRUE, fig.align='center', fig.width=6, fig.height=4.5}
 #| label: fig-montyhall
 #| fig-cap: "Simulación de Monte Carlo: probabilidad de ganar al cambiar vs. mantener la elección"
 set.seed(2024)

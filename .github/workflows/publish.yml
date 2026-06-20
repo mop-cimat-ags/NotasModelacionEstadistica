@@ -41,6 +41,10 @@ jobs:
           packages: |
             any::knitr
             any::rmarkdown
+            any::ggplot2
+            any::igraph
+            any::VennDiagram
+            any::DiagrammeR
 
       - name: Renderizar libro (HTML + PDF + DOCX)
         run: quarto render

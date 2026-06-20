@@ -1491,7 +1491,7 @@ Una propiedad importante de esta distribución es la **falta de memoria**: no
 importa cuántos fracasos hayan ocurrido ya, la distribución de los fracasos
 restantes hasta el próximo éxito es siempre la misma.
 
-```{r geometrica, echo=TRUE, fig.align='center', fig.width=6, fig.height=4}
+```{r, echo=TRUE, fig.align='center', fig.width=6, fig.height=4}
 #| label: fig-geometrica
 #| fig-cap: "Distribución Geométrica para distintos valores de p"
 library(ggplot2)
@@ -1527,7 +1527,7 @@ alcanzar $k$ éxitos en ensayos Bernoulli con probabilidad de éxito $p$.
 $$p(x; k, p) = \binom{k + x - 1}{x} p^k (1-p)^x, \qquad x = 0, 1, 2, \ldots$$
 $$E(X) = \frac{k(1-p)}{p}, \qquad Var(X) = \frac{k(1-p)}{p^2}$$
 
-```{r binomial_negativa, echo=TRUE, fig.align='center', fig.width=6, fig.height=4}
+```{r, echo=TRUE, fig.align='center', fig.width=6, fig.height=4}
 #| label: fig-binneg
 #| fig-cap: "Distribución Binomial Negativa (k = 3, p = 0.3)"
 x <- 0:25
@@ -1564,7 +1564,7 @@ $\sum_x \sum_y p(x,y) = 1$. A partir de ella se obtienen:
 auto (\$100 o \$250) y $Y$ el deducible de una póliza de casa (\$0, \$100 o
 \$200), con la siguiente función de probabilidad conjunta:
 
-```{r conjunta_discreta, echo=TRUE, fig.align='center', fig.width=6, fig.height=4.5}
+```{r, echo=TRUE, fig.align='center', fig.width=6, fig.height=4.5}
 #| label: fig-conjunta-discreta
 #| fig-cap: "Función de probabilidad conjunta p(x,y): deducibles de auto y casa"
 library(ggplot2)
