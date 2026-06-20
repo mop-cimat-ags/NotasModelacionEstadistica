@@ -1828,15 +1828,17 @@ el juego miles de veces para comparar ambas estrategias:
 #| label: fig-montyhall
 #| fig-cap: "Simulación de Monte Carlo: probabilidad de ganar al cambiar vs. mantener la elección"
 set.seed(2024)
+muestrear <- function(x, ...) if (length(x) == 1) x else sample(x, ...)
+
 simular_monty_hall <- function(n, cambiar) {
   ganadas <- 0
   for (i in 1:n) {
     puertas <- 1:3
     premio <- sample(puertas, 1)
     eleccion <- sample(puertas, 1)
-    abre <- sample(puertas[puertas != premio & puertas != eleccion], 1)
+    abre <- muestrear(puertas[puertas != premio & puertas != eleccion], 1)
     if (cambiar) {
-      eleccion_final <- puertas[puertas != eleccion & puertas != abre]
+      eleccion_final <- muestrear(puertas[puertas != eleccion & puertas != abre], 1)
     } else {
       eleccion_final <- eleccion
     }
