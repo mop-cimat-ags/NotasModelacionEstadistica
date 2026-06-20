@@ -1154,4 +1154,99 @@ Dado que la f.d.p. de la distribución normal no tiene una integral analítica s
 
 Se utiliza para modelar el tiempo o la distancia que transcurre hasta que ocurre un evento de interés (ej. tiempo entre fallas, tiempo hasta recibir una llamada), asumiendo una tasa de ocurrencia constante ($\lambda$). Se denota como $X \sim \text{Exp}(\lambda)$.
 
-* **Función de densidad:** $$f(x) = \
+* **Función de densidad:** $$f(x) = \lambda e^{-\lambda x} \quad \text{para } x \ge 0$$
+* **Esperanza:** (El tiempo promedio de espera)
+  $$E[X] = \frac{1}{\lambda}$$
+* **Propiedad de Falta de Memoria (Memoryless):** Es la única distribución continua con esta propiedad. Establece que la probabilidad condicional de que un evento ocurra en el futuro depende solo del tiempo restante, "olvidando" el tiempo que ya ha transcurrido: 
+  $$P(X > s+t \mid X > t) = P(X > s)$$
+
+## 3.6 Material complementario: distribución Weibull y distribuciones continuas conjuntas
+
+A partir de las diapositivas del curso, se incorpora la distribución Weibull
+(una generalización de la Exponencial usada en análisis de confiabilidad) y la
+teoría de distribuciones conjuntas para dos variables aleatorias continuas.
+Las figuras se generan con código.
+
+### 3.6.1 Distribución Weibull
+
+Se dice que $X$ tiene distribución Weibull con parámetros de forma $\beta$ y
+escala $\alpha$ si:
+
+$$f(x) = \left(\frac{\beta}{\alpha}\right)\left(\frac{x}{\alpha}\right)^{\beta - 1} \exp\left[-\left(\frac{x}{\alpha}\right)^{\beta}\right], \qquad x > 0$$
+$$E(X) = \alpha\, \Gamma(\beta^{-1} + 1), \qquad Var(X) = \alpha^2\left[\Gamma(2\beta^{-1}+1) - \Gamma(\beta^{-1}+1)^2\right]$$
+
+Cuando $\beta = 1$, la Weibull se reduce a la distribución Exponencial. Se
+usa frecuentemente para modelar tiempos de vida y de falla en análisis de
+confiabilidad.
+
+```{r, echo=TRUE, fig.align='center', fig.width=7, fig.height=4.5}
+#| label: fig-weibull
+#| fig-cap: "Función de densidad Weibull para distintos parámetros de forma (β)"
+library(ggplot2)
+
+x <- seq(0, 4, length.out = 300)
+df_weibull <- do.call(rbind, lapply(c(0.8, 1, 2, 3.5), function(beta) {
+  data.frame(x = x, densidad = dweibull(x, shape = beta, scale = 1),
+             beta = paste0("β = ", beta))
+}))
+
+ggplot(df_weibull, aes(x = x, y = densidad, color = beta)) +
+  geom_line(linewidth = 1) +
+  scale_color_manual(values = c("β = 0.8" = "#C8962E", "β = 1" = "#8a6a1f",
+                                 "β = 2" = "#006341", "β = 3.5" = "#004D31")) +
+  labs(title = "Distribución Weibull (escala α = 1)",
+       x = "x", y = "f(x)", color = NULL) +
+  theme_minimal()
+```
+
+### 3.6.2 Distribuciones continuas conjuntas
+
+Una función $f(x,y)$ es una **función de densidad de probabilidad conjunta**
+de dos variables aleatorias continuas $X$ y $Y$ si $f(x,y) \ge 0$ y
+$\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,y)\,dx\,dy = 1$. A partir
+de ella se definen:
+
+- **Densidad marginal:** $g(x) = \int_{-\infty}^{\infty} f(x,y)\,dy$ y $h(y) = \int_{-\infty}^{\infty} f(x,y)\,dx$.
+- **Densidad condicional:** $f(x \mid y) = f(x,y)/h(y)$.
+- **Independencia:** $X$ y $Y$ son independientes si $f(x,y) = g(x) \cdot h(y)$.
+
+**Ejemplo.** Sea $f(x,y) = 4xy$ para $0 < x < 1,\ 0 < y < 1$ (y cero en
+cualquier otra parte). Integrando se obtiene $g(x) = 2x$ y $h(y) = 2y$, y como
+$f(x,y) = 4xy = (2x)(2y) = g(x)h(y)$, $X$ y $Y$ son independientes. En lugar
+de reproducir la imagen de la diapositiva, la superficie de densidad conjunta
+se genera directamente con código:
+
+```{r, echo=TRUE, fig.align='center', fig.width=6, fig.height=5}
+#| label: fig-conjunta-continua
+#| fig-cap: "Densidad conjunta f(x,y) = 4xy sobre el cuadrado unitario"
+library(ggplot2)
+
+grid <- expand.grid(x = seq(0, 1, length.out = 60), y = seq(0, 1, length.out = 60))
+grid$densidad <- 4 * grid$x * grid$y
+
+ggplot(grid, aes(x = x, y = y, fill = densidad)) +
+  geom_tile() +
+  scale_fill_gradient(low = "#C8962E", high = "#004D31") +
+  labs(title = "f(x, y) = 4xy,  0 < x < 1,  0 < y < 1",
+       x = "x", y = "y", fill = "f(x,y)") +
+  coord_equal() +
+  theme_minimal()
+```
+
+```{r conjunta_continua_verificacion, echo=TRUE}
+# Verificación numérica de independencia y de que la densidad integra a 1
+f <- function(x, y) 4 * x * y
+g <- function(x) 2 * x       # densidad marginal de X
+h <- function(y) 2 * y       # densidad marginal de Y
+
+# Integral doble aproximada por una malla fina (regla del punto medio)
+n <- 500
+xs <- (seq_len(n) - 0.5) / n
+ys <- (seq_len(n) - 0.5) / n
+integral <- sum(outer(xs, ys, f)) * (1 / n) * (1 / n)
+cat("Integral de f(x,y) sobre [0,1]x[0,1]:", round(integral, 4), "\n")
+
+x0 <- 0.4; y0 <- 0.7
+cat("f(x0,y0) =", f(x0, y0), " vs.  g(x0)*h(y0) =", g(x0) * h(y0), "-> son iguales: X y Y son independientes\n")
+```
+ 

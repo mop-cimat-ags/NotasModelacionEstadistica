@@ -242,7 +242,7 @@ Ahora nos hacemos la pregunta, _¿qué es más probable que recuerden? ¿Al meno
 
 La probabilidad de que un estudiante de psicología recuerdfe al menos tres palabras es:
 
- $P(X>=x)$$= P(X=3) + P(X=4)+ P(X=5)$=$  0.05 + 0.05 + 0.2 $=$0.3 $
+ $P(X \geq x)$ = $P(X=3) + P(X=4) + P(X=5)$ = $0.05 + 0.05 + 0.2$ = $0.3$
  
  Este proceso puede hacerse de manera similar aplicando lo siguiente: $P(X\geq x) =  1-P(X<x)$, similarmente, $P(X\leq x) =  1-P(X>x)$
 
@@ -318,7 +318,7 @@ La esperanza matemática o media (EX) de una variable aleatoria discreta uniform
 
 Como se ha estado trabajando en los ejemplos anteriores. Usando el ejemplo de los dados:
 
-| x | P(X=x) | F(X\leqx) |
+| x | P(X=x) | $F(X \leq x)$ |
 |:-:|--------|:---------:|
 | 1 | 1/6    |    1/6    |
 | 2 | 1/6    |    2/6    |
@@ -411,7 +411,7 @@ Similarmente, la varianza para una distribución uniforme está dada por:
  
  En estos casos, es factible tener una tabla como la siguiente para no perder de vista nuestros datos:
  
- | x | P(X=x) | F(X\leqx) | (x_i-E[X])^2 | (x_i-E[X])^2*P(X=x_i) |
+ | x | P(X=x) | $F(X \leq x)$ | $(x_i-E[X])^2$ | $(x_i-E[X])^2 \cdot P(X=x_i)$ |
 |:-:|:------:|:---------:|:------------:|:---------------------:|
 | 1 |   1/6  |    1/6    |     6.25     |         1.041         |
 | 2 |   1/6  |    2/6    |     2.25     |         0.375         |
