@@ -9,69 +9,82 @@ output:
     toc_float: 
       collapsed: false       
       smooth_scroll: true
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 # 1.1 Combinatoria
-
 
 ### 1.1.2 Principío básico de conteo
 
+Antes de estudiar las nociones básicas de probabilidad se inicia con las
+reglas o principios de conteo; las cuales, son indispensables para el
+cálculo de probabilidades. Las reglas de conteo proporcionan una
+herramienta que nos ayuda a contar el número de configuraciones posibles
+al ordenar o agrupar un determinado número de elementos.
 
-Antes de estudiar las nociones básicas de probabilidad se inicia con las reglas o principios de conteo;
-las cuales, son indispensables para el cálculo de probabilidades. Las reglas de conteo proporcionan una 
-herramienta que nos ayuda a contar el número de configuraciones posibles al ordenar o agrupar un determinado 
-número de elementos.
-
-~~~
+```         
 Suponga que en una empresa se quiere establecer un comité sindical, el cual debe de estar formado por 5 mujeres y 5 hombres de toda la empresa. Si en la empresa hay 20 hombres y 15 mujeres, considere los siguientes puntos:
 
 1. ¿Cuántas configuraciones posibles podrían formarse para establecer el comité sindical?
 2. ¿Cuál es la probabilidad de que el comité tenga dicha configuración?
+```
 
-~~~
+La pregunta número 1 es un caso típico de combinatoria. A manera de
+ejemplo, considere que el comité debe estar conformado por 4 personas,
+dos hombres y dos mujeres, de un total de 3 hombres y 3 mujeres. Ahora:
+¿Cómo quedaría el comité?, cuando los hombres en la empresa son:
+Antonio, Juan y Héctor; mientras que las mujeres en la empresa son:
+Denisse, Lucila y Laura.
 
-La pregunta número 1 es un caso típico de combinatoria. A manera de ejemplo, considere que el comité debe estar conformado por 4 personas, dos hombres y dos mujeres, de un total de 3 hombres y 3 mujeres. Ahora: ¿Cómo quedaría el comité?, cuando los hombres en la empresa son: Antonio, Juan y Héctor; mientras que las mujeres en la empresa son: Denisse, Lucila y Laura.
+¿Cuántos grupos de 2 hombres se pueden formar del conjunto de 3 hombres?
+Los posibles grupos son: Antonio y Juan, Antonio y Héctor, Juan y
+Héctor, es decir, 3 combinaciones.
 
-¿Cuántos grupos de 2 hombres se pueden formar del conjunto de 3 hombres? Los posibles grupos son: Antonio y Juan, Antonio y Héctor, Juan y Héctor, es decir, 3 combinaciones. 
-
-¿Cuántos grupos de 2 mujeres se pueden formar del conjunto de 3 mujeres? Del mismo modo que para los hombres, los posibles grupos de 2 son: Denisse y Lucila, Denisse y Laura, Lucila y Laura. 
+¿Cuántos grupos de 2 mujeres se pueden formar del conjunto de 3 mujeres?
+Del mismo modo que para los hombres, los posibles grupos de 2 son:
+Denisse y Lucila, Denisse y Laura, Lucila y Laura.
 
 Todas las posibles configuraciones del comité se muestran en la tabla 1.
 
 ### Posibles configuraciones del comité
 
 | Comités posibles | Configuración de mujeres | Configuración de hombres | Configuración del comité |
-|------------------|-------------------------|-------------------------|---------------------------|
-| Comité 1        | Denisse, Lucila          | Antonio, Juan          | Denisse, Lucila, Antonio, Juan |
-| Comité 2        | Denisse, Lucila          | Antonio, Héctor        | Denisse, Lucila, Antonio, Héctor |
-| Comité 3        | Denisse, Lucila          | Juan, Héctor           | Denisse, Lucila, Juan, Héctor |
-| Comité 4        | Denisse, Laura           | Antonio, Juan          | Denisse, Laura, Antonio, Juan |
-| Comité 5        | Denisse, Laura           | Antonio, Héctor        | Denisse, Laura, Antonio, Héctor |
-| Comité 6        | Denisse, Laura           | Juan, Héctor           | Denisse, Laura, Juan, Héctor |
-| Comité 7        | Lucila, Laura            | Antonio, Juan          | Lucila, Laura, Antonio, Juan |
-| Comité 8        | Lucila, Laura            | Antonio, Héctor        | Lucila, Laura, Antonio, Héctor |
-| Comité 9        | Lucila, Laura            | Juan, Héctor           | Lucila, Laura, Juan, Héctor |
+|-----------------|------------------|------------------|-------------------|
+| Comité 1 | Denisse, Lucila | Antonio, Juan | Denisse, Lucila, Antonio, Juan |
+| Comité 2 | Denisse, Lucila | Antonio, Héctor | Denisse, Lucila, Antonio, Héctor |
+| Comité 3 | Denisse, Lucila | Juan, Héctor | Denisse, Lucila, Juan, Héctor |
+| Comité 4 | Denisse, Laura | Antonio, Juan | Denisse, Laura, Antonio, Juan |
+| Comité 5 | Denisse, Laura | Antonio, Héctor | Denisse, Laura, Antonio, Héctor |
+| Comité 6 | Denisse, Laura | Juan, Héctor | Denisse, Laura, Juan, Héctor |
+| Comité 7 | Lucila, Laura | Antonio, Juan | Lucila, Laura, Antonio, Juan |
+| Comité 8 | Lucila, Laura | Antonio, Héctor | Lucila, Laura, Antonio, Héctor |
+| Comité 9 | Lucila, Laura | Juan, Héctor | Lucila, Laura, Juan, Héctor |
 
-__Principio básico del conteo__
+**Principio básico del conteo**
 
-~~~
+```         
 Si la primera etapa $$fase$$ de un experimento, procedimiento, proceso, maniabra o intervención puede efectuarse de n formas distintas y su segunda fase puede realizarse de m formas diferentes, entonces el total de formas en que puede efectuarse el primer paso seguido del segundo tiene cardinalidad igual al producto: $$n*m$$.
-~~~
+```
 
-Veamos el principio básico del conteo con un ejemplo. Reconsidere el caso simple del comité sindical, el cual debe estar compuesto por 4 personas, dos hombres y dos mujeres. 
+Veamos el principio básico del conteo con un ejemplo. Reconsidere el
+caso simple del comité sindical, el cual debe estar compuesto por 4
+personas, dos hombres y dos mujeres.
 
-El número de parejas de hombres son 3 posibles, y cada una de estas parejas tiene 3 posibles parejas de mujeres con las que pueden relacionarse. Si \( m = 3 \) parejas de hombres y \( n = 3 \) parejas de mujeres, entonces por el principio básico del conteo se tienen:
+El número de parejas de hombres son 3 posibles, y cada una de estas
+parejas tiene 3 posibles parejas de mujeres con las que pueden
+relacionarse. Si $m = 3$ parejas de hombres y $n = 3$ parejas de
+mujeres, entonces por el principio básico del conteo se tienen:
 
-\[
-m \times n = 3 \times 3 = 9
-\]
+$$m \times n = 3 \times 3 = 9$$
 
 posibles configuraciones.
+
 ```{r diagrama_comites, echo=TRUE, fig.align='center', fig.width=9, fig.height=6}
 library(ggplot2)
 
@@ -115,13 +128,16 @@ ggplot(df_comites, aes(x = Hombres, y = Mujeres)) +
   )
 ```
 
-Otro ejemplo donde se puede ilustrar el principio básico del conteo es cuando se formula una contraseña¿Cuántas son las posibles combinaciones formadas por sus carácteres?. Considerando que se tienen las siguientes consideraciones:
+Otro ejemplo donde se puede ilustrar el principio básico del conteo es
+cuando se formula una contraseña¿Cuántas son las posibles combinaciones
+formadas por sus carácteres?. Considerando que se tienen las siguientes
+consideraciones:
 
-| Letra  |  Dígito  |  Símbolo  |
-|------------------|-------------------------|-------------------------|
-| A     | 1    | @      | 
-| B        | 2     | *       | 
-| C        | 3     |      
+| Letra | Dígito | Símbolo |
+|-------|--------|---------|
+| A     | 1      | \@      |
+| B     | 2      | \*      |
+| C     | 3      |         |
 
 ```{r librerias, message=FALSE, warning=FALSE}
 # Es fundamental cargar la librería igraph
@@ -191,13 +207,14 @@ legend("topleft",
        bty = "n", cex = 0.8)
 ```
 
-
 ### 1.1.3 Generalización del principio básico del conteo
 
 **Ejemplo: Conteo de matrículas universitarias**
 
-Suponga que a **Denisse** se le encarga generar las matrículas de los alumnos de una universidad.  
-Cada matrícula está formada por **cinco caracteres**, que se leen de izquierda a derecha y cumplen las siguientes condiciones:
+Suponga que a **Denisse** se le encarga generar las matrículas de los
+alumnos de una universidad.\
+Cada matrícula está formada por **cinco caracteres**, que se leen de
+izquierda a derecha y cumplen las siguientes condiciones:
 
 - Los **primeros tres caracteres** son **números**.
 - Los **últimos dos caracteres** son **letras minúsculas**.
@@ -210,99 +227,112 @@ Algunos ejemplos de matrículas válidas son:
 
 **Análisis de las opciones por posición**
 
-Para determinar cuántas matrículas distintas se pueden generar, analizamos cada posición de manera independiente:
+Para determinar cuántas matrículas distintas se pueden generar,
+analizamos cada posición de manera independiente:
 
-1. **Primera posición:**  
-   Puede tomar cualquiera de los dígitos del 0 al 9, por lo que tiene **10 posibles resultados**.
+1.  **Primera posición:**\
+    Puede tomar cualquiera de los dígitos del 0 al 9, por lo que tiene
+    **10 posibles resultados**.
 
-2. **Segunda posición:**  
-   Nuevamente puede tomar cualquier dígito del 0 al 9, con **10 posibles resultados**.
+2.  **Segunda posición:**\
+    Nuevamente puede tomar cualquier dígito del 0 al 9, con **10
+    posibles resultados**.
 
-3. **Tercera posición:**  
-   Al igual que las anteriores, tiene **10 posibles resultados**.
+3.  **Tercera posición:**\
+    Al igual que las anteriores, tiene **10 posibles resultados**.
 
-4. **Cuarta posición:**  
-   Puede tomar cualquier letra minúscula del alfabeto inglés (de la *a* a la *z*), por lo que tiene **26 posibles resultados**.
+4.  **Cuarta posición:**\
+    Puede tomar cualquier letra minúscula del alfabeto inglés (de la *a*
+    a la *z*), por lo que tiene **26 posibles resultados**.
 
-5. **Quinta posición:**  
-   De nuevo puede tomar cualquiera de las 26 letras minúsculas.
-
+5.  **Quinta posición:**\
+    De nuevo puede tomar cualquiera de las 26 letras minúsculas.
 
 **Aplicación del principio básico del conteo**
 
-Dado que las elecciones en cada posición son **independientes entre sí**, el número total de matrículas distintas que se pueden generar se obtiene multiplicando el número de opciones de cada posición.
+Dado que las elecciones en cada posición son **independientes entre
+sí**, el número total de matrículas distintas que se pueden generar se
+obtiene multiplicando el número de opciones de cada posición.
 
-\[
-(10) \times (10) \times (10) \times (26) \times (26) = 676\,000
-\]
+$$(10) \times (10) \times (10) \times (26) \times (26) = 676\,000$$
 
-Por lo tanto, **Denisse puede generar un total de 676 000 matrículas distintas**.
+Por lo tanto, **Denisse puede generar un total de 676 000 matrículas
+distintas**.
 
-Este procedimiento se conoce como **conteo con repetición** o **conteo con reemplazo**, ya que en cada posición se pueden repetir los mismos dígitos o letras sin restricción alguna.
+Este procedimiento se conoce como **conteo con repetición** o **conteo
+con reemplazo**, ya que en cada posición se pueden repetir los mismos
+dígitos o letras sin restricción alguna.
 
-> **Observación**  
-> El principio básico del conteo se utiliza para calcular el número total de resultados posibles cuando un proceso se compone de varias etapas sucesivas. En su forma más simple, este principio se presenta para dos procedimientos, estableciendo que si una primera etapa puede realizarse de \(n_1\) maneras y una segunda etapa de \(n_2\) maneras, entonces el proceso completo puede realizarse de \(n_1 \times n_2\) formas distintas.  
->  
-> La **generalización del principio básico del conteo** amplía esta idea a cualquier número de fases. En este caso, si un procedimiento consta de \(k\) etapas independientes, donde la etapa \(i\)-ésima puede realizarse de \(n_i\) maneras, entonces el número total de resultados posibles está dado por el producto  
-> \[
-> n_1 \times n_2 \times \cdots \times n_k.
-> \]
-> Esta formulación permite analizar y resolver problemas de conteo más complejos de manera sistemática y estructurada.
-
+> **Observación**\
+> El principio básico del conteo se utiliza para calcular el número
+> total de resultados posibles cuando un proceso se compone de varias
+> etapas sucesivas. En su forma más simple, este principio se presenta
+> para dos procedimientos, estableciendo que si una primera etapa puede
+> realizarse de $n_1$ maneras y una segunda etapa de $n_2$ maneras,
+> entonces el proceso completo puede realizarse de $n_1 \times n_2$
+> formas distintas.
+>
+> La **generalización del principio básico del conteo** amplía esta idea
+> a cualquier número de fases. En este caso, si un procedimiento consta
+> de $k$ etapas independientes, donde la etapa $i$-ésima puede
+> realizarse de $n_i$ maneras, entonces el número total de resultados
+> posibles está dado por el producto\
+>
+> $$n_1 \times n_2 \times \cdots \times n_k.$$
+> Esta formulación permite analizar y resolver problemas de conteo más
+> complejos de manera sistemática y estructurada.
 
 ### 1.1.3 Permutaciones
 
 **Permutaciones**
 
-El concepto de **permutación** se refiere a las distintas formas en que se pueden **ordenar** los elementos de un conjunto cuando **el orden importa** y **no se permite repetición**. Consideremos los siguientes tres símbolos diferentes:
+El concepto de **permutación** se refiere a las distintas formas en que
+se pueden **ordenar** los elementos de un conjunto cuando **el orden
+importa** y **no se permite repetición**. Consideremos los siguientes
+tres símbolos diferentes:
 
-\[
-\times \quad o \quad \square
-\]
+$$\times \quad o \quad \square$$
 
 La pregunta que nos hacemos es:
 
-> **¿De cuántas maneras distintas se pueden ordenar estos tres símbolos?**
+> **¿De cuántas maneras distintas se pueden ordenar estos tres
+> símbolos?**
 
+Al enumerar todas las posibles formas de ordenarlos, obtenemos los
+siguientes arreglos:
 
-Al enumerar todas las posibles formas de ordenarlos, obtenemos los siguientes arreglos:
+1.  $\times\; o\; \square$\
+2.  $\times\; \square\; o$\
+3.  $\square\; o\; \times$\
+4.  $\square\; \times\; o$\
+5.  $o\; \times\; \square$\
+6.  $o\; \square\; \times$
 
-1. \(\times\; o\; \square\)  
-2. \(\times\; \square\; o\)  
-3. \(\square\; o\; \times\)  
-4. \(\square\; \times\; o\)  
-5. \(o\; \times\; \square\)  
-6. \(o\; \square\; \times\)
-
-Cada uno de estos arreglos se denomina una **permutación**.  
+Cada uno de estos arreglos se denomina una **permutación**.\
 En total, existen **6 permutaciones distintas**.
 
+El número de permutaciones de un conjunto de $n$ elementos distintos se
+calcula mediante el **factorial**:
 
+$$n! = n \cdot (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1$$
 
-El número de permutaciones de un conjunto de \(n\) elementos distintos se calcula mediante el **factorial**:
-
-\[
-n! = n \cdot (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1
-\]
-
-~~~
+```         
 Notar que:
 
 - \(1! = 1\)
 
 - \(0! = 1\)
-~~~
+```
 
+En este caso tenemos $n = 3$ símbolos, por lo tanto:
 
-En este caso tenemos \(n = 3\) símbolos, por lo tanto:
+$$3! = 3 \cdot 2 \cdot 1 = 6$$
 
-\[
-3! = 3 \cdot 2 \cdot 1 = 6
-\]
+Esto confirma el resultado obtenido al enumerar directamente las
+permutaciones.
 
-Esto confirma el resultado obtenido al enumerar directamente las permutaciones.
-
-Este resultado puede interpretarse también a partir del **principio básico del conteo**:
+Este resultado puede interpretarse también a partir del **principio
+básico del conteo**:
 
 - Para la **primera posición**, hay 3 opciones.
 - Para la **segunda posición**, quedan 2 opciones.
@@ -310,11 +340,11 @@ Este resultado puede interpretarse también a partir del **principio básico del
 
 Multiplicando las opciones disponibles en cada paso:
 
-\[
-3 \times 2 \times 1 = 6
-\]
+$$3 \times 2 \times 1 = 6$$
 
-Por lo tanto, el cálculo del número de permutaciones es un **caso particular del principio básico del conteo sin repetición**, donde el orden de los elementos es relevante.
+Por lo tanto, el cálculo del número de permutaciones es un **caso
+particular del principio básico del conteo sin repetición**, donde el
+orden de los elementos es relevante.
 
 ```{r diagrama_permutaciones, echo=TRUE, fig.align='center', fig.width=10, fig.height=6}
 library(ggplot2)
@@ -365,82 +395,79 @@ ggplot() +
   xlim(-0.5, 4.5)
 ```
 
-
 ### 1.1.4 Grupos de tamaños $k$ de un total de $n$ elementos
 
 **Combinaciones y formación de comités**
 
-Con frecuencia es de interés determinar cuántos **grupos distintos** pueden formarse al seleccionar \( k \) elementos de un conjunto de \( n \) elementos, cuando **el orden no importa** y **no se permiten repeticiones**. Este tipo de selección se conoce como una **combinación**.
+Con frecuencia es de interés determinar cuántos **grupos distintos**
+pueden formarse al seleccionar $k$ elementos de un conjunto de $n$
+elementos, cuando **el orden no importa** y **no se permiten
+repeticiones**. Este tipo de selección se conoce como una
+**combinación**.
 
 **Ejemplo: Formación de un comité**
 
-Supongamos que se desea formar un comité integrado por **4 personas**, compuesto **exactamente por 2 hombres y 2 mujeres**, a partir de los siguientes conjuntos:
+Supongamos que se desea formar un comité integrado por **4 personas**,
+compuesto **exactamente por 2 hombres y 2 mujeres**, a partir de los
+siguientes conjuntos:
 
-- **Hombres:** Antonio, Juan, Héctor  
-- **Mujeres:** Denisse, Lucila, Laura  
+- **Hombres:** Antonio, Juan, Héctor\
+- **Mujeres:** Denisse, Lucila, Laura
 
 La pregunta es:
 
 > ¿Cuántos comités distintos de 2 hombres y 2 mujeres se pueden formar?
 
-
 **Combinaciones de hombres**
 
-Para formar el comité, primero debemos elegir **2 hombres de un total de 3**.  
+Para formar el comité, primero debemos elegir **2 hombres de un total de
+3**.\
 Los posibles grupos de hombres son:
 
-- Antonio y Juan  
-- Antonio y Héctor  
-- Juan y Héctor  
+- Antonio y Juan\
+- Antonio y Héctor\
+- Juan y Héctor
 
-El número de combinaciones de tamaño \( k \) que se pueden formar a partir de un conjunto de \( n \) elementos se calcula mediante la expresión:
+El número de combinaciones de tamaño $k$ que se pueden formar a partir
+de un conjunto de $n$ elementos se calcula mediante la expresión:
 
-\[
-\binom{n}{k} = \frac{n!}{(n-k)! \, k!}, \quad k \leq n
-\]
+$$\binom{n}{k} = \frac{n!}{(n-k)! \, k!}, \quad k \leq n$$
 
 Aplicando esta fórmula al conjunto de hombres:
 
-\[
-\binom{3}{2} = \frac{3!}{(3-2)! \, 2!}
+$$\binom{3}{2} = \frac{3!}{(3-2)! \, 2!}
 = \frac{3 \cdot 2 \cdot 1}{1 \cdot (2 \cdot 1)}
-= 3
-\]
+= 3$$
 
 Por lo tanto, existen **3 posibles grupos de hombres**.
-
 
 **Combinaciones de mujeres**
 
 De manera análoga, al elegir **2 mujeres de un total de 3**, se tiene:
 
-\[
-\binom{3}{2} = 3
-\]
+$$\binom{3}{2} = 3$$
 
 Es decir, existen **3 posibles grupos de mujeres**.
 
-
-
 **Número total de comités**
 
-Cada grupo de hombres puede combinarse con **cada grupo de mujeres**.  
-Por el **principio básico del conteo**, el número total de comités posibles es:
+Cada grupo de hombres puede combinarse con **cada grupo de mujeres**.\
+Por el **principio básico del conteo**, el número total de comités
+posibles es:
 
-\[
-3 \times 3 = 9
-\]
+$$3 \times 3 = 9$$
 
-Por lo tanto, se pueden formar **9 comités distintos** de 2 hombres y 2 mujeres.
-
+Por lo tanto, se pueden formar **9 comités distintos** de 2 hombres y 2
+mujeres.
 
 **Observaciones importantes**
 
-- El **orden no importa**: el grupo (Antonio, Juan) es el mismo que (Juan, Antonio).
-- **No se permiten repeticiones**: no es válido un grupo como (Héctor, Héctor).
-- Los grupos formados corresponden a **combinaciones**, no a permutaciones.
-
-
+- El **orden no importa**: el grupo (Antonio, Juan) es el mismo que
+  (Juan, Antonio).
+- **No se permiten repeticiones**: no es válido un grupo como (Héctor,
+  Héctor).
+- Los grupos formados corresponden a **combinaciones**, no a
+  permutaciones.
 
 ```{r}
 library(igraph)
@@ -474,17 +501,15 @@ resultado
 
 ```
 
-# 1.2	Experimentos aleatorio
-
-
+# 1.2 Experimentos aleatorio
 
 **¿Qué es un experimento?**
 
-Un **experimento** es un proceso mediante el cual se genera una **observación** o una **medición**.  
+Un **experimento** es un proceso mediante el cual se genera una
+**observación** o una **medición**.\
 Cada vez que realizamos un experimento, obtenemos un resultado.
 
 Sin embargo, no todos los experimentos son del mismo tipo.
-
 
 **Experimentos deterministas y aleatorios**
 
@@ -492,49 +517,56 @@ Podemos clasificar los experimentos en dos grandes categorías:
 
 **Experimentos deterministas (Tipo A)**
 
-Son aquellos experimentos cuyo resultado **puede conocerse con anticipación**, siempre que las condiciones sean las mismas.
+Son aquellos experimentos cuyo resultado **puede conocerse con
+anticipación**, siempre que las condiciones sean las mismas.
 
 **Ejemplos:**
 
-- ¿Qué ocurrirá si calentamos agua en un recipiente hasta alcanzar los 100 °C?  
+- ¿Qué ocurrirá si calentamos agua en un recipiente hasta alcanzar los
+  100 °C?\
 - ¿Qué ocurrirá si soltamos un vaso que tenemos en la mano?
 
-En ambos casos, el resultado es completamente previsible:
-- El agua hervirá.
-- El vaso caerá al suelo.
+En ambos casos, el resultado es completamente previsible: - El agua
+hervirá. - El vaso caerá al suelo.
 
 Por esta razón, estos experimentos se denominan **deterministas**.
 
-
 **Experimentos aleatorios (Tipo B)**
 
-Son aquellos experimentos cuyo resultado **no puede conocerse con anticipación**, aun cuando el experimento se realice bajo las mismas condiciones.
+Son aquellos experimentos cuyo resultado **no puede conocerse con
+anticipación**, aun cuando el experimento se realice bajo las mismas
+condiciones.
 
 **Ejemplos:**
 
 - Si lanzamos un dado, ¿qué número aparecerá en la cara superior?
-- Si seleccionamos al azar una ficha del archivo de participantes de un curso, ¿cuál será la profesión de la persona seleccionada?
-- Si lanzamos una moneda, ¿cuántos lanzamientos serán necesarios hasta que aparezca cara?
+- Si seleccionamos al azar una ficha del archivo de participantes de un
+  curso, ¿cuál será la profesión de la persona seleccionada?
+- Si lanzamos una moneda, ¿cuántos lanzamientos serán necesarios hasta
+  que aparezca cara?
 
-En estos casos, no es posible anticipar con certeza el resultado antes de realizar el experimento.
-
+En estos casos, no es posible anticipar con certeza el resultado antes
+de realizar el experimento.
 
 **Definición de experimento aleatorio**
 
-Un **experimento aleatorio** es aquel experimento en el que **no podemos conocer con anticipación** el resultado de su realización.
+Un **experimento aleatorio** es aquel experimento en el que **no podemos
+conocer con anticipación** el resultado de su realización.
 
-A partir de este punto, siempre que utilicemos la palabra *experimento*, nos estaremos refiriendo a **experimentos aleatorios**.
+A partir de este punto, siempre que utilicemos la palabra *experimento*,
+nos estaremos refiriendo a **experimentos aleatorios**.
 
-También es común utilizar como sinónimos los términos:
-**fenómeno, evento, proceso, intervención o maniobra**.
-
+También es común utilizar como sinónimos los términos: **fenómeno,
+evento, proceso, intervención o maniobra**.
 
 **Ejemplo: Lanzamiento de un dado**
 
-Consideremos el experimento aleatorio de **lanzar un dado**.  
-Aunque sabemos que los resultados posibles son los números del 1 al 6, **no sabemos cuál ocurrirá en un lanzamiento específico**.
+Consideremos el experimento aleatorio de **lanzar un dado**.\
+Aunque sabemos que los resultados posibles son los números del 1 al 6,
+**no sabemos cuál ocurrirá en un lanzamiento específico**.
 
-A continuación, simulamos este experimento varias veces y visualizamos los resultados.
+A continuación, simulamos este experimento varias veces y visualizamos
+los resultados.
 
 ```{r}
 # Fijar semilla para reproducibilidad
@@ -560,159 +592,138 @@ barplot(
 
 ```
 
-### 1.2.1.	Eventos y espacio muestral
+### 1.2.1. Eventos y espacio muestral
 
 **Espacio muestral y eventos**
 
-El **espacio muestral** se define como el conjunto de **todos los resultados posibles** de un experimento aleatorio.  
-Se suele denotar por la letra \( S \).
+El **espacio muestral** se define como el conjunto de **todos los
+resultados posibles** de un experimento aleatorio.\
+Se suele denotar por la letra $S$.
 
-Un **evento** es cualquier subconjunto del espacio muestral; es decir, un evento está formado por uno o más resultados posibles del experimento.
-
-
+Un **evento** es cualquier subconjunto del espacio muestral; es decir,
+un evento está formado por uno o más resultados posibles del
+experimento.
 
 **Ejemplo: lanzamiento de un dado**
 
 Al lanzar un dado equilibrado, los posibles resultados son:
 
-\[
-S = \{1, 2, 3, 4, 5, 6\}
-\]
+$$S = \{1, 2, 3, 4, 5, 6\}$$
 
-Cada uno de estos resultados individuales puede considerarse un evento simple.
-
-
+Cada uno de estos resultados individuales puede considerarse un evento
+simple.
 
 **Definición de eventos de interés**
 
 Definimos los siguientes eventos:
 
-- \( A \): evento en el que aparece la cara **2**  
-  \[
-  A = \{2\}
-  \]
+- $A$: evento en el que aparece la cara **2**\
 
-- \( B \): evento en el que aparece la cara **4**  
-  \[
-  B = \{4\}
-  \]
+  $$A = \{2\}$$
 
-- \( C \): evento en el que aparece la cara **6**  
-  \[
-  C = \{6\}
-  \]
+- $B$: evento en el que aparece la cara **4**\
 
+  $$B = \{4\}$$
 
+- $C$: evento en el que aparece la cara **6**\
+
+  $$C = \{6\}$$
 
 **Unión de eventos**
 
-La **unión** de los eventos \( A \), \( B \) y \( C \) es:
+La **unión** de los eventos $A$, $B$ y $C$ es:
 
-\[
-A \cup B \cup C = \{2, 4, 6\}
-\]
+$$A \cup B \cup C = \{2, 4, 6\}$$
 
-Este evento representa el conjunto de resultados en los que aparece una **cara par** del dado.
-
-
+Este evento representa el conjunto de resultados en los que aparece una
+**cara par** del dado.
 
 **Intersección de eventos**
 
-La **intersección** de dos eventos corresponde a los resultados comunes entre ellos.  
+La **intersección** de dos eventos corresponde a los resultados comunes
+entre ellos.\
 En este caso:
 
-\[
-A \cap B = \varnothing
-\]
+$$A \cap B = \varnothing$$
 
-Esto se debe a que, al lanzar un dado, **solo puede ocurrir un resultado a la vez**; por lo tanto, no es posible obtener simultáneamente la cara 2 y la cara 4.  
-Los eventos \( A \) y \( B \) son **disjuntos**.
-
-
+Esto se debe a que, al lanzar un dado, **solo puede ocurrir un resultado
+a la vez**; por lo tanto, no es posible obtener simultáneamente la cara
+2 y la cara 4.\
+Los eventos $A$ y $B$ son **disjuntos**.
 
 **Unión de todos los eventos elementales**
 
-La unión de todos los resultados posibles recupera el espacio muestral completo:
+La unión de todos los resultados posibles recupera el espacio muestral
+completo:
 
-\[
-\{1\} \cup \{2\} \cup \{3\} \cup \{4\} \cup \{5\} \cup \{6\} = S
-\]
-
-
+$$\{1\} \cup \{2\} \cup \{3\} \cup \{4\} \cup \{5\} \cup \{6\} = S$$
 
 **Complemento de un evento**
 
-El **complemento** de un evento contiene todos los resultados del espacio muestral que **no pertenecen** a dicho evento.
+El **complemento** de un evento contiene todos los resultados del
+espacio muestral que **no pertenecen** a dicho evento.
 
-El complemento de \( A \cup B \cup C \) es:
+El complemento de $A \cup B \cup C$ es:
 
-\[
-(A \cup B \cup C)^c = \{1, 3, 5\}
-\]
+$$(A \cup B \cup C)^c = \{1, 3, 5\}$$
 
-Este evento representa el conjunto de resultados en los que aparece una **cara impar** del dado.
-
-
+Este evento representa el conjunto de resultados en los que aparece una
+**cara impar** del dado.
 
 **Experimento aleatorio: lanzamiento de dos monedas**
 
-Considere el experimento aleatorio que consiste en **lanzar al aire dos monedas ordinarias al mismo tiempo**.  
+Considere el experimento aleatorio que consiste en **lanzar al aire dos
+monedas ordinarias al mismo tiempo**.\
 Cada moneda tiene dos posibles resultados:
 
-- **a** : águila  
-- **c** : sol  
+- **a** : águila\
+- **c** : sol
 
-Cada resultado del experimento puede representarse como un **par ordenado**, donde el primer elemento corresponde a la **moneda 1** y el segundo a la **moneda 2**.
-
+Cada resultado del experimento puede representarse como un **par
+ordenado**, donde el primer elemento corresponde a la **moneda 1** y el
+segundo a la **moneda 2**.
 
 **Espacio muestral**
 
-El **espacio muestral**, denotado por \(S\), es el conjunto de **todos los resultados posibles** del experimento.  
+El **espacio muestral**, denotado por $S$, es el conjunto de **todos los
+resultados posibles** del experimento.\
 Para el lanzamiento de dos monedas, el espacio muestral es:
 
-\[
-S = \{(a,a), (a,c), (c,a), (c,c)\}
-\]
+$$S = \{(a,a), (a,c), (c,a), (c,c)\}$$
 
-
-
-#**Definición de eventos elementales**
+\#**Definición de eventos elementales**
 
 Denotemos los siguientes eventos:
 
-- El evento donde en **ambas monedas cae águila**:  
-  \[
-  \{(a,a)\}
-  \]
+- El evento donde en **ambas monedas cae águila**:\
 
-- El evento donde en la **moneda 1 cae sol y en la moneda 2 cae águila**:  
-  \[
-  \{(c,a)\}
-  \]
+  $$\{(a,a)\}$$
 
-- El evento donde en **ambas monedas cae sol**:  
-  \[
-  \{(c,c)\}
-  \]
+- El evento donde en la **moneda 1 cae sol y en la moneda 2 cae
+  águila**:\
 
-- El evento donde en la **moneda 1 cae águila y en la moneda 2 cae sol**:  
-  \[
-  \{(a,c)\}
-  \]
+  $$\{(c,a)\}$$
 
-Cada uno de estos eventos contiene **un solo elemento del espacio muestral**, por lo que se denominan **eventos simples o elementales**.
+- El evento donde en **ambas monedas cae sol**:\
 
+  $$\{(c,c)\}$$
+
+- El evento donde en la **moneda 1 cae águila y en la moneda 2 cae
+  sol**:\
+
+  $$\{(a,c)\}$$
+
+Cada uno de estos eventos contiene **un solo elemento del espacio
+muestral**, por lo que se denominan **eventos simples o elementales**.
 
 **Ejemplo: Unión de eventos**
 
-**Pregunta:**  
-¿Cómo denominaría a la unión de los eventos \(\{(a,a)\}\) y \(\{(a,c)\}\)?
+**Pregunta:**\
+¿Cómo denominaría a la unión de los eventos $\{(a,a)\}$ y $\{(a,c)\}$?
 
-**Solución:**  
+**Solución:**
 
-\[
-\{(a,a)\} \cup \{(a,c)\} = \{(a,a), (a,c)\}
-\]
+$$\{(a,a)\} \cup \{(a,c)\} = \{(a,a), (a,c)\}$$
 
 Este evento puede denominarse como:
 
@@ -740,22 +751,18 @@ ggplot(df_venn, aes(x, y)) +
   theme_void()
 ```
 
-
-
 **Ejemplo: Intersección de eventos**
 
-**Pregunta:**  
-¿Cuál es la intersección de los eventos \(\{(a,a)\}\) y \(\{(a,c)\}\)?
+**Pregunta:**\
+¿Cuál es la intersección de los eventos $\{(a,a)\}$ y $\{(a,c)\}$?
 
-**Solución:**  
+**Solución:**
 
-\[
-\{(a,a)\} \cap \{(a,c)\} = \varnothing
-\]
+$$\{(a,a)\} \cap \{(a,c)\} = \varnothing$$
 
-Esto ocurre porque **ningún resultado puede ser simultáneamente \((a,a)\) y \((a,c)\)**.  
+Esto ocurre porque **ningún resultado puede ser simultáneamente**
+$(a,a)$ y $(a,c)$.\
 Los eventos son **mutuamente excluyentes**.
-
 
 ```{r grafica_interseccion, echo=TRUE, fig.align='center', fig.width=6, fig.height=4}
 # Visualización de conjuntos disjuntos
@@ -772,24 +779,19 @@ ggplot(df_venn, aes(x, y)) +
   theme(plot.title = element_text(hjust=0.5, color="red", face="bold"))
 ```
 
-
-
 **Ejemplo: Complemento de un evento**
 
-**Pregunta:**  
-Si se tiene el evento \(\{(a,a)\}\), ¿cuál es su complemento y cómo lo denominaría?
+**Pregunta:**\
+Si se tiene el evento $\{(a,a)\}$, ¿cuál es su complemento y cómo lo
+denominaría?
 
-**Solución:**  
+**Solución:**
 
-\[
-\{(a,a)\}^C = \{(a,c), (c,a), (c,c)\}
-\]
+$$\{(a,a)\}^C = \{(a,c), (c,a), (c,c)\}$$
 
 Este evento puede denominarse como:
 
 > *El evento donde se obtiene al menos un sol.*
-
-
 
 ```{r grafica_complemento, echo=TRUE, fig.align='center', fig.width=6, fig.height=4}
 # Resaltar todo lo que NO es (a,a)
@@ -806,13 +808,11 @@ ggplot(df_venn, aes(x, y)) +
   theme(plot.title = element_text(hjust=0.5, face="bold"))
 ```
 
-
 Consideremos los siguientes eventos:
 
 - A: la primera moneda resulta águila
 - B: la segunda moneda resulta águila
 - C: la tercera moneda resulta águila
-
 
 ```{r}
 library(VennDiagram)
@@ -844,104 +844,96 @@ grid.newpage()
 grid.draw(venn.plot)
 
 ```
-### 1.2.2.	Definiciones de probabilidad
+
+### 1.2.2. Definiciones de probabilidad
 
 **Probabilidad**
 
-De manera intuitiva, la **probabilidad** representa una medida numérica que cuantifica la **frecuencia con la que ocurre un evento** dentro de un experimento aleatorio.  
-La probabilidad de un evento \(A\) se denota por \(P(A)\).
+De manera intuitiva, la **probabilidad** representa una medida numérica
+que cuantifica la **frecuencia con la que ocurre un evento** dentro de
+un experimento aleatorio.\
+La probabilidad de un evento $A$ se denota por $P(A)$.
 
-En este apartado se presentan **los enfoques clásicos de la probabilidad**, comenzando con el enfoque clásico.
-
-
+En este apartado se presentan **los enfoques clásicos de la
+probabilidad**, comenzando con el enfoque clásico.
 
 **Probabilidad clásica**
 
-El enfoque clásico establece que la probabilidad de que ocurra un evento se calcula como la **razón entre el número de casos favorables al evento y el número total de resultados igualmente posibles** del experimento.
+El enfoque clásico establece que la probabilidad de que ocurra un evento
+se calcula como la **razón entre el número de casos favorables al evento
+y el número total de resultados igualmente posibles** del experimento.
 
-Si:
-- \(A\) es un evento de interés,
-- \(n\) es el número total de resultados posibles del experimento (espacio muestral),
-- \(m\) es el número de resultados favorables al evento \(A\),
+Si: - $A$ es un evento de interés, - $n$ es el número total de
+resultados posibles del experimento (espacio muestral), - $m$ es el
+número de resultados favorables al evento $A$,
 
-entonces la probabilidad del evento \(A\) se define como:
+entonces la probabilidad del evento $A$ se define como:
 
-\[
-P(A) = \frac{m}{n}
-\]
+$$P(A) = \frac{m}{n}$$
 
-**Anotación:**  
-Este enfoque es válido únicamente cuando **todos los resultados posibles tienen la misma probabilidad de ocurrir**.
-
+**Anotación:**\
+Este enfoque es válido únicamente cuando **todos los resultados posibles
+tienen la misma probabilidad de ocurrir**.
 
 **Ejemplo: Lanzamiento de un dado**
 
-**Pregunta:**  
-¿Cuál es la probabilidad de obtener la cara con el número seis al lanzar un dado equilibrado?
+**Pregunta:**\
+¿Cuál es la probabilidad de obtener la cara con el número seis al lanzar
+un dado equilibrado?
 
-Sea:
-- \(A\): el evento de obtener un seis,
-- \(n = 6\): número total de caras del dado,
-- \(m = 1\): número de caras que muestran el seis.
+Sea: - $A$: el evento de obtener un seis, - $n = 6$: número total de
+caras del dado, - $m = 1$: número de caras que muestran el seis.
 
 Entonces:
 
-\[
-P(A) = \frac{1}{6}
-\]
+$$P(A) = \frac{1}{6}$$
 
-**Observación:**  
-Cada una de las caras del dado tiene la misma probabilidad de ser seleccionada, lo que justifica el uso del enfoque clásico.
-
+**Observación:**\
+Cada una de las caras del dado tiene la misma probabilidad de ser
+seleccionada, lo que justifica el uso del enfoque clásico.
 
 **Ejemplo: Formación de un comité sindical**
 
-Supóngase que en una empresa trabajan:
-- 30 hombres,
-- 25 mujeres.
+Supóngase que en una empresa trabajan: - 30 hombres, - 25 mujeres.
 
-Los nombres de todos los empleados se escriben en papelitos y se colocan en una urna.  
+Los nombres de todos los empleados se escriben en papelitos y se colocan
+en una urna.\
 Se seleccionan **10 personas al azar** para formar un comité sindical.
 
-**Pregunta:**  
-¿Cuál es la probabilidad de que el comité esté compuesto por **5 hombres y 5 mujeres**?
-
+**Pregunta:**\
+¿Cuál es la probabilidad de que el comité esté compuesto por **5 hombres
+y 5 mujeres**?
 
 **Solución**
 
-Sea:
-- \(A\): el evento de que el comité esté formado por 5 hombres y 5 mujeres.
+Sea: - $A$: el evento de que el comité esté formado por 5 hombres y 5
+mujeres.
 
-El número total de empleados es \(55\), por lo que el número total de formas de elegir 10 personas es:
+El número total de empleados es $55$, por lo que el número total de
+formas de elegir 10 personas es:
 
-\[
-n = \binom{55}{10}
-\]
+$$n = \binom{55}{10}$$
 
-El número de formas favorables al evento \(A\) es:
-- elegir 5 hombres de 30,
-- y elegir 5 mujeres de 25,
+El número de formas favorables al evento $A$ es: - elegir 5 hombres de
+30, - y elegir 5 mujeres de 25,
 
 es decir:
 
-\[
-m = \binom{30}{5} \binom{25}{5}
-\]
+$$m = \binom{30}{5} \binom{25}{5}$$
 
 Por lo tanto, la probabilidad es:
 
-\[
-P(A) = \frac{\binom{30}{5} \binom{25}{5}}{\binom{55}{10}} \approx 0.2588
-\]
-
+$$P(A) = \frac{\binom{30}{5} \binom{25}{5}}{\binom{55}{10}} \approx 0.2588$$
 
 **Anotaciones:**
 
-- \(\binom{55}{10}\) expresa **todas las configuraciones posibles** para formar un comité de 10 personas a partir de los 55 empleados.
-- \(\binom{30}{5} \binom{25}{5}\) expresa **todas las configuraciones posibles** que cumplen la condición de 5 hombres y 5 mujeres.
-- En este experimento, **todas las configuraciones del comité tienen la misma probabilidad de ocurrir**, lo que valida el uso de la probabilidad clásica.
-
-
+- $\binom{55}{10}$ expresa **todas las configuraciones posibles** para
+  formar un comité de 10 personas a partir de los 55 empleados.
+- $\binom{30}{5} \binom{25}{5}$ expresa **todas las configuraciones
+  posibles** que cumplen la condición de 5 hombres y 5 mujeres.
+- En este experimento, **todas las configuraciones del comité tienen la
+  misma probabilidad de ocurrir**, lo que valida el uso de la
+  probabilidad clásica.
 
 ```{r}
 # Valores combinatorios
@@ -967,51 +959,57 @@ barplot(
 
 **Probabilidad frecuentista**
 
-En muchas situaciones prácticas no es posible aplicar la noción clásica de probabilidad basada en un número finito de **casos igualmente probables**.  
-Por ejemplo, al lanzar una **moneda no perfecta**, la probabilidad de obtener *cara* puede no ser igual a \( \frac{1}{2} \), ya que los dos resultados posibles no tienen la misma probabilidad de ocurrencia.
+En muchas situaciones prácticas no es posible aplicar la noción clásica
+de probabilidad basada en un número finito de **casos igualmente
+probables**.\
+Por ejemplo, al lanzar una **moneda no perfecta**, la probabilidad de
+obtener *cara* puede no ser igual a $\frac{1}{2}$, ya que los dos
+resultados posibles no tienen la misma probabilidad de ocurrencia.
 
-En este tipo de situaciones resulta más adecuado utilizar la **teoría frecuentista de la probabilidad**, propuesta por **Von Mises**.
-
-
+En este tipo de situaciones resulta más adecuado utilizar la **teoría
+frecuentista de la probabilidad**, propuesta por **Von Mises**.
 
 La idea central es la siguiente:
 
-> Si un experimento aleatorio se repite un número grande de veces, aunque los resultados individuales sean irregulares, el **comportamiento global** muestra una **regularidad estadística**.
+> Si un experimento aleatorio se repite un número grande de veces,
+> aunque los resultados individuales sean irregulares, el
+> **comportamiento global** muestra una **regularidad estadística**.
 
-Por ejemplo, si se lanza una moneda \( n \) veces (por ejemplo, \( n = 100 \)), al finalizar el experimento se puede estimar la probabilidad de obtener *cara* como:
+Por ejemplo, si se lanza una moneda $n$ veces (por ejemplo, $n = 100$),
+al finalizar el experimento se puede estimar la probabilidad de obtener
+*cara* como:
 
 - el **número de veces** que apareció *cara*, dividido entre
 - el **número total de lanzamientos**.
 
-
 **Definición de probabilidad frecuentista**
 
-Supóngase que se realiza \( n \) veces un experimento aleatorio \( E \) y sea \( A \) un evento cualquiera.  
-Denotemos por \( n(A) \) el número de veces que ocurre el evento \( A \) en las \( n \) repeticiones del experimento.
+Supóngase que se realiza $n$ veces un experimento aleatorio $E$ y sea
+$A$ un evento cualquiera.\
+Denotemos por $n(A)$ el número de veces que ocurre el evento $A$ en las
+$n$ repeticiones del experimento.
 
-La **probabilidad frecuentista** del evento \( A \) se define como:
+La **probabilidad frecuentista** del evento $A$ se define como:
 
-\[
-P(A) = \frac{n(A)}{n}
-\tag{1}
-\]
+$$P(A) = \frac{n(A)}{n}
+\tag{1}$$
 
-Diremos que \( P(A) \) es la probabilidad del evento \( A \) en el experimento \( E \).
+Diremos que $P(A)$ es la probabilidad del evento $A$ en el experimento
+$E$.
 
-**Observación:**  
-La frecuencia relativa \( \frac{n(A)}{n} \) tiende a **estabilizarse** cuando el número de repeticiones \( n \) es suficientemente grande.
-
+**Observación:**\
+La frecuencia relativa $\frac{n(A)}{n}$ tiende a **estabilizarse**
+cuando el número de repeticiones $n$ es suficientemente grande.
 
 **Ejemplo: Lanzamiento de un dado**
 
-Consideremos el experimento aleatorio \( E \) de lanzar un dado y definamos el evento:
+Consideremos el experimento aleatorio $E$ de lanzar un dado y definamos
+el evento:
 
-\[
-A = \{\text{ocurre un número par}\} = \{2,4,6\}
-\]
+$$A = \{\text{ocurre un número par}\} = \{2,4,6\}$$
 
-Se lanza el dado **20 veces** y se registra, después de cada lanzamiento, si ocurrió el evento \( A \).
-
+Se lanza el dado **20 veces** y se registra, después de cada
+lanzamiento, si ocurrió el evento $A$.
 
 ```{r}
 set.seed(123)
@@ -1045,38 +1043,38 @@ abline(h = 0.5, col = "red", lty = 2)
 
 **Probabilidad axiomática**
 
-En el enfoque **axiomático de la probabilidad** no se especifica una fórmula directa para calcular probabilidades.  
-En su lugar, se establecen **reglas fundamentales** que cualquier asignación de probabilidad debe cumplir.
+En el enfoque **axiomático de la probabilidad** no se especifica una
+fórmula directa para calcular probabilidades.\
+En su lugar, se establecen **reglas fundamentales** que cualquier
+asignación de probabilidad debe cumplir.
 
-Estas reglas, conocidas como **axiomas de la probabilidad**, fueron formuladas por el matemático ruso **A. N. Kolmogorov** y constituyen la base teórica de toda la probabilidad moderna.
+Estas reglas, conocidas como **axiomas de la probabilidad**, fueron
+formuladas por el matemático ruso **A. N. Kolmogorov** y constituyen la
+base teórica de toda la probabilidad moderna.
 
 **Axiomas de Kolmogorov**
 
-Sea \( A \) un evento cualquiera del espacio muestral \( S \):
+Sea $A$ un evento cualquiera del espacio muestral $S$:
 
-\[
-0 \leq P(A) \leq 1
-\]
+$$0 \leq P(A) \leq 1$$
 
-**Observación:**  
-La probabilidad de cualquier evento es un número real entre 0 y 1.  
-- \( P(A) = 0 \) indica que el evento es imposible.  
-- \( P(A) = 1 \) indica que el evento es seguro.
+**Observación:**\
+La probabilidad de cualquier evento es un número real entre 0 y 1.\
+- $P(A) = 0$ indica que el evento es imposible.\
+- $P(A) = 1$ indica que el evento es seguro.
 
-\[
-P(S) = 1
-\]
+$$P(S) = 1$$
 
-**Observación:**  
-La probabilidad del espacio muestral es siempre igual a uno, ya que representa la certeza de que ocurra *algún* resultado del experimento.
+**Observación:**\
+La probabilidad del espacio muestral es siempre igual a uno, ya que
+representa la certeza de que ocurra *algún* resultado del experimento.
 
-\[
-P(A \cup B) = P(A) + P(B) \quad \text{cuando } A \cap B = \varnothing
-\]
+$$P(A \cup B) = P(A) + P(B) \quad \text{cuando } A \cap B = \varnothing$$
 
-**Observación:**  
-Si dos eventos no pueden ocurrir simultáneamente (son mutuamente excluyentes), la probabilidad de que ocurra uno u otro es la suma de sus probabilidades.
-
+**Observación:**\
+Si dos eventos no pueden ocurrir simultáneamente (son mutuamente
+excluyentes), la probabilidad de que ocurra uno u otro es la suma de sus
+probabilidades.
 
 **Ejemplo: Lanzamiento de una moneda**
 
@@ -1084,34 +1082,30 @@ Consideremos el experimento aleatorio de **lanzar una moneda al aire**.
 
 El espacio muestral es:
 
-\[
-S = \{\text{águila}, \text{sol}\}
-\]
+$$S = \{\text{águila}, \text{sol}\}$$
 
-Definimos la variable aleatoria \( X \) como el resultado del lanzamiento de la moneda.  
+Definimos la variable aleatoria $X$ como el resultado del lanzamiento de
+la moneda.\
 Los posibles eventos asociados a este experimento son:
 
-\[
-X = \{\text{águila}\}, \quad X = \{\text{sol}\}, \quad X = \{\text{águila}, \text{sol}\}
-\]
+$$X = \{\text{águila}\}, \quad X = \{\text{sol}\}, \quad X = \{\text{águila}, \text{sol}\}$$
 
-Desde el punto de vista de la **probabilidad clásica**, se asignan probabilidades iguales a cada resultado:
+Desde el punto de vista de la **probabilidad clásica**, se asignan
+probabilidades iguales a cada resultado:
 
-\[
-P(X=\text{águila}) = P(X=\text{sol}) = \frac{1}{2} \tag{2}
-\]
+$$P(X=\text{águila}) = P(X=\text{sol}) = \frac{1}{2} \tag{2}$$
 
-**Anotación:**  
-En la ecuación (2) se verifica el **axioma 1**, ya que las probabilidades asignadas pertenecen al intervalo \([0,1]\).
+**Anotación:**\
+En la ecuación (2) se verifica el **axioma 1**, ya que las
+probabilidades asignadas pertenecen al intervalo $[0,1]$.
 
 Además,
 
-\[
-P(X=\text{águila} \cup X=\text{sol}) = \frac{1}{2} + \frac{1}{2} = 1 = P(S) \tag{3}
-\]
+$$P(X=\text{águila} \cup X=\text{sol}) = \frac{1}{2} + \frac{1}{2} = 1 = P(S) \tag{3}$$
 
-**Anotación:**  
-La ecuación (3) confirma el **axioma 2**, pues la probabilidad del espacio muestral es igual a uno.
+**Anotación:**\
+La ecuación (3) confirma el **axioma 2**, pues la probabilidad del
+espacio muestral es igual a uno.
 
 ```{r grafica_moneda_basica, echo=TRUE, fig.align='center', fig.width=6, fig.height=4}
 library(ggplot2)
@@ -1146,88 +1140,76 @@ ggplot(df_moneda, aes(x = Resultado, y = Probabilidad, fill = Resultado)) +
   )
 ```
 
-
 **Reglas de probabilidad derivadas de los axiomas**
 
-A partir de los axiomas básicos de la probabilidad, se pueden deducir varias reglas que facilitan el cálculo de probabilidades en situaciones más complejas. A continuación se presentan algunas de las más importantes.
+A partir de los axiomas básicos de la probabilidad, se pueden deducir
+varias reglas que facilitan el cálculo de probabilidades en situaciones
+más complejas. A continuación se presentan algunas de las más
+importantes.
 
 **Observaciones**
 
-- **Regla del complemento**  
-  Si \( A \) es un evento, la probabilidad de que **no ocurra** se define como:
-  
-  \[
-  P(A^c) = 1 - P(A)
-  \]
+- **Regla del complemento**\
+  Si $A$ es un evento, la probabilidad de que **no ocurra** se define
+  como:
 
-- **Evento imposible**  
+  $$P(A^c) = 1 - P(A)$$
+
+- **Evento imposible**\
   La probabilidad del conjunto vacío es:
-  
-  \[
-  P(\varnothing) = 0
-  \]
 
-- **Regla de la unión de dos eventos**  
-  Para dos eventos \( A \) y \( B \):
-  
-  \[
-  P(A \cup B) = P(A) + P(B) - P(A \cap B),
-  \quad \text{cuando } A \cap B \neq \varnothing
-  \]
+  $$P(\varnothing) = 0$$
 
-- **Regla de la unión de tres eventos**  
-  Para tres eventos \( A \), \( B \) y \( C \):
-  
-  \[
-  P(A \cup B \cup C) =
+- **Regla de la unión de dos eventos**\
+  Para dos eventos $A$ y $B$:
+
+  $$P(A \cup B) = P(A) + P(B) - P(A \cap B),
+  \quad \text{cuando } A \cap B \neq \varnothing$$
+
+- **Regla de la unión de tres eventos**\
+  Para tres eventos $A$, $B$ y $C$:
+
+  $$P(A \cup B \cup C) =
   P(A) + P(B) + P(C)
   - P(A \cap B) - P(A \cap C) - P(B \cap C)
-  + P(A \cap B \cap C)
-  \]
+  + P(A \cap B \cap C)$$
 
-
-Retomemos el ejemplo de una empresa que cuenta con un archivo que registra **todos los reclamos de garantía realizados por los clientes durante un año**.
+Retomemos el ejemplo de una empresa que cuenta con un archivo que
+registra **todos los reclamos de garantía realizados por los clientes
+durante un año**.
 
 Se desea calcular:
 
-> **¿Cuál es la probabilidad de que se presenten reclamos por fallas de tipo mayor o serio?**
-
+> **¿Cuál es la probabilidad de que se presenten reclamos por fallas de
+> tipo mayor o serio?**
 
 **Anotaciones**
 
 Definimos los siguientes eventos:
 
-- \( A \): Evento que denota reclamos por **fallas de tipo serio**  
-- \( B \): Evento que denota reclamos por **fallas de tipo mayor**
+- $A$: Evento que denota reclamos por **fallas de tipo serio**\
+- $B$: Evento que denota reclamos por **fallas de tipo mayor**
 
-De acuerdo con la información proporcionada en la **Tabla 8**, columna de **frecuencia relativa**, se tiene que:
+De acuerdo con la información proporcionada en la **Tabla 8**, columna
+de **frecuencia relativa**, se tiene que:
 
-\[
-P(A) = 0.11, \quad P(B) = 0.06
-\]
+$$P(A) = 0.11, \quad P(B) = 0.06$$
 
 Además, se asume que los eventos **no se traslapan**, es decir:
 
-\[
-P(A \cap B) = 0
-\]
-
+$$P(A \cap B) = 0$$
 
 **Cálculo de la probabilidad**
 
 Aplicando la regla de la unión de dos eventos:
 
-\[
-P(A \cup B) = P(A) + P(B)
-\]
+$$P(A \cup B) = P(A) + P(B)$$
 
-\[
-P(A \cup B) = 0.11 + 0.06 = 0.17
-\]
+$$P(A \cup B) = 0.11 + 0.06 = 0.17$$
 
-**Interpretación:**  
-La probabilidad de que un reclamo corresponda a una falla de tipo **mayor o serio** es de **0.17**, es decir, **17%**.
-
+**Interpretación:**\
+La probabilidad de que un reclamo corresponda a una falla de tipo
+**mayor o serio** es de **0.17**, es decir, **17%**.
 
 ```{r}
 # Crear tabla de probabilidades
@@ -1255,373 +1237,334 @@ text(
 )
 ```
 
-# 1.3	Probabilidad condicional e independencia de eventos
+# 1.3 Probabilidad condicional e independencia de eventos
 
-### 1.3.1.	Probabilidad condicional
+### 1.3.1. Probabilidad condicional
 
-La **probabilidad condicional** estudia la probabilidad de que ocurra un evento dentro de un experimento aleatorio **cuando ya se cuenta con información parcial** sobre dicho experimento.  
-Esta información previa reduce el conjunto de resultados posibles y, en consecuencia, modifica las probabilidades.
+La **probabilidad condicional** estudia la probabilidad de que ocurra un
+evento dentro de un experimento aleatorio **cuando ya se cuenta con
+información parcial** sobre dicho experimento.\
+Esta información previa reduce el conjunto de resultados posibles y, en
+consecuencia, modifica las probabilidades.
 
-A continuación se presenta un ejemplo clásico que ilustra la idea fundamental de la probabilidad condicional.
-
+A continuación se presenta un ejemplo clásico que ilustra la idea
+fundamental de la probabilidad condicional.
 
 **Ejemplo: Lanzamiento de dos dados**
 
-Se lanzan **dos dados de seis caras**, uno después del otro (de manera consecutiva).
+Se lanzan **dos dados de seis caras**, uno después del otro (de manera
+consecutiva).
 
-*Observación*
-Se sabe que **en el primer dado apareció la cara 3**.
+*Observación* Se sabe que **en el primer dado apareció la cara 3**.
 
 La pregunta que se desea responder es:
 
-> **¿Cuál es la probabilidad de que la suma de las caras sea igual a 8, dado que en el primer dado se obtuvo un 3?**
+> **¿Cuál es la probabilidad de que la suma de las caras sea igual a 8,
+> dado que en el primer dado se obtuvo un 3?**
 
+Como ya se conoce el resultado del primer dado, solo son posibles los
+siguientes resultados del experimento:
 
-Como ya se conoce el resultado del primer dado, solo son posibles los siguientes resultados del experimento:
+$$S = \{(3,1), (3,2), (3,3), (3,4), (3,5), (3,6)\}$$
 
-\[
-S = \{(3,1), (3,2), (3,3), (3,4), (3,5), (3,6)\}
-\]
+Cada par ordenado $(3,x)$ representa el evento en el que: - el **primer
+dado** muestra la cara 3, - el **segundo dado** muestra la cara $x$.
 
-Cada par ordenado \((3,x)\) representa el evento en el que:
-- el **primer dado** muestra la cara 3,
-- el **segundo dado** muestra la cara \(x\).
+Todos estos resultados tienen **la misma probabilidad de ocurrir**, ya
+que el segundo dado sigue siendo aleatorio.
 
-Todos estos resultados tienen **la misma probabilidad de ocurrir**, ya que el segundo dado sigue siendo aleatorio.
+Como el espacio muestral original tenía 36 resultados posibles, cada uno
+de los resultados del espacio reducido tiene probabilidad:
 
-Como el espacio muestral original tenía 36 resultados posibles, cada uno de los resultados del espacio reducido tiene probabilidad:
-
-\[
-P = \frac{1}{6}
-\]
-
+$$P = \frac{1}{6}$$
 
 *Evento de interés*
 
 La suma de las caras sea igual a 8.
 
-Dentro del espacio muestral reducido, el único resultado que cumple esta condición es:
+Dentro del espacio muestral reducido, el único resultado que cumple esta
+condición es:
 
-\[
-(3,5)
-\]
+$$(3,5)$$
 
 Por lo tanto,
 
-\[
-P(\text{suma = 8} \mid \text{primer dado = 3}) = \frac{1}{6}
-\]
+$$P(\text{suma = 8} \mid \text{primer dado = 3}) = \frac{1}{6}$$
 
-Esto resume la idea central de la probabilidad condicional: **la probabilidad se calcula con base en un espacio muestral reducido**.
-
+Esto resume la idea central de la probabilidad condicional: **la
+probabilidad se calcula con base en un espacio muestral reducido**.
 
 **Definición formal de probabilidad condicional**
 
-Sean \(A\) y \(B\) dos eventos tales que \(P(B) > 0\).  
-La probabilidad condicional del evento \(A\) dado que ha ocurrido \(B\), denotada por \(P(A \mid B)\), se define como:
+Sean $A$ y $B$ dos eventos tales que $P(B) > 0$.\
+La probabilidad condicional del evento $A$ dado que ha ocurrido $B$,
+denotada por $P(A \mid B)$, se define como:
 
-\[
-P(A \mid B) = \frac{P(A \cap B)}{P(B)} \tag{4}
-\]
-
-
+$$P(A \mid B) = \frac{P(A \cap B)}{P(B)} \tag{4}$$
 
 **Definición de eventos en el ejemplo**
 
-- **A**: La suma de las caras de los dos dados es igual a 8.  
+- **A**: La suma de las caras de los dos dados es igual a 8.\
 - **B**: En el primer dado aparece la cara 3.
 
 Entonces:
 
-- \(A \cap B\): La suma es 8 **y** el primer dado es 3.
-
+- $A \cap B$: La suma es 8 **y** el primer dado es 3.
 
 **Espacio muestral completo**
 
-El experimento de lanzar dos dados de forma consecutiva tiene 36 resultados posibles:
+El experimento de lanzar dos dados de forma consecutiva tiene 36
+resultados posibles:
 
-\[
-\{(1,1), (1,2), \dots, (6,6)\}
-\]
+$$\{(1,1), (1,2), \dots, (6,6)\}$$
 
 Los resultados favorables para cada evento son:
 
-\[
-A = \{(2,6), (3,5), (4,4), (5,3), (6,2)\}
-\]
+$$A = \{(2,6), (3,5), (4,4), (5,3), (6,2)\}$$
 
-\[
-B = \{(3,1), (3,2), (3,3), (3,4), (3,5), (3,6)\}
-\]
+$$B = \{(3,1), (3,2), (3,3), (3,4), (3,5), (3,6)\}$$
 
 La intersección es:
 
-\[
-A \cap B = \{(3,5)\}
-\]
-
+$$A \cap B = \{(3,5)\}$$
 
 **Cálculo de las probabilidades**
 
-\[
-P(B) = \frac{6}{36}
-\]
+$$P(B) = \frac{6}{36}$$
 
-El numerador es 6 porque existen seis resultados donde el primer dado es 3.
+El numerador es 6 porque existen seis resultados donde el primer dado es
+3.
 
-\[
-P(A \cap B) = \frac{1}{36}
-\]
+$$P(A \cap B) = \frac{1}{36}$$
 
-El numerador es 1 porque solo en un resultado se cumple que el primer dado es 3 y la suma es 8.
+El numerador es 1 porque solo en un resultado se cumple que el primer
+dado es 3 y la suma es 8.
 
 Sustituyendo en la ecuación (4):
 
-\[
-P(A \mid B) = \frac{1/36}{6/36} = \frac{1}{6}
-\]
+$$P(A \mid B) = \frac{1/36}{6/36} = \frac{1}{6}$$
 
+### 1.3.2. Regla de la multiplicación
 
-### 1.3.2.	Regla de la multiplicación
+En esta sección se estudia una regla fundamental de la probabilidad que
+permite calcular la probabilidad de un evento cuya expresión tiene la
+forma:
 
-En esta sección se estudia una regla fundamental de la probabilidad que permite calcular la probabilidad de un evento cuya expresión tiene la forma:
+$$A_1 \cap A_2 \cap A_3 \cap \cdots \cap A_n$$
 
-\[
-A_1 \cap A_2 \cap A_3 \cap \cdots \cap A_n
-\]
+Es decir, el evento en el que **ocurren todos los eventos**
+$A_1, A_2, \ldots, A_n$.
 
-Es decir, el evento en el que **ocurren todos los eventos \(A_1, A_2, \ldots, A_n\)**.
-
-Cuando los eventos son **dependientes**, la probabilidad de esta intersección puede expresarse en términos de **probabilidades condicionales**.  
-La ecuación resultante recibe el nombre de **regla de la multiplicación de probabilidades**.
-
+Cuando los eventos son **dependientes**, la probabilidad de esta
+intersección puede expresarse en términos de **probabilidades
+condicionales**.\
+La ecuación resultante recibe el nombre de **regla de la multiplicación
+de probabilidades**.
 
 **Regla general**
 
-Sean \(A_1, A_2, A_3, \ldots, A_n\) eventos dependientes. Entonces, la probabilidad de que todos ocurran es:
+Sean $A_1, A_2, A_3, \ldots, A_n$ eventos dependientes. Entonces, la
+probabilidad de que todos ocurran es:
 
-\[
-P(A_1 \cap A_2 \cap \cdots \cap A_n)
+$$P(A_1 \cap A_2 \cap \cdots \cap A_n)
 =
 P(A_1)\,P(A_2 \mid A_1)\,P(A_3 \mid A_1 \cap A_2)\cdots
-P(A_n \mid A_1 \cap A_2 \cap \cdots \cap A_{n-1})
-\]
-
+P(A_n \mid A_1 \cap A_2 \cap \cdots \cap A_{n-1})$$
 
 **Ejemplo: rifa con extracción sin reemplazo**
 
-Suponga que en el trabajo se realiza una rifa.  
-Una persona extrae boletos **sin reemplazo** de una urna que contiene **50 boletos numerados**.
+Suponga que en el trabajo se realiza una rifa.\
+Una persona extrae boletos **sin reemplazo** de una urna que contiene
+**50 boletos numerados**.
 
-Lucila participa en la rifa y posee el boleto con **denominación 20**.  
+Lucila participa en la rifa y posee el boleto con **denominación 20**.\
 El boleto ganador es aquel que se obtiene en la **tercera extracción**.
 
-**Pregunta:**  
-> ¿Cuál es la probabilidad de que Lucila gane la rifa?
-
+**Pregunta:**\
+\> ¿Cuál es la probabilidad de que Lucila gane la rifa?
 
 *Definición de eventos*
 
 Se definen los siguientes eventos:
 
-- \(L_i\): evento en el que el boleto obtenido en la *i*-ésima extracción **no tiene** denominación 20.
-- \(L_i^c\): evento en el que el boleto obtenido en la *i*-ésima extracción **sí tiene** denominación 20.
-
+- $L_i$: evento en el que el boleto obtenido en la *i*-ésima extracción
+  **no tiene** denominación 20.
+- $L_i^c$: evento en el que el boleto obtenido en la *i*-ésima
+  extracción **sí tiene** denominación 20.
 
 *Evento de interés*
 
 El evento que representa que Lucila gane la rifa es:
 
-\[
-P(L_1 \cap L_2 \cap L_3^c)
-\]
+$$P(L_1 \cap L_2 \cap L_3^c)$$
 
-Esto significa:
-- En la **primera extracción** no sale el boleto 20.
-- En la **segunda extracción** no sale el boleto 20.
-- En la **tercera extracción** sí sale el boleto 20.
-
+Esto significa: - En la **primera extracción** no sale el boleto 20. -
+En la **segunda extracción** no sale el boleto 20. - En la **tercera
+extracción** sí sale el boleto 20.
 
 *Aplicación de la regla de la multiplicación*
 
 Usando la regla de la multiplicación de probabilidades:
 
-\[
-P(L_1 \cap L_2 \cap L_3^c)
+$$P(L_1 \cap L_2 \cap L_3^c)
 =
 P(L_1)\,P(L_2 \mid L_1)\,P(L_3^c \mid L_1 \cap L_2)
-\tag{5}
-\]
-
+\tag{5}$$
 
 **Primera extracción**
 
 Hay 49 boletos distintos de 20 de un total de 50, por lo que:
 
-\[
-P(L_1) = \frac{49}{50}
-\]
+$$P(L_1) = \frac{49}{50}$$
 
 **Segunda extracción**
 
-Dado que ya se extrajo un boleto distinto de 20, quedan:
-- 48 boletos distintos de 20
-- 49 boletos en total
+Dado que ya se extrajo un boleto distinto de 20, quedan: - 48 boletos
+distintos de 20 - 49 boletos en total
 
 Por lo tanto:
 
-\[
-P(L_2 \mid L_1) = \frac{48}{49}
-\]
-
+$$P(L_2 \mid L_1) = \frac{48}{49}$$
 
 **Tercera extracción**
 
-Interesa que salga el boleto con denominación 20.  
+Interesa que salga el boleto con denominación 20.\
 Queda un solo boleto con ese número entre 48 boletos restantes:
 
-\[
-P(L_3^c \mid L_1 \cap L_2) = \frac{1}{48}
-\]
-
-
-
+$$P(L_3^c \mid L_1 \cap L_2) = \frac{1}{48}$$
 
 Sustituyendo en (5):
 
-\[
-P(L_1 \cap L_2 \cap L_3^c)
+$$P(L_1 \cap L_2 \cap L_3^c)
 =
 \frac{49}{50}\cdot\frac{48}{49}\cdot\frac{1}{48}
 =
 \frac{1}{50}
 =
-0.02
-\]
+0.02$$
 
-**Conclusión:**  
+**Conclusión:**\
 Lucila tiene una probabilidad de **0.02 (2%)** de ganar la rifa.
 
+### 1.3.3. Eventos independientes
 
-### 1.3.3.	Eventos independientes
+En el apartado anterior se analizó que la probabilidad de ocurrencia de
+un evento $A$ puede verse afectada por el conocimiento previo de otro
+evento, digamos $B$. En ese caso, se trabaja con la probabilidad
+condicional $P(A \mid B)$.
 
-En el apartado anterior se analizó que la probabilidad de ocurrencia de un evento \(A\) puede verse afectada por el conocimiento previo de otro evento, digamos \(B\). En ese caso, se trabaja con la probabilidad condicional \(P(A \mid B)\).
+Sin embargo, existen situaciones en las que la ocurrencia de un evento
+$B$ **no modifica** la probabilidad de ocurrencia de otro evento $A$. Es
+decir, la probabilidad de que ocurra $A$ dado que ocurrió $B$ coincide
+con la probabilidad original de $A$:
 
-Sin embargo, existen situaciones en las que la ocurrencia de un evento \(B\) **no modifica** la probabilidad de ocurrencia de otro evento \(A\). Es decir, la probabilidad de que ocurra \(A\) dado que ocurrió \(B\) coincide con la probabilidad original de \(A\):
+$$P(A \mid B) = P(A)
+\tag{6}$$
 
-\[
-P(A \mid B) = P(A)
-\tag{6}
-\]
-
-Cuando esto sucede, se dice que los eventos \(A\) y \(B\) son **eventos independientes**.
+Cuando esto sucede, se dice que los eventos $A$ y $B$ son **eventos
+independientes**.
 
 A partir de la definición de probabilidad condicional,
 
-\[
-P(A \mid B) = \frac{P(A \cap B)}{P(B)},
-\]
+$$P(A \mid B) = \frac{P(A \cap B)}{P(B)},$$
 
-si \(P(A \mid B) = P(A)\), entonces se obtiene la relación:
+si $P(A \mid B) = P(A)$, entonces se obtiene la relación:
 
-\[
-P(A \cap B) = P(A)P(B)
-\tag{7}
-\]
+$$P(A \cap B) = P(A)P(B)
+\tag{7}$$
 
-Dos eventos \(A\) y \(B\) serán independientes **si y solo si** se cumple la igualdad (7).
+Dos eventos $A$ y $B$ serán independientes **si y solo si** se cumple la
+igualdad (7).
 
-**Nota.**  
-Si los eventos \(A\) y \(B\) no satisfacen la relación (7), se dice que son **eventos dependientes**.
-
+**Nota.**\
+Si los eventos $A$ y $B$ no satisfacen la relación (7), se dice que son
+**eventos dependientes**.
 
 **Ejemplo: Lanzamiento de dos monedas**
 
 Dos monedas se lanzan de manera simultánea al aire.
 
-- Sea \(E\) el evento en el que **la primera moneda cae sol**.
-- Sea \(F\) el evento en el que **la segunda moneda cae águila**.
+- Sea $E$ el evento en el que **la primera moneda cae sol**.
+- Sea $F$ el evento en el que **la segunda moneda cae águila**.
 
-Se desea determinar si los eventos \(E\) y \(F\) son independientes.
+Se desea determinar si los eventos $E$ y $F$ son independientes.
 
 *Espacio muestral*
 
 El espacio muestral del experimento es:
 
-\[
-S = \{(a,a), (a,c), (c,a), (c,c)\}
-\]
+$$S = \{(a,a), (a,c), (c,a), (c,c)\}$$
 
-donde:
-- \(a\): cae águila  
-- \(c\): cae sol  
+donde: - $a$: cae águila\
+- $c$: cae sol
 
-**Nota.**  
-Todos los resultados posibles tienen la misma probabilidad de ocurrencia, es decir, cada uno ocurre con probabilidad \(1/4\).
+**Nota.**\
+Todos los resultados posibles tienen la misma probabilidad de
+ocurrencia, es decir, cada uno ocurre con probabilidad $1/4$.
 
 *Probabilidades de los eventos*
 
-El evento intersección \(E \cap F\) corresponde al resultado \((c,a)\), que es la única forma en que la primera moneda cae sol y la segunda cae águila. Por lo tanto:
+El evento intersección $E \cap F$ corresponde al resultado $(c,a)$, que
+es la única forma en que la primera moneda cae sol y la segunda cae
+águila. Por lo tanto:
 
-\[
-P(E \cap F) = \frac{1}{4}
-\]
+$$P(E \cap F) = \frac{1}{4}$$
 
-El evento \(E = \{(c,a), (c,c)\}\), por lo que:
+El evento $E = \{(c,a), (c,c)\}$, por lo que:
 
-\[
-P(E) = \frac{2}{4} = \frac{1}{2}
-\]
+$$P(E) = \frac{2}{4} = \frac{1}{2}$$
 
-De manera similar, el evento \(F = \{(c,a), (a,a)\}\), y su probabilidad es:
+De manera similar, el evento $F = \{(c,a), (a,a)\}$, y su probabilidad
+es:
 
-\[
-P(F) = \frac{2}{4} = \frac{1}{2}
-\]
+$$P(F) = \frac{2}{4} = \frac{1}{2}$$
 
 Finalmente, se verifica que:
 
-\[
-P(E \cap F) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = P(E)P(F)
-\]
+$$P(E \cap F) = \frac{1}{4} = \frac{1}{2} \cdot \frac{1}{2} = P(E)P(F)$$
 
-Por lo tanto, los eventos \(E\) y \(F\) son **independientes**.
+Por lo tanto, los eventos $E$ y $F$ son **independientes**.
 
+# 1.4 Probabilidad de un evento de interés en términos de probabilidades condicionales
 
-# 1.4	Probabilidad de un evento de interés en términos de probabilidades condicionales
-### 1.4.1.	Probabilidad total
-La regla de la probabilidad total es un resultado fundamental que permite calcular la probabilidad de un evento de interés $B$, descomponiéndolo a través de una **partición** del espacio muestral $S$.
+### 1.4.1. Probabilidad total
 
+La regla de la probabilidad total es un resultado fundamental que
+permite calcular la probabilidad de un evento de interés $B$,
+descomponiéndolo a través de una **partición** del espacio muestral $S$.
 
-Para aplicar este teorema, primero debemos definir una partición del espacio muestral. Se dice que los eventos $A_1, A_2, \dots, A_k$ forman una partición de $S$ si:
-1. Son **mutuamente excluyentes** ($A_i \cap A_j = \varnothing$ para $i \neq j$).
-2. Su unión conforma todo el espacio muestral ($\cup_{i=1}^k A_i = S$).
+Para aplicar este teorema, primero debemos definir una partición del
+espacio muestral. Se dice que los eventos $A_1, A_2, \dots, A_k$ forman
+una partición de $S$ si: 1. Son **mutuamente excluyentes**
+($A_i \cap A_j = \varnothing$ para $i \neq j$). 2. Su unión conforma
+todo el espacio muestral ($\cup_{i=1}^k A_i = S$).
 
-
-
-Si estos eventos tienen probabilidades no nulas, la probabilidad de cualquier evento $B$ en $S$ se calcula como la suma de las probabilidades de las intersecciones de $B$ con cada elemento de la partición:
+Si estos eventos tienen probabilidades no nulas, la probabilidad de
+cualquier evento $B$ en $S$ se calcula como la suma de las
+probabilidades de las intersecciones de $B$ con cada elemento de la
+partición:
 $$P(B) = \sum_{i=1}^{k} P(B \cap A_i) = \sum_{i=1}^{k} P(B|A_i)P(A_i)$$
 
+**Ejemplo 1: Consultorio médico SOLCA** En la empresa SOLCA, se desea
+saber la probabilidad de que un empleado elegido al azar padezca
+obesidad (evento $B$). La población se divide en dos eventos excluyentes
+que particionan el espacio muestral por género: **Hombres (**$H$) y
+**Mujeres (**$M$).
 
-**Ejemplo 1: Consultorio médico SOLCA**
-En la empresa SOLCA, se desea saber la probabilidad de que un empleado elegido al azar padezca obesidad (evento $B$). La población se divide en dos eventos excluyentes que particionan el espacio muestral por género: **Hombres ($H$)** y **Mujeres ($M$)**.
+**Datos:** \* Total de empleados: $N = 150$ (90 hombres y 60 mujeres).
+\* $P(H) = \frac{90}{150}$, $P(M) = \frac{60}{150}$. \* Obesidad en
+hombres: 50 padecen $\implies P(B|H) = \frac{50}{90}$. \* Obesidad en
+mujeres: 25 padecen $\implies P(B|M) = \frac{25}{60}$.
 
-**Datos:**
-* Total de empleados: $N = 150$ (90 hombres y 60 mujeres).
-* $P(H) = \frac{90}{150}$, $P(M) = \frac{60}{150}$.
-* Obesidad en hombres: 50 padecen $\implies P(B|H) = \frac{50}{90}$.
-* Obesidad en mujeres: 25 padecen $\implies P(B|M) = \frac{25}{60}$.
-
-**Cálculo:**
-$$P(B) = P(B|H)P(H) + P(B|M)P(M)$$
+**Cálculo:** $$P(B) = P(B|H)P(H) + P(B|M)P(M)$$
 $$P(B) = \left(\frac{50}{90}\right)\left(\frac{90}{150}\right) + \left(\frac{25}{60}\right)\left(\frac{60}{150}\right) = \frac{50}{150} + \frac{25}{150} = \frac{75}{150} = 0.5$$
 
+**Ejemplo 2: Alumnos fumadores** En un curso, el 70% son mujeres ($M^c$)
+y el 30% son hombres ($M$). El 10% de las mujeres fuman ($F|M^c$) y el
+20% de los hombres fuman ($F|M$).
 
-**Ejemplo 2: Alumnos fumadores**
-En un curso, el 70% son mujeres ($M^c$) y el 30% son hombres ($M$). El 10% de las mujeres fuman ($F|M^c$) y el 20% de los hombres fuman ($F|M$).
-
-**Cálculo en R:**
-Un diagrama de árbol es ideal para visualizar estas ramificaciones de probabilidad.
+**Cálculo en R:** Un diagrama de árbol es ideal para visualizar estas
+ramificaciones de probabilidad.
 
 ```{r ejemplo_fumadores, echo=TRUE}
 # Definición de probabilidades
@@ -1635,15 +1578,12 @@ p_total_fumador <- (p_fuma_dado_hombre * p_hombre) + (p_fuma_dado_mujer * p_muje
 print(paste("El porcentaje total de fumadores es:", p_total_fumador * 100, "%"))
 ```
 
+**Ejemplo 3: El experimento de las cajas** Tenemos dos cajas con bolas
+de colores: \* **Caja 1 (**$C_1$): 3 rojas ($R$), 7 negras ($N$). Total
+= 10. \* **Caja 2 (**$C_2$): 6 rojas ($R$), 6 negras ($N$). Total = 12.
 
-**Ejemplo 3: El experimento de las cajas**
-Tenemos dos cajas con bolas de colores:
-* **Caja 1 ($C_1$):** 3 rojas ($R$), 7 negras ($N$). Total = 10.
-* **Caja 2 ($C_2$):** 6 rojas ($R$), 6 negras ($N$). Total = 12.
-
-Se elige una caja al azar ($P(C_1) = P(C_2) = 0.5$). ¿Cuál es la probabilidad de extraer una bola roja?
-
-
+Se elige una caja al azar ($P(C_1) = P(C_2) = 0.5$). ¿Cuál es la
+probabilidad de extraer una bola roja?
 
 **Sustitución en la fórmula:**
 $$P(R) = P(R|C_1)P(C_1) + P(R|C_2)P(C_2)$$
@@ -1652,69 +1592,82 @@ $$P(R|C_1) = \frac{3}{10}, \quad P(R|C_2) = \frac{6}{12} = \frac{1}{2}$$
 **Resultado:**
 $$P(R) = \left(\frac{3}{10} \cdot \frac{1}{2}\right) + \left(\frac{1}{2} \cdot \frac{1}{2}\right) = \frac{3}{20} + \frac{1}{4} = \frac{3 + 5}{20} = \frac{8}{20} = 0.4$$
 
-Al seleccionar una caja y elegir una bola, la probabilidad de que esta sea de color rojo es de **0.4 (40%)**.
+Al seleccionar una caja y elegir una bola, la probabilidad de que esta
+sea de color rojo es de **0.4 (40%)**.
 
-### 1.4.2.	Teorema de Bayes
+### 1.4.2. Teorema de Bayes
 
-El Teorema de Bayes es una extensión de la probabilidad condicional que permite "invertir" las probabilidades. Es decir, nos permite calcular la probabilidad de que haya ocurrido una causa específica $A_i$, dado que ya hemos observado un efecto o evento $B$. 
+El Teorema de Bayes es una extensión de la probabilidad condicional que
+permite "invertir" las probabilidades. Es decir, nos permite calcular la
+probabilidad de que haya ocurrido una causa específica $A_i$, dado que
+ya hemos observado un efecto o evento $B$.
 
-Si los eventos $A_1, A_2, \dots, A_n$ forman una partición del espacio muestral $S$ (son mutuamente excluyentes y su unión es $S$), entonces para cualquier evento $B$ tal que $P(B) > 0$:
+Si los eventos $A_1, A_2, \dots, A_n$ forman una partición del espacio
+muestral $S$ (son mutuamente excluyentes y su unión es $S$), entonces
+para cualquier evento $B$ tal que $P(B) > 0$:
 
 $$P(A_j | B) = \frac{P(B | A_j) P(A_j)}{\sum_{i=1}^{n} P(B | A_i) P(A_i)}$$
 
-**Ejemplo 1: Obesidad por Género**
-Aplicando el teorema de Bayes al caso de estudio anterior (donde se busca la probabilidad de ser mujer dado que se padece obesidad):
+**Ejemplo 1: Obesidad por Género** Aplicando el teorema de Bayes al caso
+de estudio anterior (donde se busca la probabilidad de ser mujer dado
+que se padece obesidad):
 
 $$P(\text{Mujer} | B) = \frac{P(B | \text{Mujer}) P(\text{Mujer})}{P(B | \text{Mujer}) P(\text{Mujer}) + P(B | \text{Hombre}) P(\text{Hombre})}$$
 
 Sustituyendo los valores:
 $$P(\text{Mujer} | B) = \frac{0.15 \cdot 0.60}{0.50} = 0.3$$
 
-**Conclusión:** La probabilidad de que un individuo elegido al azar sea mujer, dado que tiene obesidad, es de 0.3.
+**Conclusión:** La probabilidad de que un individuo elegido al azar sea
+mujer, dado que tiene obesidad, es de 0.3.
 
+**Ejemplo 2: Producción de Máquinas** En una fábrica hay dos máquinas,
+$A$ y $B$. La máquina $A$ realiza el 60% de la producción total y la $B$
+el 40%. La máquina $A$ produce un 3% de material defectuoso y la $B$ un
+5%. Si se encuentra un material defectuoso, ¿cuál es la probabilidad de
+que provenga de la máquina $B$?
 
-**Ejemplo 2: Producción de Máquinas**
-En una fábrica hay dos máquinas, $A$ y $B$. La máquina $A$ realiza el 60% de la producción total y la $B$ el 40%. La máquina $A$ produce un 3% de material defectuoso y la $B$ un 5%. Si se encuentra un material defectuoso, ¿cuál es la probabilidad de que provenga de la máquina $B$?
+**Definición de eventos:** \* $A$: El material proviene de la máquina
+$A$. ($P(A) = 0.60$) \* $B$: El material proviene de la máquina $B$.
+($P(B) = 0.40$) \* $C$: El material es defectuoso.
+($P(C|A) = 0.03, P(C|B) = 0.05$)
 
-**Definición de eventos:**
-* $A$: El material proviene de la máquina $A$. ($P(A) = 0.60$)
-* $B$: El material proviene de la máquina $B$. ($P(B) = 0.40$)
-* $C$: El material es defectuoso. ($P(C|A) = 0.03, P(C|B) = 0.05$)
-
-**Cálculo:**
-Lo que se busca es $P(B|C)$:
+**Cálculo:** Lo que se busca es $P(B|C)$:
 $$P(B|C) = \frac{P(C|B)P(B)}{P(C|A)P(A) + P(C|B)P(B)}$$
 
 $$P(B|C) = \frac{0.05 \cdot 0.40}{(0.03 \cdot 0.60) + (0.05 \cdot 0.40)} = \frac{0.02}{0.018 + 0.02} = \frac{0.02}{0.038} \approx 0.5263$$
 
-**Conclusión:** Existe un 52.63% de probabilidad de que el material defectuoso provenga de la máquina $B$.
+**Conclusión:** Existe un 52.63% de probabilidad de que el material
+defectuoso provenga de la máquina $B$.
 
-
-**Ejemplo 3: Prueba de Tuberculosis**
-En una campaña de salud, se aplica una prueba de tuberculina. Se sabe:
-* Acierto en enfermos (Sensibilidad): 96% ($P(B|A) = 0.96$)
-* Error en sanos (Falsos positivos): 5% ($P(B|A^c) = 0.05$)
-* Prevalencia de la enfermedad: 0.1% ($P(A) = 0.001$)
+**Ejemplo 3: Prueba de Tuberculosis** En una campaña de salud, se aplica
+una prueba de tuberculina. Se sabe: \* Acierto en enfermos
+(Sensibilidad): 96% ($P(B|A) = 0.96$) \* Error en sanos (Falsos
+positivos): 5% ($P(B|A^c) = 0.05$) \* Prevalencia de la enfermedad: 0.1%
+($P(A) = 0.001$)
 
 **a) Probabilidad de estar realmente enfermo si la prueba es positiva**
 $$P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|A^c)P(A^c)}$$
 $$P(A|B) = \frac{0.96 \cdot 0.001}{(0.96 \cdot 0.001) + (0.05 \cdot 0.999)} \approx 0.0188$$
 
-**Interpretación:** La probabilidad de estar enfermo tras un resultado positivo es de solo 1.9%. Esto ocurre porque la enfermedad es muy rara (baja prevalencia), lo que hace que los falsos positivos superen a los verdaderos positivos.
+**Interpretación:** La probabilidad de estar enfermo tras un resultado
+positivo es de solo 1.9%. Esto ocurre porque la enfermedad es muy rara
+(baja prevalencia), lo que hace que los falsos positivos superen a los
+verdaderos positivos.
 
 **b) Probabilidad de estar sano si la prueba es negativa**
-$$P(A^c|B^c) = \frac{P(B^c|A^c)P(A^c)}{P(B^c)}$$
-Donde $P(B^c|A^c) = 1 - 0.05 = 0.95$ y $P(B^c) = 1 - P(B)$.
+$$P(A^c|B^c) = \frac{P(B^c|A^c)P(A^c)}{P(B^c)}$$ Donde
+$P(B^c|A^c) = 1 - 0.05 = 0.95$ y $P(B^c) = 1 - P(B)$.
 $$P(A^c|B^c) = \frac{0.95 \cdot 0.999}{1 - 0.05091} \approx 1$$
 
-**Conclusión:** La prueba es extremadamente confiable para descartar la enfermedad (resultados negativos), pero poco confiable para confirmarla (resultados positivos) sin una segunda prueba.
+**Conclusión:** La prueba es extremadamente confiable para descartar la
+enfermedad (resultados negativos), pero poco confiable para confirmarla
+(resultados positivos) sin una segunda prueba.
 
-
-Podemos visualizar este proceso de decisión mediante un diagrama de árbol de probabilidades:
+Podemos visualizar este proceso de decisión mediante un diagrama de
+árbol de probabilidades:
 
 ```{r bayes_tree, echo=TRUE}
 # Ejemplo didáctico de la estructura del Teorema de Bayes
 # Árbol de decisión simple para la prueba de Tuberculosis
 cat("Probabilidad Total de Positivo P(B):", (0.96 * 0.001) + (0.05 * 0.999))
 ```
-

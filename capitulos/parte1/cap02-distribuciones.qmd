@@ -15,7 +15,7 @@ __Nota__:
 Una variable aleatoria (v.a) es aquella cuyos valores son números reales asignados a los resultados de un experimento aleatorio.
 
 :::: {.callout-note icon=false}
-Ejemplo 2.1.1:
+## Ejemplo 2.1.1
 Una moneda ordinaria cuenta con dos posibles resultados a: águila y c: sol. El experimento consiste en lanzar al mismo tiempo tres monedas y observar las caras que aparecen, el procedimiento se realiza 8 veces, entonces el espacio 
 muestral (S) es el siguiente:
           S={(a,a,a),(a,c,a),(a,a,c),(c,a,a),(c,c,a),(c,a,c),(a,c,c),(c,c,c)}
@@ -52,7 +52,7 @@ Un ejemplo de este tipo es el número de errores ortográficos que pueden existi
 0, 1, 2, … ; por supuesto que, en la vida real, no hay infinitos números de errores en un libro, pero si el libro es grande (su tamaño tiende a infinito) el número de errores posibles sería muy grande y considerarse infinito.
 
 :::: {.callout-note icon=false}
-Ejemplo:
+## Ejemplo
 El número de terremotos que pueden ocurrir en un periodo de tiempo de 15 años se puede denotar con una variable aleatoria discreta con un espacio muestral infinito contable. Si denotamos con X la 
 variable aleatoria el número de terremotos la variable aleatoria puede considerar los siguientes 
 valores 

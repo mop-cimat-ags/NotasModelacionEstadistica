@@ -12,6 +12,7 @@ herramienta que nos ayuda a contar el número de configuraciones posibles al ord
 número de elementos.
 
 :::: {.callout-note icon=false}
+## Ejercicio
 Suponga que en una empresa se quiere establecer un comité sindical, el cual debe de estar formado por 5 mujeres y 5 hombres de toda la empresa. Si en la empresa hay 20 hombres y 15 mujeres, considere los siguientes puntos:
 
 1. ¿Cuántas configuraciones posibles podrían formarse para establecer el comité sindical?
@@ -43,6 +44,7 @@ Todas las posibles configuraciones del comité se muestran en la tabla 1.
 __Principio básico del conteo__
 
 :::: {.callout-note icon=false}
+## Definición
 Si la primera etapa $$fase$$de un experimento, procedimiento, proceso, maniabra o intervención puede efectuarse de n formas distintas y su segunda fase puede realizarse de m formas diferentes, entonces el total de formas en que puede efectuarse el primer paso seguido del segundo tiene cardinalidad igual al producto:$$n*m$$.
 ::::
 
@@ -269,6 +271,7 @@ n! = n \cdot (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1
 $$
 
 :::: {.callout-note icon=false}
+## Nota
 Notar que:
 
 - $1! = 1$
