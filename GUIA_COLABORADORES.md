@@ -336,7 +336,7 @@ quarto render --profile docx  # → _book-docx/
 ### 5.4 Renderizar un solo capítulo
 
 ```bash
-quarto render capitulos/parte2/cap04-inferencia.qmd
+quarto render capitulos/parte1/cap04-inferencia.qmd
 ```
 
 Esto genera solo ese capítulo en `_book/`. Útil para revisar rápido
@@ -453,7 +453,6 @@ Avisa al coordinador para que agregue el capítulo al índice:
 ```yaml
 - part: "Parte II - Inferencia Estadistica"
   chapters:
-    - capitulos/parte2/cap04-inferencia.qmd
     - capitulos/parte2/cap05-regresion-lineal.qmd   # nuevo
 ```
 

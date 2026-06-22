@@ -2,6 +2,8 @@
 
 Ciertos fenómenos originan resultados en un espectro continuo. En la modelación analítica y la simulación de procesos, podríamos estar interesados en estudiar el tiempo de espera de un paciente en la sala de urgencias de un hospital, la duración de una llamada en una línea telefónica de atención, o el tiempo exacto que toma el proceso de pintado de un automóvil en una línea de ensamblaje. Este tipo de variable aleatoria, que puede tomar cualquier valor dentro de un intervalo (o unión de intervalos), se denomina *continua*.
 
+En este capítulo estudiaremos las variables aleatorias continuas: cómo se describen mediante su función de densidad de probabilidad y su función de probabilidad acumulada, y cómo calcular probabilidades como áreas bajo una curva. Revisaremos las distribuciones continuas más utilizadas en la práctica: la Uniforme continua, la Normal (junto con su versión estandarizada y el uso de tablas) y la Exponencial, incluyendo su propiedad de falta de memoria. Cerraremos con material complementario sobre la distribución Weibull y las distribuciones continuas conjuntas. A lo largo del capítulo se incluyen ejemplos resueltos y ejercicios propuestos para practicar los conceptos.
+
 ## Variable aleatoria continua
 
 **Ejemplo:** Consideremos que se tiene la siguiente rueda de la fortuna:
@@ -91,7 +93,7 @@ axis(1, at=c(1.5, 3.5), labels=c("a", "b"))
 
 Para calcular el valor exacto de esta probabilidad en la mayoría de las distribuciones teóricas, se recurre a la integración matemática. Sin embargo, en ciertos casos, el área puede encontrarse usando fórmulas de geometría elemental.
 
-#### Ejemplo
+**Ejemplo 1**
 
 Supongamos que en un modelo de simulación en la recepción de un hotel, la variable aleatoria $Y$ representa la proporción de tiempo durante un turno de 8 horas en que el empleado de recepción está ocupado atendiendo huéspedes de forma ininterrumpida. Al ser una proporción, la variable $Y$ solo puede tomar valores entre 0 y 1 ($0 \le Y \le 1$).
 
@@ -340,7 +342,7 @@ $$E[Y] = \frac{a +b}{2}$$ $$Var(Y) = \frac{(b - a)^2}{12}$$
 
 ------------------------------------------------------------------------
 
-#### Ejemplo
+**Ejemplo 1**
 
 Suponga que el tiempo que un estudiante debe esperar en la parada para que llegue un autobús universitario está distribuido uniformemente entre 0 y 20 minutos. Considere la variable aleatoria $Y$ como el tiempo de espera del estudiante.
 
@@ -412,6 +414,14 @@ ggplot(df_tiempo, aes(x = x, y = y)) +
   annotate("text", x = 7.5, y = 0.025, label = "Área = 0.25", fontface = "bold") +
   theme(plot.title = element_text(face = "bold", hjust = 0.5))
 ```
+
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. El tiempo que tarda un cajero en atender a un cliente se distribuye uniformemente entre 2 y 8 minutos. Calcule $E[X]$, $Var(X)$ y la probabilidad de que un cliente sea atendido en menos de 4 minutos.
+2. Una variable aleatoria $Y$ tiene distribución uniforme en el intervalo $[10, 30]$. Calcule $P(15 \le Y \le 25)$ y la desviación estándar de $Y$.
+3. Explique, con sus propias palabras, por qué la función de densidad de una variable continua puede tomar valores mayores a 1, mientras que la función de probabilidad de una variable discreta nunca puede superar 1.
+:::
 
 ## Distribución normal
 
@@ -689,7 +699,7 @@ $$Z = \frac{X - \mu}{\sigma}$$
 
 Esta transformación nos dice a cuántas desviaciones estándar ($\sigma$) se encuentra un valor $X$ por encima o por debajo de la media $\mu$. Al hacer esto, podemos usar las tablas de la normal estándar (o software estadístico) para calcular probabilidades para **cualquier** distribución normal.
 
-#### Ejemplo
+**Ejemplo 1**
 
 Suponga que los puntajes de un examen de aptitud a nivel nacional están distribuidos normalmente con una media $\mu = 400$ y una desviación estándar $\sigma = 50$. 
 
@@ -779,7 +789,7 @@ Esta es la probabilidad acumulada desde $-\infty$ hasta $z_0$, donde este últim
 En las distribuciones de probabilidad continuas, la probabilidad de que la variable aleatoria asuma exactamente un valor particular es cero ($P(X = x) = 0$). Por lo tanto, los signos de desigualdad estricta ($<$, $>$) o no estricta ($\le$, $\ge$) son probabilísticamente equivalentes. Es decir, $P(X \le x) = P(X < x)$.
 :::
 
-#### Ejemplo
+**Ejemplo 2**
 El peso de los niños al nacer en la localidad de Tequila tiene el comportamiento de una variable aleatoria normal con media $\mu = 3.5 \text{ kg}$ y desviación estándar $\sigma = 1 \text{ kg}$. 
 
 Con base en este ejemplo, estudiaremos cómo calcular probabilidades bajo diferentes escenarios usando la estandarización $Z$. $X$ se distribuye normal y se denota como $X \sim N(3.5, 1^2)$.
@@ -944,11 +954,19 @@ ggplot(df_z, aes(x = z, y = fz)) +
   annotate("text", x = 0, y = 0.15, label = "Área = 0.3830", fontface = "bold")
 ```
 
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. El tiempo de reacción a un estímulo se distribuye $N(0.8, 0.1^2)$ segundos. Calcule la probabilidad de que el tiempo de reacción sea mayor a 1 segundo.
+2. Las calificaciones de un examen siguen una distribución $N(70, 10^2)$. ¿Qué porcentaje de estudiantes obtiene una calificación entre 60 y 80?
+3. Si $X \sim N(50, 5^2)$, estandarice los valores $x=45$ y $x=60$, y calcule $P(45 \le X \le 60)$ usando la tabla de la normal estándar.
+:::
+
 ## Distribución exponencial
 
 La variable aleatoria exponencial surge en la práctica como el modelo para la probabilidad de la cantidad de tiempo u espacio que transcurre hasta que ocurre un evento de interés. Esta ocurrencia se da de manera independiente y a una tasa constante.
 
-#### Ejemplos
+**Ejemplos**
 * La cantidad de tiempo (a partir de ahora) hasta que ocurre un terremoto.
 * La cantidad de tiempo (a partir de ahora) hasta que estalla una nueva guerra.
 * La cantidad de tiempo (a partir de ahora) hasta que una llamada telefónica que reciba resulte ser un número equivocado.
@@ -1004,7 +1022,7 @@ $$F(x) = P(X \le x) = 1 - e^{-\lambda x} \quad \text{para } x \ge 0 \quad (17)$$
 
 ---
 
-#### Ejemplo 1: Servicio de asistencia técnica
+**Ejemplo 1: Servicio de asistencia técnica**
 
 Un servicio de asistencia técnica en carretera ha comprobado que en las mañanas de los fines de semana el número de llamadas que recibe es de 3 llamadas cada hora. Un operario comienza su jornada de sábado a las 8 de la mañana. Suponiendo que las llamadas se realizan de manera independiente y con tasa constante:
 
@@ -1041,7 +1059,7 @@ ggplot(df_asist, aes(x = x, y = fx)) +
 
 ---
 
-#### Ejemplo 2: Tiempo de revisión de motores
+**Ejemplo 2: Tiempo de revisión de motores**
 
 El tiempo de revisión del motor de un avión sigue una distribución exponencial con una media igual a 22 minutos.
 
@@ -1098,7 +1116,7 @@ $$P(X > 40 \mid X > 30) = P(X > 10 + 30 \mid X > 30) = P(X > 10)$$
 
 *Cuidado:* Esto no significa que los eventos $X > 40$ y $X > 30$ sean estadísticamente independientes. Si lo fueran, se cumpliría que $P(X > 40 \mid X > 30) = P(X > 40)$, lo cual es falso. Lo que es independiente es el *tiempo adicional*.
 
-#### Ejemplo
+**Ejemplo 3**
 
 Si el operario lleva 10 minutos sin recibir una llamada: ¿Cuál es la probabilidad de que reciba una nueva llamada en los **próximos 15 minutos** (es decir, en menos de 25 minutos en total)?
 
@@ -1111,6 +1129,14 @@ Recordando que $\lambda = 3$ llamadas/hora y que 15 minutos son $0.25$ horas, ca
 $$P(X < 0.25 \text{ horas}) = 1 - e^{-3(0.25)} = 1 - e^{-0.75} \approx 0.528$$
 
 Es exactamente la misma probabilidad calculada en el Ejemplo 1 al inicio del turno. El sistema "no recuerda" que el operario ya llevaba 10 minutos esperando.
+
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. El tiempo entre llegadas de clientes a una caja registradora sigue una distribución exponencial con media de 5 minutos. Calcule la probabilidad de que transcurran más de 8 minutos entre dos clientes consecutivos.
+2. La duración de un componente electrónico sigue una distribución exponencial con $\lambda = 0.02$ fallas por hora. Calcule la probabilidad de que el componente dure más de 100 horas.
+3. Usando la propiedad de falta de memoria, explique por qué la probabilidad de que un componente exponencial dure 50 horas más, dado que ya ha funcionado 200 horas, es la misma que la probabilidad de que dure más de 50 horas desde nuevo.
+:::
 
 ### Resumen
 
@@ -1219,7 +1245,7 @@ de ella se definen:
 - **Densidad condicional:** $f(x \mid y) = f(x,y)/h(y)$.
 - **Independencia:** $X$ y $Y$ son independientes si $f(x,y) = g(x) \cdot h(y)$.
 
-**Ejemplo.** Sea $f(x,y) = 4xy$ para $0 < x < 1,\ 0 < y < 1$ (y cero en
+**Ejemplo 1:** Sea $f(x,y) = 4xy$ para $0 < x < 1,\ 0 < y < 1$ (y cero en
 cualquier otra parte). Integrando se obtiene $g(x) = 2x$ y $h(y) = 2y$, y como
 $f(x,y) = 4xy = (2x)(2y) = g(x)h(y)$, $X$ y $Y$ son independientes. En lugar
 de reproducir la imagen de la diapositiva, la superficie de densidad conjunta
@@ -1258,3 +1284,13 @@ cat("Integral de f(x,y) sobre [0,1]x[0,1]:", round(integral, 4), "\n")
 x0 <- 0.4; y0 <- 0.7
 cat("f(x0,y0) =", f(x0, y0), " vs.  g(x0)*h(y0) =", g(x0) * h(y0), "-> son iguales: X y Y son independientes\n")
 ```
+
+
+::: {.callout-note icon=false}
+## Material complementario: resumen
+
+- **Distribución Weibull:** generalización de la Exponencial (se reduce a ella cuando el parámetro de forma $\beta = 1$); muy usada para modelar tiempos de vida y de falla en análisis de confiabilidad.
+- **Distribuciones continuas conjuntas:** una función $f(x,y) \ge 0$ con $\int\int f(x,y)\,dx\,dy = 1$ describe el comportamiento conjunto de dos variables continuas.
+- **Densidades marginales:** $g(x) = \int f(x,y)\,dy$ y $h(y) = \int f(x,y)\,dx$.
+- **Independencia:** $X$ y $Y$ son independientes si y solo si $f(x,y) = g(x)\cdot h(y)$ para todo $(x,y)$.
+:::

@@ -36,3 +36,6 @@ desktop.ini
 .vscode/
 *.swp
 *.swo
+
+# ── Logs sueltos generados por paquetes de R (ej. VennDiagram) ────────────────
+*.log

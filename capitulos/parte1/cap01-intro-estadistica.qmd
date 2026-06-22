@@ -1,5 +1,19 @@
 # Nociones de Probabilidad {#cap-intro}
 
+Este capítulo construye, paso a paso, las herramientas necesarias para
+cuantificar la incertidumbre. Se inicia con las **técnicas de conteo**
+(combinatoria), que permiten determinar cuántos resultados distintos puede
+tener un experimento. Con esa base se introducen los **experimentos
+aleatorios**, el **espacio muestral** y los **eventos**, para después
+presentar los tres enfoques con los que se puede **definir la probabilidad**
+(clásico, frecuentista y axiomático). A partir de los axiomas se derivan las
+reglas operativas de la probabilidad y se estudia la **probabilidad
+condicional**, la **independencia de eventos**, la **regla de la
+multiplicación**, la **probabilidad total** y el **Teorema de Bayes**. El
+capítulo cierra con material complementario (leyes de operaciones de
+conjuntos, métodos de asignación de probabilidad y dos aplicaciones célebres
+del Teorema de Bayes) y un resumen con las fórmulas clave.
+
 ## Combinatoria
 
 
@@ -12,7 +26,7 @@ herramienta que nos ayuda a contar el número de configuraciones posibles al ord
 número de elementos.
 
 :::: {.callout-note icon=false}
-## Ejercicio
+## Ejemplo 1
 Suponga que en una empresa se quiere establecer un comité sindical, el cual debe de estar formado por 5 mujeres y 5 hombres de toda la empresa. Si en la empresa hay 20 hombres y 15 mujeres, considere los siguientes puntos:
 
 1. ¿Cuántas configuraciones posibles podrían formarse para establecer el comité sindical?
@@ -45,7 +59,7 @@ __Principio básico del conteo__
 
 :::: {.callout-note icon=false}
 ## Definición
-Si la primera etapa $$fase$$de un experimento, procedimiento, proceso, maniabra o intervención puede efectuarse de n formas distintas y su segunda fase puede realizarse de m formas diferentes, entonces el total de formas en que puede efectuarse el primer paso seguido del segundo tiene cardinalidad igual al producto:$$n*m$$.
+Si la primera etapa (*fase*) de un experimento, procedimiento, proceso, maniobra o intervención puede efectuarse de $n$ formas distintas y su segunda fase puede realizarse de $m$ formas diferentes, entonces el total de formas en que puede efectuarse el primer paso seguido del segundo tiene cardinalidad igual al producto $n \times m$.
 ::::
 
 Veamos el principio básico del conteo con un ejemplo. Reconsidere el caso simple del comité sindical, el cual debe estar compuesto por 4 personas, dos hombres y dos mujeres. 
@@ -179,7 +193,7 @@ legend("topleft",
 
 ### Generalización del principio básico del conteo
 
-#### Ejemplo: Conteo de matrículas universitarias
+**Ejemplo 1: Conteo de matrículas universitarias**
 
 Suponga que a **Denisse** se le encarga generar las matrículas de los alumnos de una universidad.  
 Cada matrícula está formada por **cinco caracteres**, que se leen de izquierda a derecha y cumplen las siguientes condiciones:
@@ -236,8 +250,6 @@ Este procedimiento se conoce como **conteo con repetición** o **conteo con reem
 
 
 ### Permutaciones
-
-**Permutaciones**
 
 El concepto de **permutación** se refiere a las distintas formas en que se pueden **ordenar** los elementos de un conjunto cuando **el orden importa** y **no se permite repetición**. Consideremos los siguientes tres símbolos diferentes:
 
@@ -354,11 +366,11 @@ ggplot() +
 
 ### Grupos de tamaños $k$ de un total de $n$ elementos
 
-**Combinaciones y formación de comités**
+#### Combinaciones y formación de comités
 
 Con frecuencia es de interés determinar cuántos **grupos distintos** pueden formarse al seleccionar $k$ elementos de un conjunto de $n$ elementos, cuando **el orden no importa** y **no se permiten repeticiones**. Este tipo de selección se conoce como una **combinación**.
 
-#### Ejemplo: Formación de un comité
+**Ejemplo 1: Formación de un comité**
 
 Supongamos que se desea formar un comité integrado por **4 personas**, compuesto **exactamente por 2 hombres y 2 mujeres**, a partir de los siguientes conjuntos:
 
@@ -462,11 +474,24 @@ resultado
 
 ```
 
-## Experimentos aleatorio
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Una placa vehicular consta de 3 letras (de un alfabeto de 26) seguidas de
+   4 dígitos. ¿Cuántas placas distintas pueden formarse si se permiten
+   repeticiones? ¿Y si no se permite repetir ninguna letra ni ningún dígito?
+2. ¿De cuántas formas distintas pueden sentarse 6 personas en una fila de 6
+   asientos? ¿Y si dos de esas personas insisten en sentarse juntas?
+3. Un comité de 5 personas debe elegirse de un grupo de 8 hombres y 6
+   mujeres, sin restricción de género. ¿Cuántos comités distintos son
+   posibles? ¿Cuántos de ellos tienen exactamente 3 hombres y 2 mujeres?
+:::
+
+## Experimentos aleatorios
 
 
 
-**¿Qué es un experimento?**
+#### ¿Qué es un experimento?
 
 Un **experimento** es un proceso mediante el cual se genera una **observación** o una **medición**.  
 Cada vez que realizamos un experimento, obtenemos un resultado.
@@ -474,15 +499,15 @@ Cada vez que realizamos un experimento, obtenemos un resultado.
 Sin embargo, no todos los experimentos son del mismo tipo.
 
 
-**Experimentos deterministas y aleatorios**
+#### Experimentos deterministas y aleatorios
 
 Podemos clasificar los experimentos en dos grandes categorías:
 
-**Experimentos deterministas (Tipo A)**
+##### Experimentos deterministas (Tipo A)
 
 Son aquellos experimentos cuyo resultado **puede conocerse con anticipación**, siempre que las condiciones sean las mismas.
 
-#### Ejemplos
+**Ejemplos**
 
 - ¿Qué ocurrirá si calentamos agua en un recipiente hasta alcanzar los 100 °C?  
 - ¿Qué ocurrirá si soltamos un vaso que tenemos en la mano?
@@ -494,11 +519,11 @@ En ambos casos, el resultado es completamente previsible:
 Por esta razón, estos experimentos se denominan **deterministas**.
 
 
-**Experimentos aleatorios (Tipo B)**
+##### Experimentos aleatorios (Tipo B)
 
 Son aquellos experimentos cuyo resultado **no puede conocerse con anticipación**, aun cuando el experimento se realice bajo las mismas condiciones.
 
-#### Ejemplos
+**Ejemplos**
 
 - Si lanzamos un dado, ¿qué número aparecerá en la cara superior?
 - Si seleccionamos al azar una ficha del archivo de participantes de un curso, ¿cuál será la profesión de la persona seleccionada?
@@ -507,7 +532,7 @@ Son aquellos experimentos cuyo resultado **no puede conocerse con anticipación*
 En estos casos, no es posible anticipar con certeza el resultado antes de realizar el experimento.
 
 
-**Definición de experimento aleatorio**
+#### Definición de experimento aleatorio
 
 Un **experimento aleatorio** es aquel experimento en el que **no podemos conocer con anticipación** el resultado de su realización.
 
@@ -517,7 +542,7 @@ También es común utilizar como sinónimos los términos:
 **fenómeno, evento, proceso, intervención o maniobra**.
 
 
-#### Ejemplo: Lanzamiento de un dado
+**Ejemplo 1: Lanzamiento de un dado**
 
 Consideremos el experimento aleatorio de **lanzar un dado**.  
 Aunque sabemos que los resultados posibles son los números del 1 al 6, **no sabemos cuál ocurrirá en un lanzamiento específico**.
@@ -550,7 +575,7 @@ barplot(
 
 ### Eventos y espacio muestral
 
-**Espacio muestral y eventos**
+#### Espacio muestral y eventos
 
 El **espacio muestral** se define como el conjunto de **todos los resultados posibles** de un experimento aleatorio.  
 Se suele denotar por la letra $S$.
@@ -559,7 +584,7 @@ Un **evento** es cualquier subconjunto del espacio muestral; es decir, un evento
 
 
 
-#### Ejemplo: lanzamiento de un dado
+**Ejemplo 1: Lanzamiento de un dado**
 
 Al lanzar un dado equilibrado, los posibles resultados son:
 
@@ -571,7 +596,7 @@ Cada uno de estos resultados individuales puede considerarse un evento simple.
 
 
 
-**Definición de eventos de interés**
+#### Definición de eventos de interés
 
 Definimos los siguientes eventos:
 
@@ -592,7 +617,7 @@ Definimos los siguientes eventos:
 
 
 
-**Unión de eventos**
+#### Unión, intersección y complemento de eventos
 
 La **unión** de los eventos $A$, $B$ y $C$ es:
 
@@ -642,7 +667,7 @@ Este evento representa el conjunto de resultados en los que aparece una **cara i
 
 
 
-**Experimento aleatorio: lanzamiento de dos monedas**
+#### Experimento aleatorio: lanzamiento de dos monedas
 
 Considere el experimento aleatorio que consiste en **lanzar al aire dos monedas ordinarias al mismo tiempo**.  
 Cada moneda tiene dos posibles resultados:
@@ -664,7 +689,7 @@ $$
 
 
 
-#**Definición de eventos elementales**
+#### Definición de eventos elementales
 
 Denotemos los siguientes eventos:
 
@@ -691,12 +716,12 @@ Denotemos los siguientes eventos:
 Cada uno de estos eventos contiene **un solo elemento del espacio muestral**, por lo que se denominan **eventos simples o elementales**.
 
 
-#### Ejemplo: Unión de eventos
+**Ejemplo 2: Unión de eventos**
 
 **Pregunta:**  
 ¿Cómo denominaría a la unión de los eventos $\{(a,a)\}$ y $\{(a,c)\}$?
 
-#### Solución
+**Solución**
 
 $$
 \{(a,a)\} \cup \{(a,c)\} = \{(a,a), (a,c)\}
@@ -730,12 +755,12 @@ ggplot(df_venn, aes(x, y)) +
 
 
 
-#### Ejemplo: Intersección de eventos
+**Ejemplo 3: Intersección de eventos**
 
 **Pregunta:**  
 ¿Cuál es la intersección de los eventos $\{(a,a)\}$ y $\{(a,c)\}$?
 
-#### Solución
+**Solución**
 
 $$
 \{(a,a)\} \cap \{(a,c)\} = \varnothing
@@ -762,12 +787,12 @@ ggplot(df_venn, aes(x, y)) +
 
 
 
-#### Ejemplo: Complemento de un evento
+**Ejemplo 4: Complemento de un evento**
 
 **Pregunta:**  
 Si se tiene el evento $\{(a,a)\}$, ¿cuál es su complemento y cómo lo denominaría?
 
-#### Solución
+**Solución**
 
 $$
 \{(a,a)\}^C = \{(a,c), (c,a), (c,c)\}
@@ -832,6 +857,18 @@ grid.newpage()
 grid.draw(venn.plot)
 
 ```
+
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Se lanza un dado y luego una moneda. Describa el espacio muestral del
+   experimento combinado y liste los elementos del evento "se obtiene un
+   número par en el dado y águila en la moneda".
+2. Dados los eventos $A = \{1,2,3\}$, $B=\{2,3,4\}$ y $C=\{4,5,6\}$ sobre
+   $S=\{1,2,3,4,5,6\}$, calcule $A \cup B$, $A \cap C$, $(A \cup C)^c$ y
+   determine si $A$ y $C$ son mutuamente excluyentes.
+:::
+
 ### Definiciones de probabilidad
 
 **Probabilidad**
@@ -843,7 +880,7 @@ En este apartado se presentan **los enfoques clásicos de la probabilidad**, com
 
 
 
-**Probabilidad clásica**
+#### Probabilidad clásica
 
 El enfoque clásico establece que la probabilidad de que ocurra un evento se calcula como la **razón entre el número de casos favorables al evento y el número total de resultados igualmente posibles** del experimento.
 
@@ -862,7 +899,7 @@ $$
 Este enfoque es válido únicamente cuando **todos los resultados posibles tienen la misma probabilidad de ocurrir**.
 
 
-#### Ejemplo: Lanzamiento de un dado
+**Ejemplo 1: Lanzamiento de un dado**
 
 **Pregunta:**  
 ¿Cuál es la probabilidad de obtener la cara con el número seis al lanzar un dado equilibrado?
@@ -884,7 +921,7 @@ Cada una de las caras del dado tiene la misma probabilidad de ser seleccionada, 
 :::
 
 
-#### Ejemplo: Formación de un comité sindical
+**Ejemplo 2: Formación de un comité sindical**
 
 Supóngase que en una empresa trabajan:
 - 30 hombres,
@@ -897,7 +934,7 @@ Se seleccionan **10 personas al azar** para formar un comité sindical.
 ¿Cuál es la probabilidad de que el comité esté compuesto por **5 hombres y 5 mujeres**?
 
 
-#### Solución
+**Solución**
 
 Sea:
 - $A$: el evento de que el comité esté formado por 5 hombres y 5 mujeres.
@@ -955,7 +992,7 @@ barplot(
 )
 ```
 
-**Probabilidad frecuentista**
+#### Probabilidad frecuentista
 
 En muchas situaciones prácticas no es posible aplicar la noción clásica de probabilidad basada en un número finito de **casos igualmente probables**.  
 Por ejemplo, al lanzar una **moneda no perfecta**, la probabilidad de obtener *cara* puede no ser igual a $\frac{1}{2}$, ya que los dos resultados posibles no tienen la misma probabilidad de ocurrencia.
@@ -974,7 +1011,7 @@ Por ejemplo, si se lanza una moneda $n$ veces (por ejemplo, $n = 100$), al final
 - el **número total de lanzamientos**.
 
 
-**Definición de probabilidad frecuentista**
+##### Definición de probabilidad frecuentista
 
 Supóngase que se realiza $n$ veces un experimento aleatorio $E$ y sea $A$ un evento cualquiera.  
 Denotemos por $n(A)$ el número de veces que ocurre el evento $A$ en las $n$ repeticiones del experimento.
@@ -994,7 +1031,7 @@ La frecuencia relativa $\frac{n(A)}{n}$ tiende a **estabilizarse** cuando el nú
 :::
 
 
-#### Ejemplo: Lanzamiento de un dado
+**Ejemplo 3: Lanzamiento de un dado**
 
 Consideremos el experimento aleatorio $E$ de lanzar un dado y definamos el evento:
 
@@ -1035,14 +1072,14 @@ plot(
 abline(h = 0.5, col = "red", lty = 2)
 ```
 
-**Probabilidad axiomática**
+#### Probabilidad axiomática
 
 En el enfoque **axiomático de la probabilidad** no se especifica una fórmula directa para calcular probabilidades.  
 En su lugar, se establecen **reglas fundamentales** que cualquier asignación de probabilidad debe cumplir.
 
 Estas reglas, conocidas como **axiomas de la probabilidad**, fueron formuladas por el matemático ruso **A. N. Kolmogorov** y constituyen la base teórica de toda la probabilidad moderna.
 
-**Axiomas de Kolmogorov**
+##### Axiomas de Kolmogorov
 
 Sea $A$ un evento cualquiera del espacio muestral $S$:
 
@@ -1077,7 +1114,7 @@ Si dos eventos no pueden ocurrir simultáneamente (son mutuamente excluyentes), 
 :::
 
 
-#### Ejemplo: Lanzamiento de una moneda
+**Ejemplo 4: Lanzamiento de una moneda**
 
 Consideremos el experimento aleatorio de **lanzar una moneda al aire**.
 
@@ -1146,7 +1183,7 @@ ggplot(df_moneda, aes(x = Resultado, y = Probabilidad, fill = Resultado)) +
 ```
 
 
-**Reglas de probabilidad derivadas de los axiomas**
+#### Reglas de probabilidad derivadas de los axiomas
 
 A partir de los axiomas básicos de la probabilidad, se pueden deducir varias reglas que facilitan el cálculo de probabilidades en situaciones más complejas. A continuación se presentan algunas de las más importantes.
 
@@ -1256,6 +1293,19 @@ text(
 )
 ```
 
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Una urna contiene 8 bolas rojas y 12 azules. Se extrae una bola al azar.
+   Calcule, usando la probabilidad clásica, la probabilidad de obtener una
+   bola roja.
+2. En 500 lanzamientos de una moneda se observaron 268 águilas. Estime, con
+   el enfoque frecuentista, la probabilidad de obtener águila en esa moneda.
+3. Sean $A$ y $B$ dos eventos con $P(A) = 0.4$, $P(B) = 0.5$ y
+   $P(A \cap B) = 0.2$. Verifique que $P(A)$ y $P(B)$ satisfacen el primer
+   axioma de Kolmogorov y calcule $P(A \cup B)$ y $P(A^c)$.
+:::
+
 ## Probabilidad condicional e independencia de eventos
 
 ### Probabilidad condicional
@@ -1266,7 +1316,7 @@ Esta información previa reduce el conjunto de resultados posibles y, en consecu
 A continuación se presenta un ejemplo clásico que ilustra la idea fundamental de la probabilidad condicional.
 
 
-#### Ejemplo: Lanzamiento de dos dados
+**Ejemplo 1: Lanzamiento de dos dados**
 
 Se lanzan **dos dados de seis caras**, uno después del otro (de manera consecutiva).
 
@@ -1318,7 +1368,7 @@ $$
 Esto resume la idea central de la probabilidad condicional: **la probabilidad se calcula con base en un espacio muestral reducido**.
 
 
-**Definición formal de probabilidad condicional**
+#### Definición formal de probabilidad condicional
 
 Sean $A$ y $B$ dos eventos tales que $P(B) > 0$.  
 La probabilidad condicional del evento $A$ dado que ha ocurrido $B$, denotada por $P(A \mid B)$, se define como:
@@ -1411,7 +1461,7 @@ P(A_n \mid A_1 \cap A_2 \cap \cdots \cap A_{n-1})
 $$
 
 
-#### Ejemplo: rifa con extracción sin reemplazo
+**Ejemplo 1: rifa con extracción sin reemplazo**
 
 Suponga que en el trabajo se realiza una rifa.  
 Una persona extrae boletos **sin reemplazo** de una urna que contiene **50 boletos numerados**.
@@ -1538,7 +1588,7 @@ Dos eventos $A$ y $B$ serán independientes **si y solo si** se cumple la iguald
 Si los eventos $A$ y $B$ no satisfacen la relación (7), se dice que son **eventos dependientes**.
 
 
-#### Ejemplo: Lanzamiento de dos monedas
+**Ejemplo 1: Lanzamiento de dos monedas**
 
 Dos monedas se lanzan de manera simultánea al aire.
 
@@ -1590,6 +1640,18 @@ $$
 
 Por lo tanto, los eventos $E$ y $F$ son **independientes**.
 
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. En una baraja de 52 cartas se extraen dos cartas sin reemplazo. Calcule
+   la probabilidad de que ambas sean ases. Calcule también la probabilidad
+   de que la segunda carta sea un as, dado que la primera lo fue.
+2. Sean $A$ y $B$ eventos con $P(A) = 0.3$, $P(B) = 0.4$ y
+   $P(A \cup B) = 0.58$. Determine si $A$ y $B$ son independientes.
+3. Se lanzan tres monedas equilibradas. Defina los eventos $A$: "la primera
+   moneda cae águila" y $B$: "se obtienen exactamente dos águilas en
+   total". ¿Son $A$ y $B$ independientes?
+:::
 
 ## Probabilidad de un evento de interés en términos de probabilidades condicionales
 ### Probabilidad total
@@ -1606,7 +1668,7 @@ Si estos eventos tienen probabilidades no nulas, la probabilidad de cualquier ev
 $$P(B) = \sum_{i=1}^{k} P(B \cap A_i) = \sum_{i=1}^{k} P(B|A_i)P(A_i)$$
 
 
-#### Ejemplo 1: Consultorio médico SOLCA
+**Ejemplo 1: Consultorio médico SOLCA**
 En la empresa SOLCA, se desea saber la probabilidad de que un empleado elegido al azar padezca obesidad (evento $B$). La población se divide en dos eventos excluyentes que particionan el espacio muestral por género: **Hombres ($H$)** y **Mujeres ($M$)**.
 
 **Datos:**
@@ -1620,7 +1682,7 @@ $$P(B) = P(B|H)P(H) + P(B|M)P(M)$$
 $$P(B) = \left(\frac{50}{90}\right)\left(\frac{90}{150}\right) + \left(\frac{25}{60}\right)\left(\frac{60}{150}\right) = \frac{50}{150} + \frac{25}{150} = \frac{75}{150} = 0.5$$
 
 
-#### Ejemplo 2: Alumnos fumadores
+**Ejemplo 2: Alumnos fumadores**
 En un curso, el 70% son mujeres ($M^c$) y el 30% son hombres ($M$). El 10% de las mujeres fuman ($F|M^c$) y el 20% de los hombres fuman ($F|M$).
 
 **Cálculo en R:**
@@ -1639,7 +1701,7 @@ print(paste("El porcentaje total de fumadores es:", p_total_fumador * 100, "%"))
 ```
 
 
-#### Ejemplo 3: El experimento de las cajas
+**Ejemplo 3: El experimento de las cajas**
 Tenemos dos cajas con bolas de colores:
 * **Caja 1 ($C_1$):** 3 rojas ($R$), 7 negras ($N$). Total = 10.
 * **Caja 2 ($C_2$):** 6 rojas ($R$), 6 negras ($N$). Total = 12.
@@ -1665,7 +1727,7 @@ Si los eventos $A_1, A_2, \dots, A_n$ forman una partición del espacio muestral
 
 $$P(A_j | B) = \frac{P(B | A_j) P(A_j)}{\sum_{i=1}^{n} P(B | A_i) P(A_i)}$$
 
-#### Ejemplo 1: Obesidad por Género
+**Ejemplo 1: Obesidad por Género**
 Aplicando el teorema de Bayes al caso de estudio anterior (donde se busca la probabilidad de ser mujer dado que se padece obesidad):
 
 $$P(\text{Mujer} | B) = \frac{P(B | \text{Mujer}) P(\text{Mujer})}{P(B | \text{Mujer}) P(\text{Mujer}) + P(B | \text{Hombre}) P(\text{Hombre})}$$
@@ -1676,7 +1738,7 @@ $$P(\text{Mujer} | B) = \frac{0.15 \cdot 0.60}{0.50} = 0.3$$
 **Conclusión:** La probabilidad de que un individuo elegido al azar sea mujer, dado que tiene obesidad, es de 0.3.
 
 
-#### Ejemplo 2: Producción de Máquinas
+**Ejemplo 2: Producción de Máquinas**
 En una fábrica hay dos máquinas, $A$ y $B$. La máquina $A$ realiza el 60% de la producción total y la $B$ el 40%. La máquina $A$ produce un 3% de material defectuoso y la $B$ un 5%. Si se encuentra un material defectuoso, ¿cuál es la probabilidad de que provenga de la máquina $B$?
 
 **Definición de eventos:**
@@ -1693,7 +1755,7 @@ $$P(B|C) = \frac{0.05 \cdot 0.40}{(0.03 \cdot 0.60) + (0.05 \cdot 0.40)} = \frac
 **Conclusión:** Existe un 52.63% de probabilidad de que el material defectuoso provenga de la máquina $B$.
 
 
-#### Ejemplo 3: Prueba de Tuberculosis
+**Ejemplo 3: Prueba de Tuberculosis**
 En una campaña de salud, se aplica una prueba de tuberculina. Se sabe:
 * Acierto en enfermos (Sensibilidad): 96% ($P(B|A) = 0.96$)
 * Error en sanos (Falsos positivos): 5% ($P(B|A^c) = 0.05$)
@@ -1720,6 +1782,25 @@ Podemos visualizar este proceso de decisión mediante un diagrama de árbol de p
 # Árbol de decisión simple para la prueba de Tuberculosis
 cat("Probabilidad Total de Positivo P(B):", (0.96 * 0.001) + (0.05 * 0.999))
 ```
+
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Una empresa recibe componentes de tres proveedores: el 50% del proveedor
+   $P_1$, el 30% del proveedor $P_2$ y el 20% del proveedor $P_3$. Las
+   proporciones de piezas defectuosas son 2%, 5% y 4%, respectivamente.
+   a) ¿Cuál es la probabilidad de que una pieza elegida al azar sea
+   defectuosa? b) Si una pieza resulta defectuosa, ¿cuál es la probabilidad
+   de que provenga del proveedor $P_2$?
+2. Una prueba diagnóstica tiene sensibilidad del 90% y especificidad del
+   95%. Si la prevalencia de la enfermedad en la población es del 2%,
+   calcule la probabilidad de que una persona con resultado positivo
+   realmente tenga la enfermedad.
+3. En una caja hay 4 monedas legítimas y 1 moneda cargada que cae águila
+   con probabilidad 0.8. Se elige una moneda al azar y se lanza dos veces,
+   obteniéndose águila en ambas ocasiones. ¿Cuál es la probabilidad de que
+   la moneda elegida sea la cargada?
+:::
 
 ## Material complementario: métodos y aplicaciones
 
@@ -1888,3 +1969,28 @@ La simulación confirma la teoría: la probabilidad de ganar es de
 aproximadamente $1/3$ si se mantiene la elección original y de
 aproximadamente $2/3$ si se cambia, ya que al abrir una puerta con una cabra
 el presentador aporta información adicional sobre la ubicación del premio.
+
+::: {.callout-note icon=false}
+## Resumen del capítulo
+
+- **Conteo:** principio básico del conteo ($n_1 \times n_2 \times \cdots \times n_k$),
+  permutaciones ($n!$) y combinaciones ($\binom{n}{k} = \frac{n!}{(n-k)!\,k!}$).
+- **Espacio muestral y eventos:** $S$ contiene todos los resultados posibles;
+  un evento es cualquier subconjunto de $S$. Las operaciones básicas son
+  unión, intersección y complemento.
+- **Tres formas de definir la probabilidad:** clásica ($P(A) = m/n$, casos
+  igualmente probables), frecuentista ($P(A) = n(A)/n$ cuando $n$ es grande)
+  y axiomática (los tres axiomas de Kolmogorov, de los que se derivan todas
+  las reglas operativas).
+- **Probabilidad condicional:** $P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$,
+  válida cuando $P(B) > 0$. Da lugar a la regla de la multiplicación
+  $P(A_1 \cap \cdots \cap A_n) = P(A_1)P(A_2\mid A_1)\cdots
+  P(A_n \mid A_1 \cap \cdots \cap A_{n-1})$.
+- **Independencia:** $A$ y $B$ son independientes si y solo si
+  $P(A \cap B) = P(A)P(B)$.
+- **Probabilidad total:** si $A_1, \dots, A_k$ particionan $S$, entonces
+  $P(B) = \sum_{i=1}^{k} P(B \mid A_i)P(A_i)$.
+- **Teorema de Bayes:** permite "invertir" probabilidades condicionales,
+  $P(A_j \mid B) = \dfrac{P(B \mid A_j)P(A_j)}{\sum_i P(B \mid A_i)P(A_i)}$,
+  y es la base de la interpretación de pruebas diagnósticas.
+:::

@@ -6,6 +6,8 @@
 
 Al término de este curso, el participante conocerá los fundamentos de la probabilidad, las  características de las distribuciones de probabilidades discretas y continuas más utilizadas, así como,  conceptos básicos de inferencia estadística y las distribuciones derivadas del muestreo más  frecuentes en la modelación estadística. 
 
+En este capítulo estudiaremos las variables aleatorias discretas: qué son, cómo se describen mediante su función de probabilidad y su función de probabilidad acumulada, y cómo resumir su comportamiento mediante la esperanza y la varianza. Después revisaremos las distribuciones discretas más utilizadas en la práctica (Uniforme, Bernoulli, Binomial, Hipergeométrica y Poisson), discutiremos las diferencias entre el muestreo con y sin reemplazo, y cerraremos con material complementario sobre las distribuciones Geométrica, Binomial Negativa y las distribuciones discretas conjuntas. A lo largo del capítulo se incluyen ejemplos resueltos y ejercicios propuestos para practicar los conceptos.
+
 ## Variable aleatoria
 
 Se denominan ___variables___ a las características particulares de cualquier elemento de alguna población o muestra que se tenga, dicha variable puede tomar distintos valores y, en general, hay dos tipos de variables (Cualitativa [Edad] y Cuantitativa [Género]). Se dice que son ___aleatorias___ porque el valor observado no se conoce hasta la realización del experimento, aunque sí se sabe cuáles son los posibles resultados
@@ -15,7 +17,7 @@ __Nota__:
 Una variable aleatoria (v.a) es aquella cuyos valores son números reales asignados a los resultados de un experimento aleatorio.
 
 :::: {.callout-note icon=false}
-## Ejemplo 2.1.1
+## Ejemplo 1
 Una moneda ordinaria cuenta con dos posibles resultados a: águila y c: sol. El experimento consiste en lanzar al mismo tiempo tres monedas y observar las caras que aparecen, el procedimiento se realiza 8 veces, entonces el espacio 
 muestral (S) es el siguiente:
           S={(a,a,a),(a,c,a),(a,a,c),(c,a,a),(c,c,a),(c,a,c),(a,c,c),(c,c,c)}
@@ -31,7 +33,7 @@ X=3, aparecer puras águilas (a,a,a)
 ::::
 Es importante mencionar que en el ejemplo 2.1.1 se supone que es posible distinguir cuál es la moneda 1, la moneda 2 y la moneda 3.
 
-La importancia de definir una variable aleatoria rádica en que los eventos que nos interesa estudiar (que se encuentran en el espacio muestral) van a ser trasladados a los números reales y, en este espacio ya nos va a ser posible realizar operaciones matemáticas e incluso a cada valor de la variable aleatoria asignarle una función de densidad de probabilidad con la cual cada valor de la variable aleatoria tendrá asociado una probabilidad de ocurrencia.
+La importancia de definir una variable aleatoria radica en que los eventos que nos interesa estudiar (que se encuentran en el espacio muestral) van a ser trasladados a los números reales y, en este espacio ya nos va a ser posible realizar operaciones matemáticas e incluso a cada valor de la variable aleatoria asignarle una función de densidad de probabilidad con la cual cada valor de la variable aleatoria tendrá asociado una probabilidad de ocurrencia.
 
 
 ## Variable aleatoria discreta
@@ -52,7 +54,7 @@ Un ejemplo de este tipo es el número de errores ortográficos que pueden existi
 0, 1, 2, … ; por supuesto que, en la vida real, no hay infinitos números de errores en un libro, pero si el libro es grande (su tamaño tiende a infinito) el número de errores posibles sería muy grande y considerarse infinito.
 
 :::: {.callout-note icon=false}
-## Ejemplo
+## Ejemplo 1
 El número de terremotos que pueden ocurrir en un periodo de tiempo de 15 años se puede denotar con una variable aleatoria discreta con un espacio muestral infinito contable. Si denotamos con X la 
 variable aleatoria el número de terremotos la variable aleatoria puede considerar los siguientes 
 valores 
@@ -61,9 +63,9 @@ X=1, 2, 3, 4, …
 ::::
 
 ### Función de probabilidad y función de probabilidad acumulada
-La asignación de valores reales a cada evento del espacio completo de eventois lo hemos llamado _variable aleatoria_; como vimos, a cada evento del espacio completo de eventos le corresponde una probabilidad determinada, a este conjunto de probabilidades le llamaremos la ___distribuición de probabilidad___, esto quiere decir que existe un rango de valores que puede tomar, por lo tanto, cualquier fenómeno aleatorio puede tomar valores en el intervalo (0,1).
+La asignación de valores reales a cada evento del espacio completo de eventos lo hemos llamado _variable aleatoria_; como vimos, a cada evento del espacio completo de eventos le corresponde una probabilidad determinada, a este conjunto de probabilidades le llamaremos la ___distribución de probabilidad___, esto quiere decir que existe un rango de valores que puede tomar, por lo tanto, cualquier fenómeno aleatorio puede tomar valores en el intervalo (0,1).
 
-__Ejemplo 2.2.1__:
+**Ejemplo 1**:
 Considerando el ejemplo anterior de las monedas y que cada resultado tiene la misma probabilidad de ocurrir, definimos la v.a X: Número de águilas en los lanzamientos. Tenemos la siguiente tabla:
 
 
@@ -173,7 +175,7 @@ ggplot(df_acumulada) +
 
 La última columna de la __Tabla 2__ proporciona la probabilidad de ocurrencia acumulada para cada valor de la variable aleatoria, a dicha columna se le denomina función de probabilidad acumulada y se denota como $F(X)$.
 
-Recordad que una distribución de probabilidad siempre está dada en el intervalo $(0,1)$
+Recordemos que una distribución de probabilidad siempre está dada en el intervalo $(0,1)$
 
 ### Valor esperado de una variable aleatoria discreta
 
@@ -182,12 +184,12 @@ La esperanza matemática, valor esperado o media de una variable aleatoria discr
 
  $\mu = E[X] = \sum_{i=1}^{k}x_i*P(x_i)$
 
-La varianza de una variable aleatoria discreta se define como la suma de los desvíos de cada valor que toma la variable aleatoria con respecto a su media, elevados al cuadrado y multiplicado por su respectiva probabilidad. Esto nos indíca qué tan dispersos llegan a estar nuestros datos con respecto de nuestro promedio o media.
+La varianza de una variable aleatoria discreta se define como la suma de los desvíos de cada valor que toma la variable aleatoria con respecto a su media, elevados al cuadrado y multiplicado por su respectiva probabilidad. Esto nos indica qué tan dispersos llegan a estar nuestros datos con respecto de nuestro promedio o media.
 
  $V(X) = \sum_{i=0}^{k}(x_i-E[X])*P(x_i)$
 
 
-___EJemplo 2.1.2:___
+**Ejemplo 2**:
 
 Si el número de accidentes en una jornada laboral, en cierta zona industrial sigue el comportamiento:
 
@@ -198,7 +200,7 @@ Si el número de accidentes en una jornada laboral, en cierta zona industrial si
 
 ¿Cuál es el número esperado de accidentes por jornada? ¿Cuál es la varianza?
 
-___Solución:___
+**Solución:**
 
 El número esperado de accidentes está dado por:
 
@@ -213,9 +215,9 @@ Entonces la variación es de 1 accidente por jornada laboral.
 
 __Nota:__ 
 
-La raíz cuadrada de la varianza:$\sqrt[2]{V[X]}$, se le conoce como desciación estándar.
+La raíz cuadrada de la varianza:$\sqrt[2]{V[X]}$, se le conoce como desviación estándar.
 
-__Ejemplo 2.2.2__
+**Ejemplo 3**
 
 Los estudiantes de psicología en general manifiestan que tienen mayor dificultad en los cursos que involucren conceptos matemáticos. Experimentos anteriores han consistido en exponer 5 palabras y 5 números ante los estudiantes durante 10 segundos al comienzo de la clase y luego preguntar por ellos al final de la clase, los resultados se muestran a continuación.
 
@@ -240,7 +242,7 @@ __Tabla de distribución de la variable aleatoria Y__
 
 Ahora nos hacemos la pregunta, _¿qué es más probable que recuerden? ¿Al menos tres palabras o al menos 3 números?_
 
-La probabilidad de que un estudiante de psicología recuerdfe al menos tres palabras es:
+La probabilidad de que un estudiante de psicología recuerde al menos tres palabras es:
 
  $P(X \geq x)$ = $P(X=3) + P(X=4) + P(X=5)$ = $0.05 + 0.05 + 0.2$ = $0.3$
  
@@ -259,6 +261,14 @@ $E[X]$=$0*0.15+1*0.2+2*0.3+3*0.05+4*0.05+5*0.2$=$2$
 Por lo tanto, los estudiantes recuerdan, en promedio, alrededor de 2 palabras.
 
 Lo invitamos a calcular $E[X]$, así como las correspondientes varianzas de cada variable.
+
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Una variable aleatoria $X$ tiene la siguiente función de probabilidad: $P(X=0)=0.1$, $P(X=1)=0.3$, $P(X=2)=0.4$, $P(X=3)=0.2$. Verifique que es una función de probabilidad válida y calcule $E[X]$ y $V(X)$.
+2. El número de llamadas que recibe una central telefónica en un minuto tiene la distribución $P(X=0)=0.2$, $P(X=1)=0.3$, $P(X=2)=0.3$, $P(X=3)=0.2$. Calcule $P(X \ge 2)$ y la desviación estándar de $X$.
+3. Explique, con sus propias palabras, la diferencia entre la función de probabilidad $P(X=x)$ y la función de probabilidad acumulada $F(x)$, y dé un ejemplo donde se use cada una.
+:::
 
 ## Familia de distribuciones de probabilidad discretas
 
@@ -426,7 +436,7 @@ Entonces, $V[X]= (1-3.5)^2 +(2-3.5)^2+(3-3.5)^2+(4-3.5)^2+(5-3.5)^2+(6-3.5)^2*\d
  
 ### Distribución aleatoria discreta Bernoulli
 
-Es la distribucipon mpas sencilla que podemos contruir, y es aquella cuyo espacio de eventos está compuesto por dos eventos complementarios, donde a uno de ellos lo designamos por el evento de éxito y el otro por el de fracaso; lo cual implica que en la realización de un solo experimento se podrá presentar uno u otro, pero no ambos. 
+Es la distribución más sencilla que podemos construir, y es aquella cuyo espacio de eventos está compuesto por dos eventos complementarios, donde a uno de ellos lo designamos por el evento de éxito y el otro por el de fracaso; lo cual implica que en la realización de un solo experimento se podrá presentar uno u otro, pero no ambos. 
 
 En pocas palabras, representaremos como $p$ a la probabilidad de éxito y a $1-p$ la probabilidad de fracaso.
 
@@ -446,7 +456,7 @@ Y su varianza:
 $V[X] = p(1-p)$
 
 
-__Ejemplo__
+**Ejemplo 1**
 
 En una empresa se tiene el área de llenado. Las botellas defectuosas en el área de llenado son aquellas cuyas botellas no se llenan completamente (menor a 248 mL) y no defectuosas aquellas que son llenadas completamente (en un intervalo de 250 y 248 mL). 
 
@@ -461,7 +471,7 @@ Sea p la probabilidad de que la botella sea defectuosa. De modo que la función 
 - $$P(X)=0=1-p=0.95$$    
 - $$P(X)=1=p=0.05$$
 
- __Ejemplo:__
+**Ejemplo 2**
 
 Se observa un insecto en el lugar donde se aplicó un insecticida, y se registra si está vivo o muerto. Por ejemplo, si se piensa que el insecticida es eficaz en 90% y no eficaz en 10%. Indique la función masa de probabilidad para un espécimen seleccionado.
 
@@ -477,7 +487,7 @@ X=0 el individuo está muerto y X=1 el individuo está vivo. Se define a p como 
 En la mayoría de los problemas en lugar de observar una sola unidad se observan un número n de unidades experimentales, posteriormente se clasifican en una de dos categorías. En esta parte se hace una reflexión sobre la manera de seleccionar unidades experimentales en cada repetición del experimento aleatorio.
 
 
-___Ejemplo:___
+**Ejemplo 1**
 
 Supongamos que se cuenta con una bolsa que tiene en su interior 10 bolas negras y 20 bolas blancas. Un experimento aleatorio consiste en extraer sucesivamente bolas de esta bolsa.
 En cada repetición del experimento se extrae una bola, se registra y se devuelve a la bolsa.
@@ -711,8 +721,15 @@ Obsérvese que, al no haber reemplazo, la probabilidad de éxito **disminuye en 
 
 - En cambio, cuando las extracciones se realizan **sin reemplazo en poblaciones finitas**, las probabilidades cambian en cada repetición, por lo que el experimento se modela mediante una **variable aleatoria hipergeométrica**.
 
+::: {.callout-note icon=false}
+## Ejercicios propuestos
 
-### Distribución aleratoria discreta Binomial
+1. Una urna contiene 8 bolas rojas y 12 bolas azules. Se extraen 2 bolas sin reemplazo. Calcule la probabilidad de que ambas sean rojas.
+2. Repita el ejercicio anterior suponiendo que el muestreo se realiza con reemplazo. Compare ambos resultados y explique a qué se debe la diferencia.
+3. ¿Bajo qué condición el muestreo sin reemplazo puede aproximarse razonablemente por un muestreo con reemplazo? Justifique su respuesta usando los conceptos de esta sección.
+:::
+
+## Distribución Binomial
 
 Un **experimento de tipo Bernoulli** surge cuando se selecciona al azar una unidad experimental y, con base en una característica de interés, dicha unidad se clasifica en **una de dos categorías mutuamente excluyentes**, comúnmente denominadas **éxito** o **fracaso**.
 
@@ -982,7 +999,7 @@ P(X=2) &= P(EFF \cup FEF \cup FFE) \\
 $$
 
 
-#### Ejemplo
+**Ejemplo 1**
 
 Supóngase que la probabilidad de encontrar una planta con flores es:
 
@@ -1051,7 +1068,7 @@ plot(
 
 ```
 
-### Distribución aleratoria discreta Hipergeométrica
+## Distribución Hipergeométrica
 
 La **distribución hipergeométrica** surge en situaciones experimentales donde se extraen elementos de una **población finita**, sin reemplazo, y cada elemento puede clasificarse en una de **dos categorías mutuamente excluyentes**, denominadas **éxito** y **fracaso**.
 
@@ -1171,7 +1188,7 @@ El factor $\frac{N-n}{N-1}$ se denomina **factor de corrección para poblaciones
 
 
 
-#### Ejemplo
+**Ejemplo 1**
 
 Un estudio contable cuenta con 18 secretarias:
 
@@ -1210,7 +1227,7 @@ $$
 
 
 
-#### Ejemplo
+**Ejemplo 2**
 
 Un viajero transporta:
 
@@ -1279,7 +1296,7 @@ ggplot(df, aes(x = x, y = Probabilidad)) +
 
 ```
 
-### Distribución aleratoria discreta Poisson
+## Distribución Poisson
 
 
 La **variable aleatoria Poisson** puede estudiarse desde dos enfoques fundamentales:
@@ -1341,7 +1358,7 @@ $$
 
 
 
-#### Ejemplo
+**Ejemplo 1**
 
 Un agrónomo sabe que el **2% de las semillas** de cierta especie no germina. Se venden **100 semillas** a un agricultor. El comprador solicitará reembolso si **al menos 6 semillas no germinan**.
 
@@ -1480,6 +1497,14 @@ ggplot(df, aes(x, prob)) +
 
 ```
 
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Una máquina produce piezas defectuosas con probabilidad $p=0.04$. Si se inspeccionan 10 piezas, calcule la probabilidad de encontrar exactamente 2 defectuosas usando la distribución Binomial.
+2. De un lote de 25 artículos, 5 son defectuosos. Si se seleccionan 4 artículos sin reemplazo, calcule la probabilidad de obtener al menos un defectuoso usando la distribución Hipergeométrica.
+3. El número de accidentes en una intersección sigue una distribución Poisson con una media de 1.5 accidentes por semana. Calcule la probabilidad de que ocurran más de 2 accidentes en una semana dada.
+:::
+
 ## Material complementario: distribuciones adicionales y distribuciones conjuntas
 
 Esta sección incorpora, a partir de las diapositivas del curso, dos familias
@@ -1608,3 +1633,19 @@ cat("Como no coinciden, X y Y NO son independientes.\n")
 Como $p(100,100) = 0.10 \ne p_X(100) \cdot p_Y(100) = 0.50 \times 0.25 =
 0.125$, las variables $X$ y $Y$ no son independientes: conocer el deducible
 de una póliza aporta información sobre el deducible de la otra.
+
+
+::: {.callout-note icon=false}
+## Resumen del capítulo
+
+- **Variable aleatoria discreta:** asigna números reales a los resultados de un experimento aleatorio con espacio muestral finito o infinito numerable.
+- **Función de probabilidad** $P(X=x)$ y **función de probabilidad acumulada** $F(x) = P(X \le x)$: describen, respectivamente, la probabilidad puntual y la probabilidad acumulada de la variable.
+- **Esperanza** $E[X] = \sum x_i P(x_i)$ y **varianza** $V(X) = \sum (x_i - E[X])^2 P(x_i)$: resumen el valor central y la dispersión de la variable.
+- **Muestreo con reemplazo** (ensayos independientes, probabilidad constante) frente a **muestreo sin reemplazo** (ensayos dependientes, probabilidad cambiante en cada extracción).
+- **Distribución Uniforme discreta:** todos los valores son equiprobables.
+- **Distribución Bernoulli:** un solo ensayo con dos resultados posibles (éxito/fracaso).
+- **Distribución Binomial:** número de éxitos en $n$ ensayos Bernoulli independientes (muestreo con reemplazo, o sin reemplazo en poblaciones grandes).
+- **Distribución Hipergeométrica:** número de éxitos al muestrear sin reemplazo de una población finita.
+- **Distribución Poisson:** modela conteos de eventos raros en un intervalo de tiempo o espacio; también es el límite de la Binomial cuando $n$ es grande y $p$ es pequeña.
+- **Material complementario:** distribución Geométrica, Binomial Negativa y distribuciones discretas conjuntas (probabilidad marginal, condicional e independencia).
+:::
