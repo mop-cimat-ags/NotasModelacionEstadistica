@@ -44,6 +44,12 @@ jobs:
             any::ggplot2
             any::igraph
             any::VennDiagram
+            any::readxl
+            any::pheatmap
+            any::car
+            any::dplyr
+            any::tidyr
+            any::corrplot
 
       - name: Renderizar libro (HTML + PDF + DOCX)
         run: quarto render

@@ -3,6 +3,20 @@
 Notas integradas de la materia **Modelación Estadística** para la Maestría en
 Optimización y Modelación de Procesos del **CIMAT**.
 
+## Presentación
+
+En la era actual de la inteligencia artificial generativa, supercomputadoras, gran diversidad de entornos computacionales multipropósito y alta eficiencia de algoritmos computacionales dedicados a la solución de problemas complejos de optimización, estadísticos y matemáticos; desarrollamos un recurso digital de modelación estadística que cubre los conceptos fundamentales, los métodos estadísticos principales y aplicaciones reales derivadas de proyectos de vinculación, consultoría y docencia.
+
+El propósito principal del material es servir de apoyo para las y los estudiantes de la Maestría en Modelación y Optimización de Procesos. Busca dotar a los alumnos de un conjunto sólido de conceptos, métodos y aplicaciones usando bases de datos reales, de libros y softwares que ayuden a su acercamiento y entrenamiento en la modelación estadística.
+
+## Sobre la modelación estadística
+
+La mayoría de los fenómenos sociales, económicos, ambientales, biológicos, entre otros, poseen la característica de ser complejos, ya sea por su gran tamaño o por los múltiples factores que los integran, mismos que son desconocidos en su totalidad; dicha situación dificulta la construcción de una ecuación matemática que los emule completamente (sin ambiguédades). La modelación estadística se entiende como el proceso de representar un fenómeno real mediante un modelo estadístico, que se compone de una parte matemática funcional y otra probabilística que incorpora la variabilidad e incertidumbre.
+
+Para la modelación estadística de un problema se requiere considerar tres componentes: 1) el contexto o *expertis* que se tiene del fenómeno, 2) la adecuada utilización de métodos estadísticos —descriptivos e inferenciales— y 3) el uso de software computacional apropiado; en estas notas se utiliza el software estadístico libre **R**.
+
+La estadística clásica se divide en dos grandes áreas: **estadística descriptiva** (resumen y visualización de datos, también llamada Análisis Exploratorio de Datos, EDA) e **estadística inferencial** (generalización de resultados a la población mediante modelos probabilísticos).
+
 ## Contenido
 
 | Capítulo | Tema |
@@ -11,6 +25,8 @@ Optimización y Modelación de Procesos del **CIMAT**.
 | 2 | Variable Aleatoria Discreta |
 | 3 | Variable Aleatoria Continua |
 | 4 | Distribuciones Muestrales |
+| 5 | Caso de estudio: Precios de Vivienda |
+| 6 | Caso de estudio: Mercado de Autos |
 
 ## Descargas
 
@@ -42,4 +58,6 @@ cat("Versión de R:", R.version$major, ".", R.version$minor, "\n", sep="")
 | Dr. Magin Zúñiga Estrada | magin.zuniga@cimat.mx |
 | Dr. Humberto Martínez Bautista | humberto.martinez@cimat.mx |
 
-**Compilación y edición del repositorio:** Vladimir Jiménez Pérez (alumno) — vladimir.jimenez@cimat.mx
+**Diseño y programación:** Vladimir Jiménez Pérez — vladimir.jimenez@cimat.mx
+
+*© CIMAT. Todos los derechos reservados.*
