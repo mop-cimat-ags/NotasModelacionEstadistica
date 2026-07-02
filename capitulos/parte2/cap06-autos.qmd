@@ -26,7 +26,7 @@ library(corrplot)
 # Carga desde la raíz del proyecto
 autos <- read.csv("DataSets/Autos/autos.csv", check.names = FALSE)
 # Limpiar BOM en nombre de primera columna si existe
-names(autos)[1] <- gsub("\xef\xbb\xbf|\uFEFF", "", names(autos)[1])
+names(autos)[1] <- gsub("\uFEFF", "", names(autos)[1])
 
 glimpse(autos)
 ```
