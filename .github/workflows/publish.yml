@@ -50,6 +50,7 @@ jobs:
             any::dplyr
             any::tidyr
             any::corrplot
+            any::gridExtra
 
       - name: Renderizar libro (HTML + PDF + DOCX)
         run: quarto render
