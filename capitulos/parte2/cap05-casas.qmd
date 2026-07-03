@@ -249,7 +249,9 @@ en esta muestra.
 1. Ajusta un modelo de regresión simple con solo la variable **AREA** como
    predictora. ¿En cuánto disminuye el $R^2$ respecto al modelo múltiple?
 2. Aplica la función `predict()` para estimar el precio de una casa con
-   $	ext{AREA}=90$, $	ext{ZONA}=	ext{"Zona 2"}$, $	ext{COCH}=1$ y
+   $\text{AREA}=90$, $\text{ZONA}=\text{"Zona 2"}$, $\text{COCH}=1$ y
    sin contraventanas.
 3. Investiga el concepto de *leverage* y *distancia de Cook*; identifica con
-   `plot(modelo_final)` si alguna observ
+   `plot(modelo_final)` si alguna observación ejerce influencia desproporcionada
+   sobre los coeficientes del modelo.
+:::

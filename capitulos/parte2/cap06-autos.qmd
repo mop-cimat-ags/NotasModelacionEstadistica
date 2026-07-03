@@ -191,3 +191,4 @@ varianza, cumpliendo mejor los supuestos de la regresión lineal.
    de `log_MPG_city` usando `autos_log`. Interpreta el coeficiente obtenido.
 3. Identifica visualmente los valores atípicos de **Horsepower** con un boxplot.
    ¿A qué modelos corresponden?
+:::
