@@ -163,7 +163,7 @@ para linealizar relaciones antes de ajustar modelos de regresión.
 ```{r autos-logs, fig.align='center', fig.width=8, fig.height=4}
 autos_log <- read.csv("DataSets/Autos/Autos_sin_otliersylogs.csv",
                        check.names = FALSE)
-names(autos_log)[1] <- gsub("\xef\xbb\xbf|\uFEFF", "", names(autos_log)[1])
+names(autos_log)[1] <- gsub("\uFEFF", "", names(autos_log)[1])
 
 p_orig <- ggplot(autos, aes(x = Weight, y = MPG.city)) +
   geom_point(color="#006341", alpha=0.7) +
