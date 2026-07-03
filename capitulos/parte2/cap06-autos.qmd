@@ -9,24 +9,24 @@ visualización y correlación.
 ::: {.callout-note icon=false}
 ## Datos y reproducibilidad
 
-Los archivos se encuentran en `DataSets/Autos/` del repositorio:
+Los datos están incluidos en el paquete **modelEstCIMAT** del repositorio:
 
-- `autos.csv` — datos originales (93 autos, 27 variables).
-- `Autos_sin_otliersylogs.csv` — versión sin valores atípicos y con transformaciones logarítmicas para análisis de regresión.
+- `data(autos)` — datos originales (93 autos, 27 variables).
+- `data(autos_log)` — versión sin valores atípicos y con transformaciones logarítmicas (90 autos, 30 variables).
+
+Los archivos fuente originales se conservan en `DataSets/Autos/` para referencia.
 :::
 
 ## Descripción del conjunto de datos
 
 ```{r autos-setup, message=FALSE, warning=FALSE}
+library(modelEstCIMAT)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
 library(corrplot)
 
-# Carga desde la raíz del proyecto
-autos <- read.csv("DataSets/Autos/autos.csv", check.names = FALSE)
-# Limpiar BOM en nombre de primera columna si existe
-names(autos)[1] <- gsub("\uFEFF", "", names(autos)[1])
+data(autos)   # carga el data frame 'autos' del paquete
 
 glimpse(autos)
 ```
@@ -161,9 +161,7 @@ valores atípicos detectados visualmente y de aplicar transformaciones logarítm
 para linealizar relaciones antes de ajustar modelos de regresión.
 
 ```{r autos-logs, fig.align='center', fig.width=8, fig.height=4}
-autos_log <- read.csv("DataSets/Autos/Autos_sin_otliersylogs.csv",
-                       check.names = FALSE)
-names(autos_log)[1] <- gsub("\uFEFF", "", names(autos_log)[1])
+data(autos_log)   # version sin outliers con transformacion log
 
 p_orig <- ggplot(autos, aes(x = Weight, y = MPG.city)) +
   geom_point(color="#006341", alpha=0.7) +
@@ -192,5 +190,4 @@ varianza, cumpliendo mejor los supuestos de la regresión lineal.
 2. Ajusta un modelo de regresión lineal simple con `log_Weight` como predictor
    de `log_MPG_city` usando `autos_log`. Interpreta el coeficiente obtenido.
 3. Identifica visualmente los valores atípicos de **Horsepower** con un boxplot.
-   ¿A qué modelos corresponden? Usa `autos[which(autos$Horsepower > 200), c("Make","Horsepower","Price")]`.
-:::
+   ¿A qué modelos corresponden?

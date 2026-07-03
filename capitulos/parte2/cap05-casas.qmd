@@ -9,9 +9,10 @@ mediante un modelo de regresión lineal múltiple.
 ::: {.callout-note icon=false}
 ## Datos y reproducibilidad
 
-La base de datos (`Casas.xlsx`) y los scripts de análisis se encuentran en la
-carpeta `DataSets/2504_Casas/` del repositorio. Para reproducir este capítulo
-basta con clonar el repositorio y renderizar el libro con Quarto.
+Los datos están incluidos en el paquete **modelEstCIMAT** del repositorio.
+Para acceder a ellos basta con cargar el paquete (`library(modelEstCIMAT)`)
+y llamar `data(casas)`. El archivo fuente original (`Casas.xlsx`) se conserva
+en `DataSets/2504_Casas/` para referencia.
 :::
 
 ## Descripción del conjunto de datos
@@ -35,13 +36,13 @@ variables:
 | **PRECIO** | Numérica | Precio de venta (miles de pesos) |
 
 ```{r casas-setup, message=FALSE, warning=FALSE}
-library(readxl)
+library(modelEstCIMAT)
 library(ggplot2)
 library(pheatmap)
 library(car)
 
-# Ruta relativa desde la raíz del proyecto (Quarto la establece automáticamente)
-Casas <- read_excel("DataSets/2504_Casas/Casas.xlsx")
+data(casas)          # carga el data frame 'casas' del paquete
+Casas <- casas       # alias para mantener convención de nombre con mayúscula
 
 # Codificación de variables categóricas
 Casas$ZONA  <- factor(Casas$ZONA,  labels = c("Zona 1", "Zona 2", "Zona 3"))
