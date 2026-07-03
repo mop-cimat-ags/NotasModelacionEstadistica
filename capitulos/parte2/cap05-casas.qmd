@@ -41,8 +41,7 @@ library(ggplot2)
 library(pheatmap)
 library(car)
 
-data(casas)          # carga el data frame 'casas' del paquete
-Casas <- casas       # alias para mantener convención de nombre con mayúscula
+Casas <- readRDS(system.file("data", "casas.rds", package = "modelEstCIMAT"))
 
 # Codificación de variables categóricas
 Casas$ZONA  <- factor(Casas$ZONA,  labels = c("Zona 1", "Zona 2", "Zona 3"))
@@ -253,6 +252,4 @@ en esta muestra.
    $	ext{AREA}=90$, $	ext{ZONA}=	ext{"Zona 2"}$, $	ext{COCH}=1$ y
    sin contraventanas.
 3. Investiga el concepto de *leverage* y *distancia de Cook*; identifica con
-   `plot(modelo_final)` si alguna observación tiene influencia desproporcionada
-   en el modelo.
-:::
+   `plot(modelo_final)` si alguna observ
