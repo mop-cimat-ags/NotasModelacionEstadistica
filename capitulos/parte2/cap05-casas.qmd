@@ -253,3 +253,4 @@ en esta muestra.
    sin contraventanas.
 3. Investiga el concepto de *leverage* y *distancia de Cook*; identifica con
    `plot(modelo_final)` si alguna ob
+:::

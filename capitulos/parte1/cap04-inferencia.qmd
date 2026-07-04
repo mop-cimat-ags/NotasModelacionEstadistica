@@ -894,8 +894,6 @@ ggplot(df_F, aes(x = x, y = dens, color = dist)) +
 3. Una muestra de $n=16$ de $N(\mu, 4)$ tiene $\bar{x} = 12.3$. Construya un IC del 95% para $\mu$ usando la distribución $t$.
 :::
 
-::: {.callout-note icon=false}
-
 ## Métodos de estimación puntual {#sec-metodos-estimacion}
 
 ::: {.callout-tip icon=false}
@@ -1021,8 +1019,6 @@ ggplot(df_ll, aes(x=theta, y=ll)) +
 | $\text{Exp}(\lambda)$ | $\lambda$ | $\hat{\lambda} = 1/\bar{X}$ |
 | $\text{Bern}(p)$ | $p$ | $\hat{p} = \bar{X}$ |
 | $\text{Poisson}(\lambda)$ | $\lambda$ | $\hat{\lambda} = \bar{X}$ |
-
-:::
 
 ## Propiedades de los estimadores {#sec-propiedades-estimadores}
 
