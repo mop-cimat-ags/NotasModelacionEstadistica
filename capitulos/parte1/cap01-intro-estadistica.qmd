@@ -2120,8 +2120,6 @@ aproximadamente $1/3$ si se mantiene la elección original y de
 aproximadamente $2/3$ si se cambia, ya que al abrir una puerta con una cabra
 el presentador aporta información adicional sobre la ubicación del premio.
 
-::: {.callout-note icon=false}
-
 ## Ejemplos adicionales de probabilidad {#sec-ejemplos-probabilidad}
 
 ::: {.callout-tip icon=false}
@@ -2288,4 +2286,4 @@ condicionar en el evento "es fumador".
 - **Teorema de Bayes:** permite "invertir" probabilidades condicionales,
   $P(A_j \mid B) = \dfrac{P(B \mid A_j)P(A_j)}{\sum_i P(B \mid A_i)P(A_i)}$,
   y es la base de la interpretación de pruebas diagnósticas.
-:::
+
