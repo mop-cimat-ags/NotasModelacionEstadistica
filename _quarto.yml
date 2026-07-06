@@ -50,7 +50,6 @@ bibliography: referencias.bib
 
 format:
   html:
-    #theme: cosmo
     theme: materia
     css: estilos-cimat.css
     toc: true
@@ -72,11 +71,13 @@ format:
     colorlinks: true
     include-in-header: latex/preamble.tex
     include-before-body: latex/portada.tex
+    echo: false
 
   docx:
     toc: true
     number-sections: true
     include-before-body: latex/portada-docx.md
+    echo: false
 
 execute:
   echo: true
