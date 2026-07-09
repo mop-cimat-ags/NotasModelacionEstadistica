@@ -1,0 +1,141 @@
+# Estadística Descriptiva {#cap-estadistica-descriptiva}
+
+
+::: {.callout-note icon=false}
+## Contexto del módulo
+
+En la actualidad, el uso de los modelos de probabilidad y los métodos estadísticos para el análisis de datos es una práctica común en casi todas las disciplinas científicas. Sin embargo, es importante puntualizar que ante una mala planeación/diseño del experimento, una deficiente toma de datos (sesgada) o la no validación de supuestos, **no existe técnica estadística que pueda corregir resultados incorrectos**.
+
+La probabilidad es el vehículo de la estadística —su base teórica—; sin las leyes de la probabilidad la ciencia estadística no sería posible. Una forma de intuirlo: imagine una caja con 15 fichas (5 azules, 5 negras y 5 rojas). Desde la **probabilidad** respondemos ¿cuál es la probabilidad de seleccionar una ficha roja?. Desde la **estadística**, tomamos una muestra aleatoria y con ella hacemos inferencias sobre la composición de la caja completa.
+:::
+
+Este capítulo construye, paso a paso, las herramientas necesarias para
+cuantificar la incertidumbre. Se inicia con las **técnicas de conteo**
+(combinatoria), que permiten determinar cuántos resultados distintos puede
+tener un experimento. Con esa base se introducen los **experimentos
+aleatorios**, el **espacio muestral** y los **eventos**, para después
+presentar los tres enfoques con los que se puede **definir la probabilidad**
+(clásico, frecuentista y axiomático). A partir de los axiomas se derivan las
+reglas operativas de la probabilidad y se estudia la **probabilidad
+condicional**, la **independencia de eventos**, la **regla de la
+multiplicación**, la **probabilidad total** y el **Teorema de Bayes**. El
+capítulo cierra con material complementario (leyes de operaciones de
+conjuntos, métodos de asignación de probabilidad y dos aplicaciones célebres
+del Teorema de Bayes) y un resumen con las fórmulas clave.
+
+
+## Estadística descriptiva {#sec-estadistica-descriptiva}
+::: {.content-visible when-format="html"}
+[📖 Humberto Martínez Bautista]{.fuente-badge .fuente-humberto}
+:::
+
+
+La estadística descriptiva se ocupa de organizar, resumir y presentar la
+información contenida en un conjunto de datos sin ir más allá de lo que
+los datos mismos muestran. Es el punto de partida de todo análisis:
+antes de modelar o inferir, es indispensable conocer la distribución
+y el comportamiento de las variables de interés.
+
+En este curso se asume familiaridad con los conceptos básicos de
+estadística descriptiva. Esta sección resume las herramientas más
+utilizadas como referencia.
+
+### Medidas de localización (tendencia central)
+
+Las medidas de tendencia central describen el valor "típico" o
+representativo de un conjunto de observaciones $x_1, x_2, \ldots, x_n$.
+
+**Media aritmética:** el promedio de los datos,
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i.$$
+
+**Mediana:** el valor que divide a los datos ordenados en dos mitades
+iguales. Es robusta frente a valores atípicos.
+
+**Moda:** el valor (o valores) que aparecen con mayor frecuencia en el
+conjunto de datos.
+
+```{r est-desc-central, message=FALSE, warning=FALSE}
+library(modelEstCIMAT)
+x <- casas_desc <- readRDS(system.file("data", "casas.rds",
+                                       package = "modelEstCIMAT"))$PRECIO
+cat("Media   :", round(mean(x), 2), "\n")
+cat("Mediana :", median(x), "\n")
+cat("Moda    : aprox.", which.max(table(round(x,-2))), "(redond. a 100)\n")
+```
+
+### Medidas de dispersión
+
+Las medidas de dispersión cuantifican cuánto se alejan los datos del
+centro.
+
+**Rango:** $R = x_{(n)} - x_{(1)}$, diferencia entre el máximo y el mínimo.
+
+**Varianza muestral:**
+$$s^2 = \frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2.$$
+
+**Desviación estándar:** $s = \sqrt{s^2}$, en las mismas unidades que los datos.
+
+**Coeficiente de variación:** $CV = s/\bar{x} \times 100\%$, permite comparar
+dispersiones de variables con diferentes unidades.
+
+```{r est-desc-dispersion}
+cat("Rango   :", diff(range(x)), "\n")
+cat("Varianza:", round(var(x), 2), "\n")
+cat("DE      :", round(sd(x), 2), "\n")
+cat("CV      :", round(sd(x)/mean(x)*100, 1), "%\n")
+```
+
+### Medidas de forma
+
+**Asimetría (sesgo):** mide si la distribución es simétrica o si tiene
+una cola más larga que la otra. Un sesgo positivo indica cola hacia la
+derecha; negativo, hacia la izquierda.
+
+**Curtosis:** describe el "peso" de las colas respecto a la distribución
+normal. Una curtosis alta indica colas pesadas (leptocúrtica).
+
+```{r est-desc-forma, message=FALSE}
+# install.packages("e1071")  # solo si no está instalado
+skewness_val <- mean((x - mean(x))^3) / sd(x)^3
+kurtosis_val <- mean((x - mean(x))^4) / sd(x)^4 - 3
+cat("Sesgo   :", round(skewness_val, 3), "\n")
+cat("Curtosis:", round(kurtosis_val, 3), "(exceso respecto a normal)\n")
+```
+
+### Representaciones gráficas
+
+Las gráficas permiten detectar patrones, valores atípicos y la forma de
+la distribución de manera inmediata.
+
+```{r est-desc-graficas, fig.align='center', fig.width=9, fig.height=4, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(gridExtra)
+
+df <- data.frame(precio = x)
+
+p1 <- ggplot(df, aes(x = precio)) +
+  geom_histogram(bins = 8, fill = "#006341", color = "white", alpha = 0.8) +
+  geom_vline(xintercept = mean(x), color = "#C8962E",
+             linewidth = 1.2, linetype = "dashed") +
+  theme_minimal() +
+  labs(title = "Histograma — Precio de casas",
+       x = "Precio (miles de pesos)", y = "Frecuencia")
+
+p2 <- ggplot(df, aes(y = precio)) +
+  geom_boxplot(fill = "#006341", alpha = 0.7, outlier.color = "red") +
+  theme_minimal() +
+  labs(title = "Diagrama de caja", y = "Precio (miles de pesos)")
+
+gridExtra::grid.arrange(p1, p2, ncol = 2)
+```
+
+::: {.callout-note icon=false}
+## Cuartiles y diagrama de caja
+
+El diagrama de caja (box plot) resume cinco estadísticos:
+mínimo, $Q_1$ (percentil 25), mediana ($Q_2$), $Q_3$ (percentil 75) y
+máximo. Los puntos fuera de los "bigotes" ($\pm 1.5 \times IQR$)
+se consideran valores atípicos candidatos.
+:::
+
+

@@ -36,7 +36,8 @@ book:
     - index.qmd
     - part: "Parte I - Probabilidad, Variables Aleatorias y Distribuciones Muestrales"
       chapters:
-        - capitulos/parte1/cap01-intro-estadistica.qmd
+        - capitulos/parte1/cap01a-estadistica.qmd
+        - capitulos/parte1/cap01b-probabilidad.qmd
         - capitulos/parte1/cap02-distribuciones.qmd
         - capitulos/parte1/cap03-distribucion-conjunta.qmd
         - capitulos/parte1/cap04-inferencia.qmd
