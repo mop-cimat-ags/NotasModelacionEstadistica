@@ -1,5 +1,15 @@
 # Introducción a la Probabilidad {#cap-probabilidad}
 
+La probabilidad es la base matemática de la estadística: nos permite cuantificar la incertidumbre y razonar sobre experimentos cuyos resultados no podemos predecir con certeza. Sin las leyes de la probabilidad, la inferencia estadística no sería posible.
+
+::: {.callout-note icon=false}
+## Relación entre probabilidad y estadística
+
+Una forma de intuir la diferencia: imagine una caja con 15 fichas (5 azules, 5 negras y 5 rojas). Desde la **probabilidad** respondemos *¿cuál es la probabilidad de sacar una ficha roja?* — conocemos la composición y calculamos chances. Desde la **estadística**, tomamos una muestra y con ella *inferimos* la composición desconocida de la caja.
+
+Este capítulo desarrolla la teoría de probabilidad que sustenta todo el curso: combinatoria, experimentos aleatorios, axiomas, probabilidad condicional, independencia, probabilidad total y el Teorema de Bayes.
+:::
+
 ## Combinatoria
 
 

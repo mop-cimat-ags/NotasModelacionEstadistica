@@ -1,27 +1,16 @@
 # Estadística Descriptiva {#cap-estadistica-descriptiva}
 
 
+La estadística es la ciencia de recolectar, organizar, analizar e interpretar datos para tomar decisiones bajo incertidumbre. Antes de construir modelos o hacer inferencias, es indispensable conocer y resumir los datos disponibles: ese es el objetivo de la **estadística descriptiva**.
+
 ::: {.callout-note icon=false}
-## Contexto del módulo
+## ¿Por qué empezar aquí?
 
-En la actualidad, el uso de los modelos de probabilidad y los métodos estadísticos para el análisis de datos es una práctica común en casi todas las disciplinas científicas. Sin embargo, es importante puntualizar que ante una mala planeación/diseño del experimento, una deficiente toma de datos (sesgada) o la no validación de supuestos, **no existe técnica estadística que pueda corregir resultados incorrectos**.
+Ante una mala planeación del experimento, una toma de datos sesgada o la no validación de supuestos, **ninguna técnica estadística puede corregir resultados incorrectos**. La estadística descriptiva es el primer filtro: permite detectar errores, valores atípicos y patrones antes de aplicar cualquier modelo.
 
-La probabilidad es el vehículo de la estadística —su base teórica—; sin las leyes de la probabilidad la ciencia estadística no sería posible. Una forma de intuirlo: imagine una caja con 15 fichas (5 azules, 5 negras y 5 rojas). Desde la **probabilidad** respondemos ¿cuál es la probabilidad de seleccionar una ficha roja?. Desde la **estadística**, tomamos una muestra aleatoria y con ella hacemos inferencias sobre la composición de la caja completa.
+La estadística descriptiva y la probabilidad son complementarias. Con los datos en mano, la **estadística** resume lo observado; con un modelo probabilístico, la **probabilidad** cuantifica lo que podría ocurrir. Este capítulo cubre las herramientas descriptivas; el siguiente introduce la probabilidad.
 :::
 
-Este capítulo construye, paso a paso, las herramientas necesarias para
-cuantificar la incertidumbre. Se inicia con las **técnicas de conteo**
-(combinatoria), que permiten determinar cuántos resultados distintos puede
-tener un experimento. Con esa base se introducen los **experimentos
-aleatorios**, el **espacio muestral** y los **eventos**, para después
-presentar los tres enfoques con los que se puede **definir la probabilidad**
-(clásico, frecuentista y axiomático). A partir de los axiomas se derivan las
-reglas operativas de la probabilidad y se estudia la **probabilidad
-condicional**, la **independencia de eventos**, la **regla de la
-multiplicación**, la **probabilidad total** y el **Teorema de Bayes**. El
-capítulo cierra con material complementario (leyes de operaciones de
-conjuntos, métodos de asignación de probabilidad y dos aplicaciones célebres
-del Teorema de Bayes) y un resumen con las fórmulas clave.
 
 
 ## Estadística descriptiva {#sec-estadistica-descriptiva}
