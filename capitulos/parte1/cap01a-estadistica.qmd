@@ -500,7 +500,7 @@ gridExtra::grid.arrange(p1, p2, p3, p4,
 ## Lectura del panel
 
 - **① Histograma**: muestra media (naranja), mediana (azul) y moda (rojo).
-  Las bandas naranjas corresponden a $ar{x} \pm s$ y $ar{x} \pm 2s$.
+  Las bandas naranjas corresponden a $\bar{x} \pm s$ y $\bar{x} \pm 2s$.
   Como media > mediana, la distribución tiene asimetría positiva.
 - **② Diagrama de caja**: los bigotes llegan hasta $Q_1 - 1.5\,IQR$ y
   $Q_3 + 1.5\,IQR$; los puntos fuera son **valores atípicos**.
