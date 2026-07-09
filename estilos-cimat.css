@@ -297,3 +297,34 @@ tr:nth-child(even) {
     font-size: 1.6rem;
   }
 }
+
+/* ---------- Badges de fuente / atribución ---------- */
+.fuente-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5em;
+  vertical-align: middle;
+  font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Verde CIMAT — Magín Zúñiga Estrada */
+.fuente-magin {
+  background-color: #006341;
+  color: #ffffff;
+}
+
+/* Azul marino — Sergio Nava Muñoz */
+.fuente-sergio {
+  background-color: #1F618D;
+  color: #ffffff;
+}
+
+/* Dorado CIMAT — Humberto Martínez Bautista */
+.fuente-humberto {
+  background-color: #C8962E;
+  color: #ffffff;
+}

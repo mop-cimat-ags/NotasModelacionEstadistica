@@ -24,6 +24,10 @@ del Teorema de Bayes) y un resumen con las fórmulas clave.
 
 
 ## Estadística descriptiva {#sec-estadistica-descriptiva}
+::: {.content-visible when-format="html"}
+[📖 Humberto Martínez Bautista]{.fuente-badge .fuente-humberto}
+:::
+
 
 La estadística descriptiva se ocupa de organizar, resumir y presentar la
 información contenida en un conjunto de datos sin ir más allá de lo que
@@ -2120,6 +2124,10 @@ aproximadamente $2/3$ si se cambia, ya que al abrir una puerta con una cabra
 el presentador aporta información adicional sobre la ubicación del premio.
 
 ## Ejemplos adicionales de probabilidad {#sec-ejemplos-probabilidad}
+::: {.content-visible when-format="html"}
+[📖 Sergio Nava Muñoz]{.fuente-badge .fuente-sergio}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Notas del curso (Prof. Sergio Nava Muñoz)

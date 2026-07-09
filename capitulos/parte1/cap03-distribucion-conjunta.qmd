@@ -1266,6 +1266,10 @@ El resultado muestra que hay un 86.5% de probabilidad de que la terminal respond
 :::
 
 ## Distribución Gamma {#sec-gamma}
+::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)
@@ -1325,6 +1329,10 @@ ggplot(df_gamma, aes(x = x, y = y, color = Distribución)) +
 :::
 
 ## Distribución Pareto {#sec-pareto}
+::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)
@@ -1760,6 +1768,10 @@ tan cerca de $\mu$ como se quiera. Esta es la base filosófica de la
 
 
 ## Estadísticos muestrales {#sec-estadisticos-muestrales}
+::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)
@@ -1840,6 +1852,10 @@ ggplot(df_stats, aes(x=valor)) +
 ```
 
 ## Convergencia en probabilidad y TCL {#sec-convergencia-tcl}
+::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)

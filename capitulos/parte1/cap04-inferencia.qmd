@@ -727,6 +727,10 @@ ggplot(df_prop, aes(x = x, y = densidad)) +
 :::
 
 ## Distribuciones de muestreo {#sec-distribuciones-muestreo}
+::: {.content-visible when-format="html"}
+[📖 Humberto Martínez Bautista]{.fuente-badge .fuente-humberto}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)
@@ -895,6 +899,10 @@ ggplot(df_F, aes(x = x, y = dens, color = dist)) +
 :::
 
 ## Métodos de estimación puntual {#sec-metodos-estimacion}
+::: {.content-visible when-format="html"}
+[📖 Humberto Martínez Bautista]{.fuente-badge .fuente-humberto}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)
@@ -1021,6 +1029,10 @@ ggplot(df_ll, aes(x=theta, y=ll)) +
 | $\text{Poisson}(\lambda)$ | $\lambda$ | $\hat{\lambda} = \bar{X}$ |
 
 ## Propiedades de los estimadores {#sec-propiedades-estimadores}
+::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)
@@ -1302,6 +1314,10 @@ $$\text{Var}(\hat{\theta}) = \underbrace{\text{Var}(E[\hat{\theta}\mid T])}_{=\,
 :::
 
 ## Intervalos de confianza {#sec-intervalos-confianza}
+::: {.content-visible when-format="html"}
+[📖 Humberto Martínez Bautista]{.fuente-badge .fuente-humberto}
+:::
+
 
 La **estimación por intervalo** va más allá de un valor único: produce
 un rango de valores plausibles para $\theta$.
@@ -1324,6 +1340,10 @@ contendría al verdadero $\theta$.
 ### IC para la medi
 
 ## Métodos para encontrar pruebas {#sec-metodos-pruebas}
+::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+:::
+
 
 ::: {.callout-tip icon=false}
 ## Fuente: Apuntes del curso (Prof. Magín Zúñiga Estrada)
