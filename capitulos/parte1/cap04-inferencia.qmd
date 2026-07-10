@@ -233,10 +233,10 @@ Los estimadores "aproximan" a los parámetros poblacionales. Esto quiere decir q
 ## Errores comunes: parámetros y estimadores
 
 **Error 1 — Confundir el parámetro con el estimador.**  
-El parámetro $\mu$ (media poblacional) es un número fijo pero desconocido; el estimador $ar{X}$ es una *variable aleatoria* que cambia de muestra a muestra. Solo $ar{X}$ tiene distribución muestral; $\mu$ no.
+El parámetro $\mu$ (media poblacional) es un número fijo pero desconocido; el estimador $\bar{X}$ es una *variable aleatoria* que cambia de muestra a muestra. Solo $\bar{X}$ tiene distribución muestral; $\mu$ no.
 
 **Error 2 — Dividir por $n$ en lugar de $n-1$ al estimar la varianza.**  
-$s^2 = rac{\sum(x_i - ar{x})^2}{n-1}$ es el estimador *insesgado* de $\sigma^2$. Dividir por $n$ produce un estimador sesgado que subestima sistemáticamente la varianza poblacional, especialmente con muestras pequeñas.
+$s^2 = \frac{\sum(x_i - \bar{x})^2}{n-1}$ es el estimador *insesgado* de $\sigma^2$. Dividir por $n$ produce un estimador sesgado que subestima sistemáticamente la varianza poblacional, especialmente con muestras pequeñas.
 :::
 
 
@@ -667,7 +667,7 @@ Este es, quizás, el teorema de mayor importancia práctica en la estadística i
 ## Errores comunes: Teorema del Límite Central
 
 **Error 1 — Creer que el TLC dice que *los datos* se distribuyen normal.**  
-El TLC habla de la distribución del *promedio muestral* $ar{X}$, no de los datos individuales $X_i$. Una muestra de 100 observaciones de una distribución exponencial seguirá siendo exponencial; lo que se aproxima a la normal es la distribución de $ar{X}$ entre muestras repetidas.
+El TLC habla de la distribución del *promedio muestral* $\bar{X}$, no de los datos individuales $X_i$. Una muestra de 100 observaciones de una distribución exponencial seguirá siendo exponencial; lo que se aproxima a la normal es la distribución de $\bar{X}$ entre muestras repetidas.
 
 **Error 2 — Aplicar el TLC con $n$ pequeño en distribuciones muy asimétricas.**  
 La regla $n \geq 30$ es una guía general. En distribuciones con colas muy pesadas o alta asimetría, puede necesitarse $n$ mucho mayor para que la aproximación normal sea razonable.
