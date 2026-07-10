@@ -9,16 +9,13 @@ La estadística es la ciencia de recolectar, organizar, analizar e interpretar d
 Ante una mala planeación del experimento, una toma de datos sesgada o la no validación de supuestos, **ninguna técnica estadística puede corregir resultados incorrectos**. La estadística descriptiva es el primer filtro: permite detectar errores, valores atípicos y patrones antes de aplicar cualquier modelo.
 
 La estadística descriptiva y la probabilidad son complementarias. Con los datos en mano, la **estadística** resume lo observado; con un modelo probabilístico, la **probabilidad** cuantifica lo que podría ocurrir. Este capítulo cubre las herramientas descriptivas; el siguiente introduce la probabilidad.
-
 :::
 
 
 
 ## Estadística descriptiva {#sec-estadistica-descriptiva}
-
 ::: {.content-visible when-format="html"}
 [📖 Humberto Martínez Bautista]{.fuente-badge .fuente-humberto}
-
 :::
 
 
@@ -73,7 +70,6 @@ puede ser **unimodal**, **bimodal** o **multimodal**.
 - Distribución **simétrica**: $\bar{x} \approx Me$
 - Asimetría **positiva** (cola derecha): $\bar{x} > Me$
 - Asimetría **negativa** (cola izquierda): $\bar{x} < Me$
-
 :::
 
 ```{r est-desc-central, message=FALSE, warning=FALSE, fig.align='center', fig.width=9, fig.height=4}
@@ -504,7 +500,7 @@ gridExtra::grid.arrange(p1, p2, p3, p4,
 ## Lectura del panel
 
 - **① Histograma**: muestra media (naranja), mediana (azul) y moda (rojo).
-  Las bandas naranjas corresponden a $\bar{x} \pm s$ y $\bar{x} \pm 2s$.
+  Las bandas naranjas corresponden a $ar{x} \pm s$ y $ar{x} \pm 2s$.
   Como media > mediana, la distribución tiene asimetría positiva.
 - **② Diagrama de caja**: los bigotes llegan hasta $Q_1 - 1.5\,IQR$ y
   $Q_3 + 1.5\,IQR$; los puntos fuera son **valores atípicos**.
@@ -513,7 +509,6 @@ gridExtra::grid.arrange(p1, p2, p3, p4,
   curtosis ($g_2$) de los datos reales.
 - **④ Resumen**: concentra todos los estadísticos descriptivos en una
   tabla codificada por categoría.
-
 :::
 
 
