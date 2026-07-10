@@ -505,6 +505,22 @@ Y su varianza:
 
 $V[X] = p(1-p)$
 
+:::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+::::
+
+::: {.callout-tip icon=false}
+## Definición formal: distribución Bernoulli
+
+Una variable aleatoria $X$ tiene distribución **Bernoulli** con parámetro $p$ cuando su espacio muestral es $\Omega = \{0, 1\}$ y:
+
+$$p(X=1) = p, \qquad p(X=0) = 1-p$$
+
+donde $p \in (0,1)$ es la probabilidad de éxito. Se escribe $X \sim \text{Ber}(p)$, y se lee *"X sigue una distribución Bernoulli con parámetro p"*.
+
+**Ejemplo:** los votantes a favor o en contra de una propuesta. Si $p$ es la proporción de la población votante a favor, entonces el voto de un individuo elegido al azar se puede modelar con $\text{Ber}(p)$.
+:::
+
 
 **Ejemplo 1**
 
@@ -1117,6 +1133,28 @@ plot(
 
 
 ```
+
+:::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+::::
+
+::: {.callout-tip icon=false}
+## Definición formal: distribución Binomial
+
+Una variable aleatoria $X$ con distribución **binomial** y parámetros $(n, p)$ se denota $X \sim \text{Bin}(n, p)$. Su función masa de probabilidad es:
+
+$$P(X = k) = \binom{n}{k} p^{k}(1-p)^{n-k}, \quad k = 0, 1, 2, \ldots, n$$
+
+En forma tabular:
+
+| $k$ | $0$ | $1$ | $2$ | $\cdots$ | $n-1$ | $n$ |
+|-----|-----|-----|-----|-----------|--------|-----|
+| $p(k)$ | $(1-p)^n$ | $\binom{n}{1}p(1-p)^{n-1}$ | $\binom{n}{2}p^2(1-p)^{n-2}$ | $\cdots$ | $\binom{n}{n-1}p^{n-1}(1-p)$ | $p^n$ |
+
+**Relación con Bernoulli:** $\text{Bin}(1,p) = \text{Ber}(p)$, es decir, un solo ensayo Bernoulli es un caso particular de la binomial.
+
+**Ejercicio:** ¿Cuál es la probabilidad de obtener tres o más caras en cinco lanzamientos de una moneda?
+:::
 
 ### Ejemplos adicionales: Distribución Binomial
 
@@ -1760,6 +1798,24 @@ Esta sección presenta, a partir de los apuntes del Prof. Magín Zúñiga Estrad
 
 La **distribución geométrica** modela el número de fracasos que ocurren *antes* de obtener el primer éxito en ensayos Bernoulli independientes, cada uno con probabilidad de éxito $p$. Se denota $X \sim \text{geo}(p)$.
 
+:::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+::::
+
+::: {.callout-tip icon=false}
+## Definición formal: distribución Geométrica
+
+Una variable aleatoria $X$ tiene distribución **geométrica** con parámetro $p$ si modela el número de ensayos *antes* de obtener el primer éxito (probabilidad de éxito $p$, ensayos independientes). Se denota $X \sim \text{geo}(p)$.
+
+Su pmf en forma tabular:
+
+| $k$ | $0$ | $1$ | $2$ | $\cdots$ | $k$ |
+|-----|-----|-----|-----|-----------|-----|
+| $p(k)$ | $p$ | $(1-p)\,p$ | $(1-p)^2 p$ | $\cdots$ | $(1-p)^k p$ |
+
+**Nota sobre nomenclatura:** hablar de "éxito" y "fracaso" puede resultar ambiguo — a veces interesa el número de éxitos antes del primer fracaso y a veces lo contrario. Para evitar confusión, se recomienda reformular en términos concretos: por ejemplo, *"número de cruces antes de la primera cara"*.
+:::
+
 **Función masa de probabilidad y momentos:**
 
 $$p(k;\,p) = (1-p)^k\,p, \quad k = 0, 1, 2, \ldots$$
@@ -1865,6 +1921,42 @@ cat("E[X] =", 5*(1-0.3)/0.3, "\n")
 ```
 :::
 
+::: {.callout-tip icon=false}
+## Ejercicio: Educación (Magín Zúñiga)
+
+Un profesor aplica un examen de opción múltiple. Cada pregunta se responde correctamente con probabilidad $p = 0.4$ (ensayos independientes). Se busca modelar el número de respuestas incorrectas antes de que un estudiante logre $r = 3$ correctas.
+
+**¿Cuál es la probabilidad de exactamente 5 respuestas incorrectas antes de las 3 correctas?**
+
+Sea $X \sim \text{NegBin}(r=3,\, p=0.4)$:
+
+$$P(X=5) = \binom{7}{2}(0.6)^5(0.4)^3 \approx 0.1045$$
+
+```{r negbin-educacion}
+cat("P(X = 5) =", round(dnbinom(5, size = 3, prob = 0.4), 5), "\n")
+cat("E[X] = r(1-p)/p =", 3*0.6/0.4, "\n")
+cat("Var[X] =", 3*0.6/0.16, "\n")
+```
+:::
+
+::: {.callout-tip icon=false}
+## Ejercicio: Ventas en call center (Magín Zúñiga)
+
+Un agente tiene probabilidad $p = 0.15$ de concretar una venta por llamada. Se modela el número de llamadas sin venta antes de lograr $r = 4$ ventas.
+
+**¿Cuál es la probabilidad de exactamente 10 llamadas sin venta antes de las 4 ventas?**
+
+Sea $X \sim \text{NegBin}(r=4,\, p=0.15)$:
+
+$$P(X=10) = \binom{13}{3}(0.85)^{10}(0.15)^4 \approx 0.0285$$
+
+```{r negbin-ventas}
+cat("P(X = 10) =", round(dnbinom(10, size = 4, prob = 0.15), 5), "\n")
+cat("E[X] = r(1-p)/p =", 4*0.85/0.15, "\n")
+cat("Var[X] =", 4*0.85/0.0225, "\n")
+```
+:::
+
 ### Distribuciones discretas conjuntas
 
 Cuando se estudian dos variables aleatorias discretas $X$ e $Y$ simultáneamente, se define la **función de probabilidad conjunta** $p(x, y) = P(X = x,\; Y = y)$, que satisface:
@@ -1907,3 +1999,40 @@ cat("P(S = 7) =", 6/36, "\n")
 - Ensayos hasta el primer éxito: **Geométrica**.
 - Ensayos hasta el $r$-ésimo éxito: **Binomial Negativa**.
 :::
+
+:::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+::::
+
+::: {.callout-note icon=false}
+## Ejercicios de pdf y cdf (Magín Zúñiga Estrada)
+
+1. **Funciones de densidad.** Muestra que las siguientes son funciones de densidad y demuestra la propiedad de mezcla:
+
+   $$f_1(x) = e^{-x},\; x>0 \qquad f_2(x) = 2e^{-2x},\; x>0$$
+   $$f_3(x) = (\theta+1)f_1(x) - \theta f_2(x), \quad 0 < \theta < 1$$
+
+   Además, prueba que si $f_1$ y $f_2$ son densidades y $\theta_1 + \theta_2 = 1$, entonces $\theta_1 f_1 + \theta_2 f_2$ también lo es.
+
+2. **Bolas en cajas.** Se lanzan dos bolas en cuatro cajas, cada bola con igual probabilidad de caer en cualquier caja. Sea $X$ el número de bolas en la primera caja. Encuentra la cdf y la pmf de $X$.
+
+3. **Moneda hasta cara.** Se lanza una moneda justa hasta que sale cara. Sea $X$ el número de lanzamientos necesarios. Encuentra la pmf de $X$.
+
+4. **Juego de monedas.** El jugador A tiene dos monedas; B tiene una. Emparejan monedas hasta que uno de ellos reúne las tres. Sea $X$ el número de rondas necesarias. ¿Cuál es la pmf de $X$?
+
+5. **Variable aleatoria continua (pdf por partes).** Sea $X$ continua con:
+
+   $$f(x) = \begin{cases} 3/4 & 0 \le x \le 1 \\ 1/4 & 2 \le x \le 3 \\ 0 & \text{d.o.m.} \end{cases}$$
+
+   Dibuja $f(x)$ y determina la función de distribución acumulada $F(x)$.
+
+6. **Puntuación en examen.** La puntuación $X$ de un estudiante sigue la distribución triangular:
+
+   $$f(x) = \begin{cases} 4x & 0 \le x \le 1/2 \\ 4-4x & 1/2 \le x \le 1 \\ 0 & \text{d.o.m.} \end{cases}$$
+
+   El estudiante aprueba si $X \ge 0.55$.
+
+   a. ¿Cuál es la probabilidad de reprobar?
+   b. ¿Cuál es la puntuación mediana?
+:::
+

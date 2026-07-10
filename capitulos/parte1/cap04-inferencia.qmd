@@ -1539,3 +1539,83 @@ ggplot(df_np, aes(x=theta, y=gamma)) +
 4. Grafique la función potencia de la prueba del ejercicio anterior para
    $\lambda_0=1$, $n=15$, $\alpha=0.05$.
 :::
+
+
+## Estadísticas de orden {#sec-order-stats}
+
+:::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+::::
+
+Las **estadísticas de orden** desempeñan en la inferencia un papel análogo al de los cuantiles poblacionales: son cuantiles muestrales. Dado que los datos observados son una realización de variables aleatorias, las estadísticas de orden son en sí mismas variables aleatorias con distribuciones propias.
+
+::: {.callout-tip icon=false}
+## Definición: estadísticas de orden
+
+Sea $X_1, \ldots, X_n$ una muestra aleatoria de tamaño $n$ de una distribución con CDF $F$. Las **estadísticas de orden** $Y_1 \leq Y_2 \leq \cdots \leq Y_n$ son las observaciones ordenadas de menor a mayor:
+
+$$Y_1 = \min(X_1,\ldots,X_n), \quad Y_n = \max(X_1,\ldots,X_n)$$
+
+Las estadísticas de orden **no son independientes**: si $Y_k \geq y$ entonces necesariamente $Y_{k+1} \geq y$.
+:::
+
+::: {.callout-tip icon=false}
+## Resultado: CDF de la k-ésima estadística de orden
+
+La función de distribución acumulada marginal de $Y_k$ ($k = 1, \ldots, n$) es:
+
+$$F_{Y_k}(y) = \sum_{j=k}^{n} \binom{n}{j} [F(y)]^j [1-F(y)]^{n-j}$$
+
+**Demostración.** Fijado $y$, defina $Z_i = \mathbf{1}\{X_i \leq y\}$. Entonces $\sum_{i=1}^n Z_i \sim \text{Bin}(n, F(y))$ y:
+
+$$F_{Y_k}(y) = P(Y_k \leq y) = P\!\left(\sum_{i=1}^n Z_i \geq k\right) = \sum_{j=k}^{n} \binom{n}{j} [F(y)]^j [1-F(y)]^{n-j}$$
+
+El paso clave es la equivalencia $\{Y_k \leq y\} \Leftrightarrow \{\text{al menos } k \text{ de las } X_i \text{ caen en } (-\infty, y]\}$.
+:::
+
+::: {.callout-note icon=false}
+## Corolarios: mínimo y máximo
+
+**Máximo** ($k = n$):
+$$F_{Y_n}(y) = [F(y)]^n$$
+
+**Mínimo** ($k = 1$):
+$$F_{Y_1}(y) = 1 - [1-F(y)]^n$$
+
+Estos resultados son consecuencia directa de la independencia de la muestra: el máximo es $\leq y$ sii todos los $X_i$ son $\leq y$; el mínimo es $> y$ sii todos los $X_i$ son $> y$.
+:::
+
+```{r order-stats-demo, fig.align='center', fig.width=9, fig.height=4, message=FALSE}
+library(ggplot2)
+set.seed(42)
+B <- 20000
+n <- 5
+
+# Muestra de Exp(1): simular mínimo, mediana y máximo
+sim <- replicate(B, sort(rexp(n, 1)))
+df_os <- data.frame(
+  valor = c(sim[1,], sim[3,], sim[5,]),
+  stat  = rep(c("Y₁ (mínimo)", "Y₃ (mediana)", "Y₅ (máximo)"), each=B)
+)
+
+# CDF teórica de mínimo y máximo bajo Exp(1)
+y_seq <- seq(0, 8, length.out=300)
+F_min <- 1 - exp(-n * y_seq)        # 1-(1-F)^n con F(y)=1-exp(-y)
+F_max <- (1 - exp(-y_seq))^n        # [F(y)]^n
+
+ggplot(df_os, aes(x=valor, color=stat)) +
+  stat_ecdf(linewidth=1) +
+  scale_color_manual(values=c("#004D31","#C8962E","#006699"),
+                     name="Estadística") +
+  theme_minimal() +
+  labs(title="CDF empírica de estadísticas de orden — Exp(1), n=5",
+       x="y", y="F(y)")
+```
+
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Sea $X_1,\ldots,X_5 \sim U(0,1)$. Calcula $P(Y_1 > 0.3)$ y $P(Y_5 \leq 0.8)$ usando la CDF de las estadísticas de orden.
+2. Para $X_i \sim \text{Exp}(\lambda)$, muestra que $Y_1 \sim \text{Exp}(n\lambda)$ usando el corolario del mínimo.
+3. Escribe una simulación en R para verificar numéricamente la CDF de $Y_k$ para $k=3$, $n=7$ y $X_i \sim U(0,1)$.
+:::

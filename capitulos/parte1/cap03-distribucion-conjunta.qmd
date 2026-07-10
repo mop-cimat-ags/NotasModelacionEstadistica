@@ -1480,6 +1480,184 @@ Se utiliza para modelar el tiempo o la distancia que transcurre hasta que ocurre
   $$P(X > s+t \mid X > t) = P(X > s)$$
 
 
+
+## Distribuciones conjuntas {#sec-conjuntas}
+
+:::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+::::
+
+Cuando se estudian **dos o más variables aleatorias simultáneamente**, necesitamos herramientas que describan su comportamiento conjunto. Esta sección presenta la función de distribución acumulada conjunta, las funciones de masa/densidad conjunta, las distribuciones marginales y el concepto de independencia.
+
+### Función de distribución conjunta
+
+::: {.callout-tip icon=false}
+## Definición: CDF conjunta
+
+Sean $X$ e $Y$ dos variables aleatorias. La **función de distribución acumulada conjunta** se define como:
+
+$$F_{X,Y}(x,y) = P(X \leq x,\; Y \leq y) \quad \text{para todo } (x,y) \in \mathbb{R}^2$$
+
+**Propiedades:**
+
+1. $F(x,y)$ es no decreciente en cada argumento.
+2. $\lim_{x,y \to -\infty} F(x,y) = 0$.
+3. $\lim_{x,y \to +\infty} F(x,y) = 1$.
+
+Las **funciones de distribución marginales** se recuperan como:
+
+$$F_X(x) = F_{X,Y}(x, +\infty), \qquad F_Y(y) = F_{X,Y}(+\infty, y)$$
+:::
+
+::: {.callout-tip icon=false}
+## Ejemplo: dos tetraedros (Magín Zúñiga)
+
+Se lanzan dos tetraedros de cuatro caras. Sea $X$ la cara invertida del primer tetraedro e $Y$ el **mayor** de los dos valores. Los 16 resultados son equiprobables ($P = 1/16$ cada uno).
+
+Calcular $F_{X,Y}(2,3) = P(X \leq 2,\; Y \leq 3)$: los pares que satisfacen la condición son $(1,1),(1,2),(1,3),(2,1),(2,2),(2,3)$ — un total de 6 puntos, por lo que:
+
+$$F(2,3) = \frac{6}{16} = 0.375$$
+
+La tabla completa de la CDF conjunta:
+
+| $x \backslash y$ | 1 | 2 | 3 | 4 |
+|:-:|:-:|:-:|:-:|:-:|
+| 1 | 1/16 | 2/16 | 3/16 | 4/16 |
+| 2 | 0 | 4/16 | 6/16 | 8/16 |
+| 3 | 0 | 0 | 9/16 | 12/16 |
+| 4 | 0 | 0 | 0 | 16/16 |
+:::
+
+### Función de masa de probabilidad conjunta (caso discreto)
+
+::: {.callout-tip icon=false}
+## Definición: PMF conjunta discreta
+
+Si $X$ e $Y$ son discretas con valores $\{x_1,\ldots,x_n\}$ y $\{y_1,\ldots,y_m\}$, la **función masa de probabilidad conjunta** es:
+
+$$p(x_i, y_j) = P(X = x_i,\; Y = y_j)$$
+
+**Propiedades:**
+
+1. $0 \leq p(x_i, y_j) \leq 1$ para toda $i,j$.
+2. $\displaystyle\sum_{i}\sum_{j} p(x_i, y_j) = 1$.
+
+Las **pmf marginales** se obtienen sumando sobre la otra variable:
+
+$$p_X(x) = \sum_j p(x, y_j), \qquad p_Y(y) = \sum_i p(x_i, y)$$
+:::
+
+::: {.callout-tip icon=false}
+## Ejemplo: dos dados (Magín Zúñiga)
+
+Sea $X$ el valor del primer dado e $Y$ el del segundo. La pmf conjunta es $p(i,j) = 1/36$ para $i,j \in \{1,\ldots,6\}$.
+
+```{r conjunta-dados, message=FALSE}
+# PMF conjunta: dos dados independientes
+vals <- 1:6
+pmf_joint <- matrix(1/36, nrow=6, ncol=6,
+                    dimnames=list(paste0("X=",vals), paste0("Y=",vals)))
+# Marginales
+cat("Marginal X:", rowSums(pmf_joint), "\n")
+cat("Marginal Y:", colSums(pmf_joint), "\n")
+cat("Suma total:", sum(pmf_joint), "\n")
+```
+
+Ahora sea $Y$ la **suma** de ambos dados. La distribución marginal de $Y$ (suma de dos dados):
+
+```{r conjunta-suma, message=FALSE}
+S_vals <- 2:12
+pS <- c(1,2,3,4,5,6,5,4,3,2,1)/36
+cat("P(Y=k) para k=2,...,12:\n")
+for(i in seq_along(S_vals))
+  cat(sprintf("  P(Y=%2d) = %d/36 ≈ %.4f\n", S_vals[i], c(1,2,3,4,5,6,5,4,3,2,1)[i], pS[i]))
+```
+:::
+
+### Función de densidad de probabilidad conjunta (caso continuo)
+
+::: {.callout-tip icon=false}
+## Definición: PDF conjunta continua
+
+Si $X$ e $Y$ son continuas, la **función de densidad de probabilidad conjunta** $f(x,y)$ satisface:
+
+$$P(X \leq x,\; Y \leq y) = \int_{-\infty}^{x}\int_{-\infty}^{y} f(u,v)\,dv\,du$$
+
+**Propiedades:**
+
+1. $f(x,y) \geq 0$ para todo $(x,y)$.
+2. $\displaystyle\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} f(x,y)\,dy\,dx = 1$.
+
+Las **densidades marginales** son:
+
+$$f_X(x) = \int_{-\infty}^{\infty} f(x,y)\,dy, \qquad f_Y(y) = \int_{-\infty}^{\infty} f(x,y)\,dx$$
+:::
+
+::: {.callout-tip icon=false}
+## Ejemplo: marginales continuas (Magín Zúñiga)
+
+Sea $(X,Y)$ con densidad conjunta $f(x,y) = \frac{8}{3}x^3 y$ en $[0,1]\times[1,2]$.
+
+**Marginal de $X$:**
+
+$$f_X(x) = \int_1^2 \frac{8}{3}x^3 y\,dy = \frac{8}{3}x^3\left[\frac{y^2}{2}\right]_1^2 = \frac{8}{3}x^3 \cdot \frac{3}{2} = 4x^3$$
+
+**Marginal de $Y$:**
+
+$$f_Y(y) = \int_0^1 \frac{8}{3}x^3 y\,dx = \frac{8}{3}y\left[\frac{x^4}{4}\right]_0^1 = \frac{2}{3}y$$
+
+```{r marginales-continuas, message=FALSE}
+# Verificación numérica
+integrate(function(y) 8/3 * 0.5^3 * y, 1, 2)$value  # f_X(0.5)
+cat("f_X(0.5) = 4*(0.5)^3 =", 4*0.5^3, "\n")
+cat("f_Y(1.5) = (2/3)*1.5 =", 2/3*1.5, "\n")
+```
+:::
+
+::: {.callout-note icon=false}
+## Ejercicio: marginales continuas
+
+Sea $(X,Y)$ con densidad conjunta $f(x,y) = \frac{3}{2}(x^2 + y^2)$ en $[0,1]\times[0,1]$.
+
+a. Encuentra $f_X(x)$ y calcula $P(X < 0.5)$.
+b. ¿Son $X$ e $Y$ independientes? Justifica.
+
+**Solución (a):**
+
+$$f_X(x) = \int_0^1 \frac{3}{2}(x^2+y^2)\,dy = \frac{3}{2}x^2 + \frac{1}{2}$$
+
+$$P(X < 0.5) = \int_0^{0.5}\left(\frac{3}{2}x^2 + \frac{1}{2}\right)dx = \frac{5}{16}$$
+:::
+
+### Independencia de variables aleatorias
+
+::: {.callout-tip icon=false}
+## Definición: independencia
+
+Las variables aleatorias $X$ e $Y$ son **independientes** si y solo si:
+
+$$F_{X,Y}(x,y) = F_X(x)\,F_Y(y) \quad \text{para todo } (x,y)$$
+
+Equivalentemente:
+
+- **Caso discreto:** $p(x_i, y_j) = p_X(x_i)\,p_Y(y_j)$ para todo $i,j$.
+- **Caso continuo:** $f(x,y) = f_X(x)\,f_Y(y)$ para todo $(x,y)$.
+
+Para $n$ variables, son mutuamente independientes si:
+
+$$F(x_1,\ldots,x_n) = \prod_{i=1}^n F_{X_i}(x_i)$$
+:::
+
+::: {.callout-tip icon=false}
+## Ejemplos de independencia/dependencia (Magín Zúñiga)
+
+- **Independientes:** $f(x,y) = 96x^2 y^3$ en $[0,1/2]\times[0,1]$ — se factoriza como $f_X(x)\cdot f_Y(y)$.
+- **Dependientes:** $f(x,y) = 1.5(x^2+y^2)$ en $[0,1]^2$ — no se puede factorizar.
+- **Dependientes:** $F(x,y) = \frac{1}{2}(x^3 y + x y^3)$ en $[0,1]^2$ — la CDF conjunta no es producto de marginales.
+
+**Interpretación discreta:** en una tabla $p(x_i, y_j)$, independencia significa que cada celda es el producto de su marginal de fila por su marginal de columna.
+:::
+
 ## Esperanza y varianza de variables aleatorias {#sec-esperanza-varianza}
 
 ::: {.callout-tip icon=false}
@@ -1520,6 +1698,31 @@ es:
 
 - Caso discreto: $E[h(X)] = \sum_i h(x_i)\, p(x_i)$.
 - Caso continuo: $E[h(X)] = \int_{-\infty}^{\infty} h(x)\, f_X(x)\, dx$.
+
+La idea se extiende naturalmente a dos variables. Sean $X$ e $Y$ con pmf/pdf conjunta y $g:\mathbb{R}^2\to\mathbb{R}$:
+
+- **Caso discreto:** $E[g(X,Y)] = \displaystyle\sum_i\sum_j g(x_i,y_j)\,p(x_i,y_j)$.
+- **Caso continuo:** $E[g(X,Y)] = \displaystyle\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} g(x,y)\,f(x,y)\,dy\,dx$.
+
+::: {.callout-tip icon=false}
+## Ejemplo: función de ganancia en dados (Magín Zúñiga)
+
+Sea $X$ la suma de puntos al lanzar dos dados y $Y = X^2 - 6X + 1$ la función de ganancia.
+
+$$E[Y] = \sum_{x=2}^{12}(x^2 - 6x + 1)\,p(x)$$
+
+```{r ganancia-dados, message=FALSE}
+x_vals <- 2:12
+p_vals <- c(1,2,3,4,5,6,5,4,3,2,1)/36
+g_vals <- x_vals^2 - 6*x_vals + 1
+E_Y <- sum(g_vals * p_vals)
+cat("E[Y] = E[X^2 - 6X + 1] =", round(E_Y, 4), "\n")
+cat("Con E[X] =", sum(x_vals*p_vals), "y E[X^2] =", sum(x_vals^2*p_vals), "\n")
+cat("Por linealidad: E[X^2] - 6*E[X] + 1 =", sum(x_vals^2*p_vals) - 6*sum(x_vals*p_vals) + 1, "\n")
+```
+
+Si $E[Y] < 0$, el juego es desfavorable para el jugador.
+:::
 
 ```{r esp-ejemplos, message=FALSE, warning=FALSE}
 # Esperanza de un dado (uniforme discreta en {1,...,6})
@@ -1573,6 +1776,41 @@ $$\text{Var}(X) = E[X^2] - (E[X])^2.$$
 1. Si $X$ y $Y$ son **independientes**: $\text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y)$.
 2. Para constantes $a$ y $b$: $\text{Var}(aX+b) = a^2\,\text{Var}(X)$.
 3. $\text{Var}(X) = E[X^2] - \mu^2$.
+
+:::: {.content-visible when-format="html"}
+[📖 Magín Zúñiga Estrada]{.fuente-badge .fuente-magin}
+::::
+
+::: {.callout-tip icon=false}
+## Aplicaciones de las propiedades de varianza
+
+**Varianza de Bernoulli($p$).** Sea $X \sim \text{Ber}(p)$. Como $X \in \{0,1\}$, tenemos $X^2 = X$, luego $E[X^2] = p$, y:
+
+$$\text{Var}(X) = E[X^2] - \mu^2 = p - p^2 = p(1-p)$$
+
+**Varianza de Binomial($n,p$).** Como $X = \sum_{i=1}^n X_i$ con $X_i \sim \text{Ber}(p)$ independientes:
+
+$$\text{Var}(X) = \sum_{i=1}^n \text{Var}(X_i) = n\,p(1-p)$$
+
+**Varianza de Uniforme($[0,1]$).** Con $\mu = 1/2$:
+
+$$\text{Var}(X) = \int_0^1 \left(x - \tfrac{1}{2}\right)^2 dx = \left[\frac{(x-1/2)^3}{3}\right]_0^1 = \frac{1}{12}$$
+
+**Varianza de Exponencial($\lambda$).** Usando $E[X^2] = 2/\lambda^2$ y $\mu = 1/\lambda$:
+
+$$\text{Var}(X) = \frac{2}{\lambda^2} - \frac{1}{\lambda^2} = \frac{1}{\lambda^2}$$
+
+```{r var-propiedades, message=FALSE}
+# Verificación numérica de las varianzas
+cat("Var(Ber(0.3)) =", 0.3*0.7, "\n")
+cat("Var(Bin(10,0.3)) =", 10*0.3*0.7, "\n")
+cat("Var(Unif[0,1]) =", 1/12, "\n")
+cat("Var(Exp(2)) = 1/lambda^2 =", 1/4, "\n")
+# Verificación con var() de R
+set.seed(42)
+cat("Monte Carlo Var(Exp(2)):", round(var(rexp(1e6, 2)), 4), "\n")
+```
+:::
 
 ```{r varianza-ejemplos, fig.align='center', fig.width=8, fig.height=4}
 library(ggplot2)
