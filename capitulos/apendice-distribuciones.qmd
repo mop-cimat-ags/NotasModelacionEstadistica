@@ -53,52 +53,47 @@ Los siguientes son los casos especiales y límites más usados en el curso:
 - Si $Z\sim N(0,1)$ y $V\sim\chi^2(k)$ son independientes: $T = \dfrac{Z}{\sqrt{V/k}} \sim t(k)$.
 - Si $U\sim\chi^2(m)$ y $V\sim\chi^2(n)$ son independientes: $F = \dfrac{U/m}{V/n} \sim F(m,n)$.
 
-```{r apendice-relaciones, echo=FALSE, fig.width=9, fig.height=4.5, fig.cap="Mapa de relaciones entre distribuciones del curso. Azul: discretas; verde: continuas; flechas sólidas: caso especial; flechas punteadas: aproximación o límite."}
+```{r apendice-relaciones, echo=FALSE, fig.width=9, fig.height=4.5, fig.cap="Mapa de relaciones entre distribuciones del curso. Azul: discretas; verde: continuas; flechas solidas: caso especial; flechas punteadas: aproximacion o limite."}
 par(mar=c(0,0,0.5,0), bg="white")
 plot(NA, xlim=c(0,10), ylim=c(0,6), axes=FALSE, xlab="", ylab="")
 
-# Discreta — fila superior
-nodos_d <- list(
-  c(0.5,5,"Bernoulli(p)"),
-  c(2.5,5,"Binomial(n,p)"),
-  c(4.5,5,"Poisson(λ)"),
-  c(0.5,3.5,"Geométrica(p)"),
-  c(2.5,3.5,"BinNeg(r,p)")
-)
-for(n in nodos_d){
-  rect(n[[1]]-0.85,n[[2]]-0.45,n[[1]]+0.85,n[[2]]+0.45,col="#D6E8F7",border="#2E75B6",lwd=1.5)
-  text(n[[1]],n[[2]],n[[3]],cex=0.65,font=2)
+# Coordenadas x, y y etiquetas — separados para evitar coercion a caracter
+dx <- c(0.5, 2.5, 4.5, 0.5, 2.5)
+dy <- c(5.0, 5.0, 5.0, 3.5, 3.5)
+dl <- c("Bernoulli(p)", "Binomial(n,p)", "Poisson(lambda)",
+        "Geometrica(p)", "BinNeg(r,p)")
+
+cx <- c(6.5, 8.5, 8.5, 8.5, 6.5, 6.5)
+cy <- c(5.0, 5.0, 3.5, 2.0, 3.5, 2.0)
+cl <- c("Normal(mu,sigma^2)", "Chi2(k)", "t(k)",
+        "F(m,n)", "Exponencial(lambda)", "Gamma(alpha,beta)")
+
+for(i in seq_along(dx)){
+  rect(dx[i]-0.85, dy[i]-0.45, dx[i]+0.85, dy[i]+0.45,
+       col="#D6E8F7", border="#2E75B6", lwd=1.5)
+  text(dx[i], dy[i], dl[i], cex=0.65, font=2)
+}
+for(i in seq_along(cx)){
+  rect(cx[i]-0.9, cy[i]-0.45, cx[i]+0.9, cy[i]+0.45,
+       col="#D5ECD4", border="#375623", lwd=1.5)
+  text(cx[i], cy[i], cl[i], cex=0.65, font=2)
 }
 
-# Continua — fila derecha
-nodos_c <- list(
-  c(6.5,5,"Normal(μ,σ²)"),
-  c(8.5,5,"χ²(k)"),
-  c(8.5,3.5,"t(k)"),
-  c(8.5,2,"F(m,n)"),
-  c(6.5,3.5,"Exponencial(λ)"),
-  c(6.5,2,"Gamma(α,β)")
-)
-for(n in nodos_c){
-  rect(n[[1]]-0.9,n[[2]]-0.45,n[[1]]+0.9,n[[2]]+0.45,col="#D5ECD4",border="#375623",lwd=1.5)
-  text(n[[1]],n[[2]],n[[3]],cex=0.65,font=2)
-}
-
-# Flechas
 arr <- function(x1,y1,x2,y2,lty=1)
   arrows(x1,y1,x2,y2,length=0.08,col="gray30",lwd=1.2,lty=lty)
-arr(1.35,5,1.65,5)           # Bern→Binom
-arr(3.35,5,3.65,5,lty=2)     # Binom→Poisson (aprox)
-arr(0.5,4.55,0.5,3.95)       # Bern→Geom
-arr(2.5,4.55,2.5,3.95)       # Binom→BinNeg
-arr(6.5,4.55,6.5,3.95)       # Normal→Exp (distribución muestral)
-arr(6.5,3.05,6.5,2.45)       # Exp→Gamma (esp. caso)
-arr(6.5,5,7.6,5)             # Normal→Chi2
-arr(8.5,4.55,8.5,3.95)       # Chi2→t
-arr(8.5,3.05,8.5,2.45)       # t→F
+
+arr(1.35, 5.0, 1.65, 5.0)       # Bern -> Binom
+arr(3.35, 5.0, 3.65, 5.0, lty=2) # Binom -> Poisson (aprox)
+arr(0.5,  4.55, 0.5, 3.95)       # Bern -> Geom
+arr(2.5,  4.55, 2.5, 3.95)       # Binom -> BinNeg
+arr(6.5,  4.55, 6.5, 3.95)       # Normal -> Exp
+arr(6.5,  3.05, 6.5, 2.45)       # Exp -> Gamma
+arr(6.5,  5.0,  7.6, 5.0)        # Normal -> Chi2
+arr(8.5,  4.55, 8.5, 3.95)       # Chi2 -> t
+arr(8.5,  3.05, 8.5, 2.45)       # t -> F
 
 legend("bottomleft",
-  legend=c("Discreta","Continua","→ caso especial","--→ aproximación"),
+  legend=c("Discreta","Continua","caso especial","aproximacion"),
   fill=c("#D6E8F7","#D5ECD4",NA,NA),
   lty=c(NA,NA,1,2), col=c(NA,NA,"gray30","gray30"),
   border=c("#2E75B6","#375623",NA,NA),
