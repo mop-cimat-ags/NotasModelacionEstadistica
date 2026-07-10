@@ -204,19 +204,19 @@ polygon(c(0, 0.5, 0.5), c(0, 0.25, 0), col="lightblue")
 text(0.35, 0.08, "Área =\n0.0625", font=2, cex=0.8)
 ```
 
-En este caso el valor de la base es: $\text{base} = 0.5 - 0 = 0.5$ y el de la altura: $h = \frac{1}{2} * 0.5 = 0.25$.
+En este caso el valor de la base es: $\text{base} = 0.5 - 0 = 0.5$ y el de la altura: $h = \frac{1}{2} \cdot 0.5 = 0.25$.
 
-$$P(X \le 0.5) = F(0.5) = \frac{0.5 * 0.25}{2} = 0.0625$$
+$$P(X \le 0.5) = F(0.5) = \frac{0.5 \cdot 0.25}{2} = 0.0625$$
 
-Para este caso: $\text{base} = (1 - 0) = 1$ y el de la altura: $h = \frac{1}{2} * 1 = 0.5$.
+Para este caso: $\text{base} = (1 - 0) = 1$ y el de la altura: $h = \frac{1}{2} \cdot 1 = 0.5$.
 
-$$P(X \le 1) = F(1) = \frac{1 * 0.5}{2} = 0.25$$
+$$P(X \le 1) = F(1) = \frac{1 \cdot 0.5}{2} = 0.25$$
 
-Como se puede ver de los cálculos de probabilidades anteriores $F(X \le x)$ siempre crece y se mantiene en 1 para $x \ge 2$, se tiene: $\text{base} = (2 - 0) = 2$ y la altura: $h = \frac{1}{2} * 2 = 1$.
+Como se puede ver de los cálculos de probabilidades anteriores $F(X \le x)$ siempre crece y se mantiene en 1 para $x \ge 2$, se tiene: $\text{base} = (2 - 0) = 2$ y la altura: $h = \frac{1}{2} \cdot 2 = 1$.
 
-$$F(2) = \frac{2 * 1}{2} = 1$$
+$$F(2) = \frac{2 \cdot 1}{2} = 1$$
 
-$$F(2.5) = P(X \le 2.5) = P(X \le 2) = \frac{2 * 1}{2} = 1$$
+$$F(2.5) = P(X \le 2.5) = P(X \le 2) = \frac{2 \cdot 1}{2} = 1$$
 
 Para $P(X \le 2.5)$ la probabilidad acumulada será 1, ya que contiene al espacio muestral.
 
@@ -267,9 +267,9 @@ text(0.65, 0.15, "Área = 0.25", font=2)
 
 Probabilidad de interés: $$P(0 \le X \le 1) = F(1) - F(0)$$
 
-$$F(1) = \frac{1 * 0.5}{2} = 0.25$$
+$$F(1) = \frac{1 \cdot 0.5}{2} = 0.25$$
 
-$$P(X \le 0) = F(0) = \frac{0 * 0}{2} = 0$$
+$$P(X \le 0) = F(0) = \frac{0 \cdot 0}{2} = 0$$
 
 La variable aleatoria $X$ sólo está definida entre 0 y 2, de modo que, en el caso $X \le 0$ el valor de la variable aleatoria es cero por la definición de la f.d.p.
 
@@ -279,7 +279,7 @@ La esperanza matemática y la varianza de variables aleatorias continuas se obti
 
 $$E[X] = \int_{S_x} x f(x) dx \quad (5)$$
 
-$$Var(X) = \int_{S_x} (x - E[X])^2 f(x) dx \quad (6)$$
+$$\text{Var}(X) = \int_{S_x} (x - E[X])^2 f(x) dx \quad (6)$$
 
 Donde $\int$ es el símbolo de una integral y $S_x$ se conoce con el soporte de la v.a $X$.
 
@@ -375,7 +375,7 @@ Donde: \* $a$ es el valor mínimo (límite inferior). \* $b$ es el valor máximo
 
 Para esta distribución continua, la esperanza matemática (media) y la varianza están dadas por las siguientes expresiones:
 
-$$E[Y] = \frac{a +b}{2}$$ $$Var(Y) = \frac{(b - a)^2}{12}$$
+$$E[Y] = \frac{a +b}{2}$$ $$\text{Var}(Y) = \frac{(b - a)^2}{12}$$
 
 ------------------------------------------------------------------------
 
@@ -416,7 +416,7 @@ ggplot(df_tiempo, aes(x = x, y = y)) +
 
 ¿Cuál es el tiempo promedio esperado de espera del estudiante? $$E[Y] = \frac{0 + 20}{2} = 10 \text{ minutos}$$
 
-¿Y la varianza de dicho tiempo? $$Var(Y) = \frac{(20 - 0)^2}{12} = \frac{400}{12} \approx 33.33 \text{ minutos}^2$$
+¿Y la varianza de dicho tiempo? $$\text{Var}(Y) = \frac{(20 - 0)^2}{12} = \frac{400}{12} \approx 33.33 \text{ minutos}^2$$
 
 La desviación estándar, que mide la dispersión, es $\sigma = \sqrt{33.33} \approx 5.77 \text{ minutos}$.
 
@@ -455,7 +455,7 @@ ggplot(df_tiempo, aes(x = x, y = y)) +
 ::: {.callout-note icon=false}
 ## Ejercicios propuestos
 
-1. El tiempo que tarda un cajero en atender a un cliente se distribuye uniformemente entre 2 y 8 minutos. Calcule $E[X]$, $Var(X)$ y la probabilidad de que un cliente sea atendido en menos de 4 minutos.
+1. El tiempo que tarda un cajero en atender a un cliente se distribuye uniformemente entre 2 y 8 minutos. Calcule $E[X]$, $\text{Var}(X)$ y la probabilidad de que un cliente sea atendido en menos de 4 minutos.
 2. Una variable aleatoria $Y$ tiene distribución uniforme en el intervalo $[10, 30]$. Calcule $P(15 \le Y \le 25)$ y la desviación estándar de $Y$.
 3. Explique, con sus propias palabras, por qué la función de densidad de una variable continua puede tomar valores mayores a 1, mientras que la función de probabilidad de una variable discreta nunca puede superar 1.
 :::
@@ -1132,7 +1132,7 @@ ggplot(df_expo, aes(x = x, y = fx, color = Lambda)) +
 La esperanza matemática (valor esperado) y la varianza de la variable aleatoria exponencial son:
 
 $$E[X] = \frac{1}{\lambda}$$
-$$Var(X) = \frac{1}{\lambda^2}$$
+$$\text{Var}(X) = \frac{1}{\lambda^2}$$
 
 La función de probabilidad acumulada (que nos da el área a la izquierda de un valor $x$) es:
 
@@ -1253,7 +1253,7 @@ Es exactamente la misma probabilidad calculada en el Ejemplo 1 al inicio del tur
 ::: {.callout-tip icon=false}
 ## Ejemplo: Tiempo de respuesta de una terminal
 
-El tiempo de respuesta $X$ (en segundos) de cierta terminal de computadora en línea sigue una distribución exponencial con tiempo esperado de respuesta de 5 segundos, es decir, $E(X) = 1/\lambda = 5$, por lo que $\lambda = 0.2$.
+El tiempo de respuesta $X$ (en segundos) de cierta terminal de computadora en línea sigue una distribución exponencial con tiempo esperado de respuesta de 5 segundos, es decir, $E[X] = 1/\lambda = 5$, por lo que $\lambda = 0.2$.
 
 **Preguntas:**
 
@@ -1357,6 +1357,51 @@ ggplot(df_gamma, aes(x = x, y = y, color = Distribución)) +
   scale_color_brewer(palette = "Set1")
 ```
 
+
+::: {.callout-tip icon=false}
+## Ejemplo: Tiempo de atención en un banco
+
+En una sucursal bancaria, el tiempo que tarda un cajero en atender a **un** cliente sigue una distribución $\text{Exp}(\lambda = 2)$ (en promedio, 2 clientes por minuto). Usted llega cuando hay **3 personas** en la fila delante de usted. Sea $X$ = tiempo total de espera (en minutos).
+
+**Identificación del modelo:**
+
+Como $X$ es la suma de 3 tiempos exponenciales independientes con la misma tasa $\lambda = 2$:
+$$X = X_1 + X_2 + X_3, \quad X_i \sim \text{Exp}(2) \implies X \sim \text{Gamma}(\alpha=3,\; \lambda=2)$$
+
+**a) Esperanza y varianza**
+
+$$E[X] = \frac{\alpha}{\lambda} = \frac{3}{2} = 1.5 \text{ minutos}$$
+
+$$\text{Var}(X) = \frac{\alpha}{\lambda^2} = \frac{3}{4} = 0.75 \quad \Rightarrow \quad \text{DE} = \sqrt{0.75} \approx 0.866 \text{ min}$$
+
+**b) Probabilidad de esperar más de 2 minutos**
+
+$$P(X > 2) = 1 - F(2) = 1 - \int_0^{2} \frac{2\,e^{-2x}(2x)^{2}}{\Gamma(3)}\,dx$$
+
+En R: `pgamma(2, shape=3, rate=2, lower.tail=FALSE)`
+
+```{r gamma-banco, message=FALSE}
+# P(X > 2) para Gamma(alpha=3, lambda=2)
+prob_mayor2 <- pgamma(2, shape = 3, rate = 2, lower.tail = FALSE)
+cat("P(X > 2 min) =", round(prob_mayor2, 4), "\n")
+
+# P(0.5 < X < 1.5): espera entre 30 seg y 1.5 min
+prob_intervalo <- pgamma(1.5, shape=3, rate=2) - pgamma(0.5, shape=3, rate=2)
+cat("P(0.5 < X < 1.5 min) =", round(prob_intervalo, 4), "\n")
+
+# Visualización
+x_vals <- seq(0, 4, length.out = 400)
+plot(x_vals, dgamma(x_vals, shape=3, rate=2), type="l", lwd=2, col="steelblue",
+     main="Gamma(3, 2) — Tiempo de espera (3 clientes)",
+     xlab="Tiempo (min)", ylab="f(x)")
+abline(v=1.5, lty=2, col="darkred")
+legend("topright", legend=c("f(x)", "Media = 1.5 min"), 
+       lty=c(1,2), col=c("steelblue","darkred"))
+```
+
+**Interpretación:** Hay un $`r round(pgamma(2, shape=3, rate=2, lower.tail=FALSE)*100, 1)`%$ de probabilidad de esperar más de 2 minutos.
+:::
+
 ::: {.callout-note icon=false}
 ## Ejercicios propuestos
 
@@ -1418,8 +1463,115 @@ ggplot(df_pareto, aes(x = x, y = y, color = Parámetros)) +
 ## Ejercicios propuestos
 
 1. Los reclamos de un seguro siguen una distribución Pareto con $\alpha = 3$ y $m = 1000$. Calcule $E[X]$ y la probabilidad de que un reclamo supere \$5000.
-2. Demuestre que $F(x) = 1 - (m/x)^{\alpha}$ es efectivamente una función de distribución (verificando que cumple las propiedades de fda).
+2. Demuestre que $F(x) = 1 - (m/x)^{\alpha}$ es efectivamente una función de distribución (verificando que cumple las propiedades de cdf).
 3. Compare la tasa de decaimiento de la cola de una $\text{Pareto}(2, 1)$ con una $\text{Exp}(1)$: grafique $P(X > x)$ para ambas.
+:::
+
+
+## Distribución Weibull {#sec-weibull}
+
+La distribución Weibull es una de las herramientas más versátiles en el análisis de confiabilidad y tiempo de falla. Su flexibilidad proviene de un parámetro de forma que le permite modelar tasas de falla crecientes, decrecientes o constantes.
+
+::: {.callout-note icon=false}
+## Definición: Distribución Weibull
+
+Una variable aleatoria $X \geq 0$ tiene distribución **Weibull** con parámetro de forma $k > 0$ y parámetro de escala $\lambda > 0$ si su función de densidad es:
+
+$$f(x) = \frac{k}{\lambda}\left(\frac{x}{\lambda}\right)^{k-1} \exp\!\left[-\left(\frac{x}{\lambda}\right)^k\right], \quad x \geq 0$$
+
+La función de distribución acumulada tiene forma cerrada:
+
+$$F(x) = 1 - \exp\!\left[-\left(\frac{x}{\lambda}\right)^k\right], \quad x \geq 0$$
+
+**Propiedades:**
+
+- $E[X] = \lambda\,\Gamma\!\left(1 + \tfrac{1}{k}\right)$
+- $\text{Var}(X) = \lambda^2\left[\Gamma\!\left(1+\tfrac{2}{k}\right) - \Gamma\!\left(1+\tfrac{1}{k}\right)^2\right]$
+- **Función de riesgo (tasa de falla):** $h(x) = \dfrac{f(x)}{1-F(x)} = \dfrac{k}{\lambda}\left(\dfrac{x}{\lambda}\right)^{k-1}$
+
+**Casos especiales según el parámetro de forma $k$:**
+
+| $k$ | Comportamiento de $h(x)$ | Distribución equivalente |
+|:---:|:------------------------:|:------------------------:|
+| $k < 1$ | Decreciente (fallas tempranas) | — |
+| $k = 1$ | Constante | $\text{Exp}(1/\lambda)$ |
+| $k = 2$ | Creciente lineal | Distribución de Rayleigh |
+| $k \approx 3.6$ | Casi simétrica | Aproxima a la Normal |
+| $k > 1$ | Creciente (desgaste) | — |
+:::
+
+```{r weibull-plot, fig.align='center', fig.width=10, fig.height=4, message=FALSE}
+library(ggplot2)
+
+x <- seq(0.001, 3, length.out = 500)
+
+# Distintos k con lambda = 1
+params <- list(
+  list(k=0.5, lam=1, lab="k=0.5, λ=1 (fallas tempranas)"),
+  list(k=1,   lam=1, lab="k=1, λ=1 (Exponencial)"),
+  list(k=2,   lam=1, lab="k=2, λ=1 (Rayleigh)"),
+  list(k=4,   lam=1, lab="k=4, λ=1 (desgaste)")
+)
+
+df_wb <- do.call(rbind, lapply(params, function(p) {
+  data.frame(x = x,
+             pdf = dweibull(x, shape=p$k, scale=p$lam),
+             hazard = dweibull(x,p$k,p$lam) / pweibull(x,p$k,p$lam,lower.tail=FALSE),
+             Parámetros = p$lab)
+}))
+
+p1 <- ggplot(df_wb, aes(x, pdf, color=Parámetros)) +
+  geom_line(linewidth=1.1) + theme_minimal() +
+  labs(title="pdf Weibull", x="x", y="f(x)") +
+  scale_color_brewer(palette="Set1") + ylim(0, 2.5)
+
+p2 <- ggplot(subset(df_wb, x > 0.05), aes(x, pmin(hazard,5), color=Parámetros)) +
+  geom_line(linewidth=1.1) + theme_minimal() +
+  labs(title="Función de riesgo h(x)", x="x", y="h(x)") +
+  scale_color_brewer(palette="Set1") + ylim(0, 5)
+
+gridExtra::grid.arrange(p1, p2, ncol=2)
+```
+
+::: {.callout-tip icon=false}
+## Ejemplo: Vida útil de una lámpara LED
+
+El fabricante de una lámpara LED afirma que su vida útil (en miles de horas) sigue una distribución $\text{Weibull}(k=2,\; \lambda=5)$.
+
+**a) Probabilidad de que la lámpara dure más de 4,000 horas ($x=4$)**
+
+$$P(X > 4) = 1 - F(4) = \exp\!\left[-\left(\frac{4}{5}\right)^2\right] = e^{-0.64} \approx 0.5273$$
+
+**b) Vida útil esperada**
+
+$$E[X] = 5\,\Gamma\!\left(1 + \frac{1}{2}\right) = 5\,\Gamma(1.5) = 5 \cdot \frac{\sqrt{\pi}}{2} \approx 5 \cdot 0.8862 = 4.431 \text{ mil horas}$$
+
+**c) Percentil 10% (vida garantizable para el 90% de las lámparas)**
+
+$$F(x_{0.10}) = 0.10 \implies 1 - e^{-(x/5)^2} = 0.10$$
+$$e^{-(x/5)^2} = 0.90 \implies \left(\frac{x}{5}\right)^2 = -\ln(0.90) \approx 0.1054$$
+$$x_{0.10} = 5\sqrt{0.1054} \approx 1.623 \text{ mil horas}$$
+
+```{r weibull-lampara, message=FALSE}
+k <- 2; lam <- 5
+
+cat("P(X > 4) =", round(pweibull(4, shape=k, scale=lam, lower.tail=FALSE), 4), "\n")
+cat("E[X] =", round(lam * gamma(1 + 1/k), 4), "mil horas\n")
+cat("Percentil 10% =", round(qweibull(0.10, shape=k, scale=lam), 4), "mil horas\n")
+cat("Mediana =", round(qweibull(0.50, shape=k, scale=lam), 4), "mil horas\n")
+```
+:::
+
+::: {.callout-note icon=false}
+## Ejercicios propuestos
+
+1. Los rodamientos de una máquina industrial tienen vida útil $\text{Weibull}(k=3,\; \lambda=2000)$ horas. Calcule la probabilidad de que un rodamiento falle antes de las 1500 horas y la vida útil media.
+
+2. Demuestre que cuando $k=1$, la distribución Weibull se reduce a una exponencial con tasa $1/\lambda$, y que la función de riesgo es constante.
+
+3. Una compañía de seguros modela el tiempo hasta el primer reclamo con una $\text{Weibull}(k=0.8,\; \lambda=3)$ años. ¿Qué implica $k < 1$ sobre la probabilidad de reclamos? Grafique $h(x)$.
+
+4. Sea $X \sim \text{Weibull}(k, \lambda)$. Demuestre que $Y = (X/\lambda)^k \sim \text{Exp}(1)$.
 :::
 
 ### Resumen: distribuciones continuas básicas
@@ -1442,7 +1594,7 @@ A diferencia de las variables discretas, una **variable aleatoria continua** pue
 Modela fenómenos donde todos los subintervalos de la misma longitud dentro de un rango $[a, b]$ tienen exactamente la misma probabilidad de ocurrir. Su f.d.p. forma un rectángulo. Se denota como $X \sim U(a, b)$.
 
 * **Función de densidad:** $$f(x) = \frac{1}{b - a} \quad \text{para } a \le x \le b$$
-* **Esperanza y Varianza:** $$E[X] = \frac{a+b}{2} \quad \text{y} \quad Var(X) = \frac{(b-a)^2}{12}$$
+* **Esperanza y Varianza:** $$E[X] = \frac{a+b}{2} \quad \text{y} \quad \text{Var}(X) = \frac{(b-a)^2}{12}$$
 * **Aplicación típica:** Tiempos de espera aleatorios con límites conocidos y equiprobables.
 
 ***
@@ -1518,7 +1670,7 @@ Calcular $F_{X,Y}(2,3) = P(X \leq 2,\; Y \leq 3)$: los pares que satisfacen la c
 
 $$F(2,3) = \frac{6}{16} = 0.375$$
 
-La tabla completa de la CDF conjunta:
+La tabla completa de la cdf conjunta:
 
 | $x \backslash y$ | 1 | 2 | 3 | 4 |
 |:-:|:-:|:-:|:-:|:-:|
@@ -1653,7 +1805,7 @@ $$F(x_1,\ldots,x_n) = \prod_{i=1}^n F_{X_i}(x_i)$$
 
 - **Independientes:** $f(x,y) = 96x^2 y^3$ en $[0,1/2]\times[0,1]$ — se factoriza como $f_X(x)\cdot f_Y(y)$.
 - **Dependientes:** $f(x,y) = 1.5(x^2+y^2)$ en $[0,1]^2$ — no se puede factorizar.
-- **Dependientes:** $F(x,y) = \frac{1}{2}(x^3 y + x y^3)$ en $[0,1]^2$ — la CDF conjunta no es producto de marginales.
+- **Dependientes:** $F(x,y) = \frac{1}{2}(x^3 y + x y^3)$ en $[0,1]^2$ — la cdf conjunta no es producto de marginales.
 
 **Interpretación discreta:** en una tabla $p(x_i, y_j)$, independencia significa que cada celda es el producto de su marginal de fila por su marginal de columna.
 :::

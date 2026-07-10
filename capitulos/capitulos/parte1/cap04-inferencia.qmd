@@ -233,9 +233,9 @@ Si $X_1, X_2, \dots, X_n$ representan una muestra aleatoria extraída de una pob
 
 **Esperanza matemática (Valor esperado):** $$E[\bar{X}] = \mu_{\bar{X}} = \mu \quad (1)$$ *(Esto demuestra que* $\bar{X}$ es un estimador insesgado: en promedio, acierta al parámetro).
 
-**Varianza del estimador:** $$Var(\bar{X}) = \sigma_{\bar{X}}^2 = \frac{\sigma^2}{n} \quad (2)$$ *(Esto demuestra que a mayor tamaño de muestra* $n$, menor es la varianza del estimador, haciendo nuestras estimaciones más precisas).
+**Varianza del estimador:** $$\text{Var}(\bar{X}) = \sigma_{\bar{X}}^2 = \frac{\sigma^2}{n} \quad (2)$$ *(Esto demuestra que a mayor tamaño de muestra* $n$, menor es la varianza del estimador, haciendo nuestras estimaciones más precisas).
 
-> *Nota: Cuando la muestra se realiza **sin reemplazo** desde una población finita de tamaño* $N$, la esperanza sigue siendo $\mu$, pero la varianza se ajusta multiplicándola por el factor de corrección por población finita: \> $$Var(\bar{X}) = \frac{\sigma^2}{n} \left(\frac{N-n}{N-1}\right) \quad (2.1)$$
+> *Nota: Cuando la muestra se realiza **sin reemplazo** desde una población finita de tamaño* $N$, la esperanza sigue siendo $\mu$, pero la varianza se ajusta multiplicándola por el factor de corrección por población finita: \> $$\text{Var}(\bar{X}) = \frac{\sigma^2}{n} \left(\frac{N-n}{N-1}\right) \quad (2.1)$$
 
 **La forma de la distribución de** $\bar{X}$
 
@@ -286,7 +286,7 @@ Si elevamos al cuadrado cada una de estas variables estandarizadas independiente
 
 Por su propia naturaleza de suma de cuadrados, el soporte (campo de variación) de una variable $\chi^2$ es estrictamente no negativo, de $0$ a $+\infty$. Se simboliza como $\chi^2_n$, donde $n$ representa los **grados de libertad** (el número de variables normales independientes que se están sumando).
 
-**Propiedades teóricas:** Para una variable $Y \sim \chi^2_n$: \* Esperanza: $E[Y] = n$ \* Varianza: $Var(Y) = 2n$
+**Propiedades teóricas:** Para una variable $Y \sim \chi^2_n$: \* Esperanza: $E[Y] = n$ \* Varianza: $\text{Var}(Y) = 2n$
 
 El parámetro único que define a esta distribución son sus grados de libertad $n$. En la figura siguiente se muestra cómo la forma fuertemente asimétrica a la derecha (sesgada) de la distribución $\chi^2$ va cambiando a medida que aumentan los grados de libertad.
 
@@ -603,7 +603,7 @@ Sea $X_1, X_2, \dots, X_n$ una muestra aleatoria extraída de una distribución 
 
 **Esperanza matemática:** $$E[\hat{P}] = \mu_{\hat{P}} = P \quad (18)$$ *(El estimador de la proporción es insesgado).*
 
-**Varianza del estimador:** $$Var(\hat{P}) = \sigma_{\hat{P}}^2 = \frac{P \cdot Q}{n} \quad (19)$$ Donde $Q = 1 - P$.
+**Varianza del estimador:** $$\text{Var}(\hat{P}) = \sigma_{\hat{P}}^2 = \frac{P \cdot Q}{n} \quad (19)$$ Donde $Q = 1 - P$.
 
 **Ejemplo 1**
 
@@ -633,7 +633,7 @@ Ahora construyamos la distribución muestral del estimador $\hat{P}$ tomando tod
 
 Con base en la Tabla 8, es evidente que $\hat{P}$ es una variable aleatoria. Podemos comprobar la Ecuación (18) calculando la esperanza a partir de esta distribución muestral empírica: $$E[\hat{P}] = \sum \left( \hat{p}_i \cdot P(\hat{P} = \hat{p}_i) \right) = \left(0 \cdot \frac{9}{16}\right) + \left(0.5 \cdot \frac{6}{16}\right) + \left(1 \cdot \frac{1}{16}\right) = \frac{3}{16} + \frac{1}{16} = \frac{4}{16} = 0.25$$ Vemos que $E[\hat{P}] = P = 0.25$.
 
-Comprobando la Ecuación (19) para la varianza: $$Var(\hat{P}) = \frac{P(1-P)}{n} = \frac{0.25(0.75)}{2} = \frac{0.1875}{2} = 0.09375$$
+Comprobando la Ecuación (19) para la varianza: $$\text{Var}(\hat{P}) = \frac{P(1-P)}{n} = \frac{0.25(0.75)}{2} = \frac{0.1875}{2} = 0.09375$$
 
 ------------------------------------------------------------------------
 
@@ -781,7 +781,7 @@ $$f(x) = \frac{1}{\Gamma(k/2)}\left(\frac{1}{2}\right)^{k/2} x^{k/2-1} e^{-x/2},
 
 **Resultado clave:** si $Z_1, \ldots, Z_n$ son normales estándar independientes, entonces $\sum Z_i^2 \sim \chi^2_n$.
 
-$$E(X) = k, \qquad Var(X) = 2k$$
+$$E[X] = k, \qquad \text{Var}(X) = 2k$$
 
 ::: {.callout-note icon=false}
 ### Observación
@@ -909,7 +909,7 @@ Las **estadísticas de orden** desempeñan en la inferencia un papel análogo al
 ::: {.callout-tip icon=false}
 ## Definición: estadísticas de orden
 
-Sea $X_1, \ldots, X_n$ una muestra aleatoria de tamaño $n$ de una distribución con CDF $F$. Las **estadísticas de orden** $Y_1 \leq Y_2 \leq \cdots \leq Y_n$ son las observaciones ordenadas de menor a mayor:
+Sea $X_1, \ldots, X_n$ una muestra aleatoria de tamaño $n$ de una distribución con cdf $F$. Las **estadísticas de orden** $Y_1 \leq Y_2 \leq \cdots \leq Y_n$ son las observaciones ordenadas de menor a mayor:
 
 $$Y_1 = \min(X_1,\ldots,X_n), \quad Y_n = \max(X_1,\ldots,X_n)$$
 
@@ -972,9 +972,9 @@ ggplot(df_os, aes(x=valor, color=stat)) +
 ::: {.callout-note icon=false}
 ## Ejercicios propuestos
 
-1. Sea $X_1,\ldots,X_5 \sim U(0,1)$. Calcula $P(Y_1 > 0.3)$ y $P(Y_5 \leq 0.8)$ usando la CDF de las estadísticas de orden.
+1. Sea $X_1,\ldots,X_5 \sim U(0,1)$. Calcula $P(Y_1 > 0.3)$ y $P(Y_5 \leq 0.8)$ usando la cdf de las estadísticas de orden.
 2. Para $X_i \sim \text{Exp}(\lambda)$, muestra que $Y_1 \sim \text{Exp}(n\lambda)$ usando el corolario del mínimo.
-3. Escribe una simulación en R para verificar numéricamente la CDF de $Y_k$ para $k=3$, $n=7$ y $X_i \sim U(0,1)$.
+3. Escribe una simulación en R para verificar numéricamente la cdf de $Y_k$ para $k=3$, $n=7$ y $X_i \sim U(0,1)$.
 :::
 
 
@@ -1106,7 +1106,7 @@ ggplot(df_ll, aes(x=theta, y=ll)) +
 | $N(\mu,\sigma^2)$ | $\mu$ | $\hat{\mu} = \bar{X}$ |
 | $N(\mu,\sigma^2)$ | $\sigma^2$ | $\hat{\sigma}^2 = \frac{1}{n}\sum(X_i-\bar{X})^2$ |
 | $\text{Exp}(\lambda)$ | $\lambda$ | $\hat{\lambda} = 1/\bar{X}$ |
-| $\text{Bern}(p)$ | $p$ | $\hat{p} = \bar{X}$ |
+| $\text{Ber}(p)$ | $p$ | $\hat{p} = \bar{X}$ |
 | $\text{Poisson}(\lambda)$ | $\lambda$ | $\hat{\lambda} = \bar{X}$ |
 
 ## Propiedades de los estimadores {#sec-propiedades-estimadores}
@@ -1273,7 +1273,7 @@ Un estimador insesgado que **alcanza** la CICR es automáticamente EIVUM.
 ::: {.callout-tip icon=false}
 ## Ejemplo: CICR para Bernoulli($\theta$)
 
-Sea $X \sim \text{Bern}(\theta)$. La log-verosimilitud es
+Sea $X \sim \text{Ber}(\theta)$. La log-verosimilitud es
 $\ln f(X;\theta) = X\ln\theta + (1-X)\ln(1-\theta)$, luego:
 $$\frac{\partial}{\partial\theta}\ln f(X;\theta) =
   \frac{X}{\theta} - \frac{1-X}{1-\theta}.$$
@@ -1329,7 +1329,7 @@ información adicional sobre $\theta$.
 ::: {.callout-tip icon=false}
 ## Ejemplo: Suficiencia de $T=\sum X_i$ para Bernoulli
 
-Sea $X_1,\ldots,X_n$ muestra de $\text{Bern}(\theta)$, $T=\sum X_i$.
+Sea $X_1,\ldots,X_n$ muestra de $\text{Ber}(\theta)$, $T=\sum X_i$.
 Como $T\sim\text{Bin}(n,\theta)$:
 $$P(\mathbf{X}=\mathbf{x}\mid T=t)
   = \frac{\prod_{i=1}^n \theta^{x_i}(1-\theta)^{1-x_i}\,
@@ -1348,7 +1348,7 @@ donde $g$ depende de los datos solo a través de $T$, y $h$ no depende
 de $\theta$.
 :::
 
-**Ejemplo:** Para $\text{Bern}(\theta)$:
+**Ejemplo:** Para $\text{Ber}(\theta)$:
 $$f(\mathbf{x};\theta) = \theta^{\sum x_i}(1-\theta)^{n-\sum x_i}
   \prod_{i=1}^n I_{\{0,1\}}(x_i).$$
 Con $g(t,\theta)=\theta^t(1-\theta)^{n-t}$ y
@@ -1381,9 +1381,178 @@ $$\text{Var}(\hat{\theta}) = \underbrace{\text{Var}(E[\hat{\theta}\mid T])}_{=\,
 :::
 
 ::: {.callout-note icon=false}
+
+## Pruebas de bondad de ajuste {#sec-bondad-ajuste}
+
+Las pruebas de bondad de ajuste responden la pregunta: **¿los datos observados son compatibles con una distribución teórica propuesta?** Son el puente entre la exploración de datos y la elección formal del modelo probabilístico.
+
+### Prueba chi-cuadrada de Pearson
+
+::: {.callout-note icon=false}
+## Definición: Prueba $\chi^2$ de bondad de ajuste
+
+Sea $X_1, \ldots, X_n$ una muestra. Se divide el soporte de $X$ en $k$ clases (intervalos o categorías). Sea $O_i$ la frecuencia **observada** en la clase $i$ y $E_i = n \cdot p_i$ la frecuencia **esperada** bajo la hipótesis $H_0$.
+
+El estadístico de prueba es:
+
+$$\chi^2 = \sum_{i=1}^{k} \frac{(O_i - E_i)^2}{E_i}$$
+
+Bajo $H_0$, este estadístico sigue aproximadamente una distribución $\chi^2$ con $\nu = k - 1 - p$ grados de libertad, donde $p$ es el número de parámetros estimados de los datos.
+
+**Regla de decisión:** Se rechaza $H_0$ si $\chi^2 > \chi^2_{\alpha, \nu}$.
+
+**Requisito:** $E_i \geq 5$ en cada clase (combinar clases si es necesario).
+:::
+
+::: {.callout-tip icon=false}
+## Ejemplo: ¿Los lanzamientos de un dado son uniformes?
+
+Se lanza un dado 120 veces y se registran los resultados:
+
+| Cara | 1 | 2 | 3 | 4 | 5 | 6 |
+|:----:|:-:|:-:|:-:|:-:|:-:|:-:|
+| $O_i$ | 25 | 17 | 15 | 23 | 24 | 16 |
+
+**$H_0$:** El dado es justo ($p_i = 1/6$ para cada cara).
+
+Bajo $H_0$: $E_i = 120/6 = 20$ para toda $i$.
+
+$$\chi^2 = \frac{(25-20)^2}{20} + \frac{(17-20)^2}{20} + \frac{(15-20)^2}{20} + \frac{(23-20)^2}{20} + \frac{(24-20)^2}{20} + \frac{(16-20)^2}{20}$$
+
+$$= \frac{25 + 9 + 25 + 9 + 16 + 16}{20} = \frac{100}{20} = 5.0$$
+
+Con $\nu = 6 - 1 = 5$ grados de libertad y $\alpha = 0.05$: $\chi^2_{0.05, 5} = 11.07$.
+
+Como $5.0 < 11.07$, **no se rechaza $H_0$**. No hay evidencia de que el dado sea cargado.
+
+```{r chi2-dado, message=FALSE}
+observados <- c(25, 17, 15, 23, 24, 16)
+resultado  <- chisq.test(observados)   # H0: distribución uniforme
+print(resultado)
+cat("Valor crítico chi2(0.05, 5) =", round(qchisq(0.95, df=5), 4), "\n")
+```
+:::
+
+::: {.callout-tip icon=false}
+## Ejemplo: ¿Los tiempos de servicio siguen una Normal?
+
+Un banco registra los tiempos de atención (en minutos) de $n=80$ clientes. Se agrupa en clases:
+
+| Clase | $[0,2)$ | $[2,4)$ | $[4,6)$ | $[6,8)$ | $[8,\infty)$ |
+|:-----:|:-------:|:-------:|:-------:|:-------:|:------------:|
+| $O_i$ | 8 | 22 | 30 | 15 | 5 |
+
+Se estima $\hat{\mu} = 4.8$ min y $\hat{\sigma} = 1.9$ min de los datos ($p=2$ parámetros).
+
+```{r chi2-normal, message=FALSE}
+# Datos resumen
+obs <- c(8, 22, 30, 15, 5)
+n   <- sum(obs)
+mu_hat  <- 4.8
+sig_hat <- 1.9
+
+# Probabilidades teóricas bajo N(4.8, 1.9)
+limites <- c(-Inf, 2, 4, 6, 8, Inf)
+probs   <- diff(pnorm(limites, mean=mu_hat, sd=sig_hat))
+esp     <- n * probs
+
+cat("Frecuencias esperadas:\n")
+print(round(esp, 2))
+
+chi2_obs <- sum((obs - esp)^2 / esp)
+gl       <- length(obs) - 1 - 2   # k - 1 - p parámetros estimados
+p_valor  <- pchisq(chi2_obs, df=gl, lower.tail=FALSE)
+
+cat("\nEstadístico chi2 =", round(chi2_obs, 4),
+    "\ngl =", gl,
+    "\np-valor =", round(p_valor, 4), "\n")
+```
+:::
+
+---
+
+### Prueba de Kolmogorov-Smirnov
+
+::: {.callout-note icon=false}
+## Definición: Prueba KS
+
+La prueba de **Kolmogorov-Smirnov** compara la función de distribución empírica $F_n(x)$ con la cdf teórica $F_0(x)$ propuesta en $H_0$.
+
+$$F_n(x) = \frac{1}{n}\sum_{i=1}^{n}\mathbf{1}\{X_i \leq x\}$$
+
+El estadístico de prueba mide la máxima discrepancia:
+
+$$D_n = \sup_{x \in \mathbb{R}} |F_n(x) - F_0(x)|$$
+
+Se rechaza $H_0$ si $D_n > d_{\alpha,n}$ (valor crítico de la tabla KS o p-valor de `ks.test`).
+
+**Ventajas sobre $\chi^2$:** No requiere agrupar los datos en clases y es exacta para distribuciones continuas con parámetros conocidos.
+
+**Limitación:** Si se estiman parámetros de los datos, el p-valor de `ks.test` es conservador (usar la prueba de Lilliefors para la Normal).
+:::
+
+::: {.callout-tip icon=false}
+## Ejemplo: ¿Los tiempos entre llegadas son Exponenciales?
+
+Se registran 50 tiempos entre llegadas a una tienda (en minutos). Se propone $H_0: X \sim \text{Exp}(\lambda)$.
+
+```{r ks-exponencial, message=FALSE}
+set.seed(42)
+# Simulamos datos (en aplicación real, estos serían tus datos)
+datos <- rexp(50, rate = 1/3)   # tiempos con media de 3 min
+
+# Estimamos lambda por MV
+lambda_hat <- 1 / mean(datos)
+cat("Lambda estimado:", round(lambda_hat, 4), "\n")
+cat("Media estimada:", round(mean(datos), 4), "min\n\n")
+
+# Prueba KS contra Exp(lambda_hat)
+# Nota: con parámetros estimados el p-valor es conservador
+resultado_ks <- ks.test(datos, "pexp", rate = lambda_hat)
+print(resultado_ks)
+
+# Gráfica: F_n(x) vs F_0(x)
+x_ord <- sort(datos)
+Fn    <- (1:length(datos)) / length(datos)
+F0    <- pexp(x_ord, rate = lambda_hat)
+
+plot(x_ord, Fn, type="s", col="steelblue", lwd=2,
+     main="KS: F empírica vs F teórica Exp(λ̂)",
+     xlab="Tiempo (min)", ylab="Probabilidad acumulada")
+lines(x_ord, F0, col="darkred", lwd=2, lty=2)
+legend("bottomright", c("F_n(x) empírica", "F_0(x) = Exp(λ̂)"),
+       col=c("steelblue","darkred"), lty=c(1,2), lwd=2)
+```
+:::
+
+::: {.callout-note icon=false}
+## Comparación: ¿cuándo usar cada prueba?
+
+| Criterio | $\chi^2$ de Pearson | Kolmogorov-Smirnov |
+|:---------|:-------------------:|:------------------:|
+| Tipo de datos | Discretos o continuos agrupados | Continuos (sin agrupar) |
+| Tamaño muestral mínimo | $n \geq 50$, $E_i \geq 5$ | $n \geq 25$ |
+| Parámetros estimados | Descuenta $p$ gl fácilmente | P-valor conservador |
+| Sensibilidad | A diferencias en colas | A diferencias globales |
+| Uso típico | Distribuciones discretas, normalidad con clases | Exponencial, Uniforme, continuas en general |
+:::
+
+::: {.callout-note icon=false}
 ## Ejercicios propuestos
 
-1. Sea $X_1,\ldots,X_{25}$ muestra aleatoria de $\text{Bern}(p)$.
+1. En una empresa se registran el número de llamadas de soporte por día durante 100 días. Los resultados son: 0 llamadas (30 días), 1 llamada (35 días), 2 llamadas (20 días), 3 llamadas (10 días), 4 o más (5 días). Pruebe con $\alpha=0.05$ si los datos siguen una distribución $\text{Poisson}(\lambda)$. Estime $\lambda$ de los datos.
+
+2. Un ingeniero mide el grosor de 60 láminas de acero. Calcule la media y desviación estándar muestral, luego aplique la prueba $\chi^2$ con 5 clases para determinar si los datos provienen de una distribución Normal.
+
+3. Genere en R 100 observaciones de una $\text{Gamma}(2, 1)$ y aplique la prueba KS para evaluar si los datos provienen de: (a) $\text{Exp}(0.5)$ y (b) $\text{Gamma}(2, 1)$. Compare los p-valores.
+
+4. ¿Por qué la prueba KS pierde validez cuando los parámetros de $F_0$ se estiman de los mismos datos? Investigue la prueba de Lilliefors como alternativa para normalidad.
+:::
+
+
+## Ejercicios propuestos
+
+1. Sea $X_1,\ldots,X_{25}$ muestra aleatoria de $\text{Ber}(p)$.
    Calcule $E[S/N]$ y su error estándar, donde $S=\sum X_i$.
 2. Demuestre que $S_1^2 = \frac{1}{n-1}\sum(X_i-\bar{X})^2$ es
    consistente para $\sigma^2$.
