@@ -58,6 +58,9 @@ jobs:
       - name: Renderizar libro (HTML)
         run: quarto render --to html
 
+      - name: Ver que hay en la carpeta _book (Diagnostico)
+        run: ls -la _book
+
       - name: Subir artefacto para GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
