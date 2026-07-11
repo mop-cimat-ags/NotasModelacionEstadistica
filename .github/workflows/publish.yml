@@ -56,7 +56,7 @@ jobs:
         run: R -e "install.packages('libreria', repos=NULL, type='source')"
 
       - name: Renderizar libro (HTML)
-        run: quarto render
+        run: quarto render --to html
 
       - name: Subir artefacto para GitHub Pages
         uses: actions/upload-pages-artifact@v3
