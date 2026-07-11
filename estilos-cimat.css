@@ -56,9 +56,6 @@ div.definition {
 div.definition .theorem-title {
   color: #922B21;
 }
-div.definition .theorem-title::before {
-  content: "Definición ";
-}
 
 /* ── EJEMPLOS — azul ─────────────────────────────────── */
 div.example {
@@ -68,9 +65,6 @@ div.example {
 div.example .theorem-title {
   color: #1A5276;
 }
-div.example .theorem-title::before {
-  content: "Ejemplo ";
-}
 
 /* ── EJERCICIOS — verde ──────────────────────────────── */
 div.exercise {
@@ -79,9 +73,6 @@ div.exercise {
 }
 div.exercise .theorem-title {
   color: #1E8449;
-}
-div.exercise .theorem-title::before {
-  content: "Ejercicio ";
 }
 
 /* Clase legacy .definicion (retrocompatibilidad) */
