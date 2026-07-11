@@ -65,8 +65,8 @@ $$P(Y=y)=0 \text{ para todo valor específico de } y$$
 
 ### Definición formal — VA continua y función de densidad
 
-::: {.callout-tip icon=false}
-## Definición — Variable aleatoria continua
+::: {#def-cap03-variable-aleatoria-continua}
+## Variable aleatoria continua
 Una v.a. $X$ es **continua** si existe una función $f(x) \geq 0$, definida para todo $x \in (-\infty, \infty)$, tal que para cualquier conjunto $B \subseteq \mathbb{R}$:
 $$P(X \in B) = \int_{B} f(x)\, dx$$
 A $f(x)$ se le llama **función de densidad de probabilidad (pdf)**. En particular:
@@ -468,7 +468,7 @@ ggplot(df_tiempo, aes(x = x, y = y)) +
   theme(plot.title = element_text(face = "bold", hjust = 0.5))
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap03-propuestos}
 ## Ejercicios propuestos
 
 1. El tiempo que tarda un cajero en atender a un cliente se distribuye uniformemente entre 2 y 8 minutos. Calcule $E[X]$, $\text{Var}(X)$ y la probabilidad de que un cliente sea atendido en menos de 4 minutos.
@@ -1024,8 +1024,8 @@ ggplot(df_z, aes(x = z, y = fz)) +
 
 ### Ejemplos adicionales: Distribución Normal
 
-::: {.callout-tip icon=false}
-## Ejemplo: Control de calidad — tornillos
+::: {#exm-cap03-control-de-calidad-tornillos}
+## Control de calidad — tornillos
 
 La longitud $X$ de ciertos tornillos (en mm) sigue una distribución $N(\mu=30, \sigma^2=0.04)$. Se aceptan como válidos aquellos con $29.5 < X < 30.4$.
 
@@ -1079,8 +1079,8 @@ legend("topright", legend = c("Región válida", "Defectuosos"),
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: Especificación de longitud máxima de clavos
+::: {#exm-cap03-especificacion-de-longitud-maxima-de-clavos}
+## Especificación de longitud máxima de clavos
 
 La longitud $X$ de clavos fabricados por una máquina sigue $N(\mu=10\text{ mm},\, \sigma^2=4)$. Se desea determinar la longitud máxima $x^*$ tal que el 90% de los clavos cumpla con la especificación.
 
@@ -1105,7 +1105,7 @@ La especificación de longitud máxima debe ser $x^* \approx 12.56$ mm para que 
 
 :::
 
-::: {.callout-note icon=false}
+::: {#exr-cap03-propuestos-2}
 ## Ejercicios propuestos
 
 1. El tiempo de reacción a un estímulo se distribuye $N(0.8, 0.1^2)$ segundos. Calcule la probabilidad de que el tiempo de reacción sea mayor a 1 segundo.
@@ -1286,8 +1286,8 @@ Es exactamente la misma probabilidad calculada en el Ejemplo 1 al inicio del tur
 
 ### Ejemplo adicional: Distribución Exponencial
 
-::: {.callout-tip icon=false}
-## Ejemplo: Tiempo de respuesta de una terminal
+::: {#exm-cap03-tiempo-de-respuesta-de-una-terminal}
+## Tiempo de respuesta de una terminal
 
 El tiempo de respuesta $X$ (en segundos) de cierta terminal de computadora en línea sigue una distribución exponencial con tiempo esperado de respuesta de 5 segundos, es decir, $E[X] = 1/\lambda = 5$, por lo que $\lambda = 0.2$.
 
@@ -1331,7 +1331,7 @@ El resultado muestra que hay un 86.5% de probabilidad de que la terminal respond
 
 :::
 
-::: {.callout-note icon=false}
+::: {#exr-cap03-propuestos-3}
 ## Ejercicios propuestos
 
 1. El tiempo entre llegadas de clientes a una caja registradora sigue una distribución exponencial con media de 5 minutos. Calcule la probabilidad de que transcurran más de 8 minutos entre dos clientes consecutivos.
@@ -1355,8 +1355,8 @@ El resultado muestra que hay un 86.5% de probabilidad de que la terminal respond
 
 La distribución Gamma generaliza la distribución exponencial y es ampliamente utilizada para modelar tiempos de espera acumulados y fenómenos con asimetría positiva.
 
-::: {.callout-note icon=false}
-## Definición: Distribución Gamma
+::: {#def-cap03-distribucion-gamma}
+## Distribución Gamma
 
 Una variable aleatoria continua $X$ tiene **distribución Gamma** con parámetros $\alpha > 0$ (forma) y $\lambda > 0$ (tasa) si su función de densidad es:
 $$f(x) = \frac{\lambda\, e^{-\lambda x}(\lambda x)^{\alpha-1}}{\Gamma(\alpha)}, \quad x \geq 0,$$
@@ -1400,8 +1400,8 @@ ggplot(df_gamma, aes(x = x, y = y, color = Distribución)) +
 ```
 
 
-::: {.callout-tip icon=false}
-## Ejemplo: Tiempo de atención en un banco
+::: {#exm-cap03-tiempo-de-atencion-en-un-banco}
+## Tiempo de atención en un banco
 
 En una sucursal bancaria, el tiempo que tarda un cajero en atender a **un** cliente sigue una distribución $\text{Exp}(\lambda = 2)$ (en promedio, 2 clientes por minuto). Usted llega cuando hay **3 personas** en la fila delante de usted. Sea $X$ = tiempo total de espera (en minutos).
 
@@ -1445,7 +1445,7 @@ legend("topright", legend=c("f(x)", "Media = 1.5 min"),
 
 :::
 
-::: {.callout-note icon=false}
+::: {#exr-cap03-propuestos-4}
 ## Ejercicios propuestos
 
 1. El tiempo de vida (en años) de cierto tipo de batería sigue una distribución $\text{Gamma}(3, 0.5)$. Calcule la probabilidad de que la batería dure más de 8 años.
@@ -1469,8 +1469,8 @@ legend("topright", legend=c("f(x)", "Media = 1.5 min"),
 
 La distribución Pareto surge del estudio de distribuciones de ingresos: se observó que los ingresos que superaban un umbral $m$ se aproximaban mediante $C/x^{\alpha}$. Este comportamiento de **cola pesada** también aparece en el tamaño de ciudades, reclamos de seguros y tamaño de empresas.
 
-::: {.callout-note icon=false}
-## Definición: Distribución Pareto
+::: {#def-cap03-distribucion-pareto}
+## Distribución Pareto
 
 Una variable aleatoria $X$ tiene **distribución Pareto** con parámetros $\alpha > 0$ (índice de cola) y $m > 0$ (mínimo) si su función de densidad es:
 $$f(x) = \frac{\alpha\, m^{\alpha}}{x^{\alpha+1}}, \quad x > m.$$
@@ -1507,7 +1507,7 @@ ggplot(df_pareto, aes(x = x, y = y, color = Parámetros)) +
   scale_color_brewer(palette = "Dark2")
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap03-propuestos-5}
 ## Ejercicios propuestos
 
 1. Los reclamos de un seguro siguen una distribución Pareto con $\alpha = 3$ y $m = 1000$. Calcule $E[X]$ y la probabilidad de que un reclamo supere \$5000.
@@ -1521,8 +1521,8 @@ ggplot(df_pareto, aes(x = x, y = y, color = Parámetros)) +
 
 La distribución Weibull es una de las herramientas más versátiles en el análisis de confiabilidad y tiempo de falla. Su flexibilidad proviene de un parámetro de forma que le permite modelar tasas de falla crecientes, decrecientes o constantes.
 
-::: {.callout-note icon=false}
-## Definición: Distribución Weibull
+::: {#def-cap03-distribucion-weibull}
+## Distribución Weibull
 
 Una variable aleatoria $X \geq 0$ tiene distribución **Weibull** con parámetro de forma $k > 0$ y parámetro de escala $\lambda > 0$ si su función de densidad es:
 
@@ -1583,8 +1583,8 @@ p2 <- ggplot(subset(df_wb, x > 0.05), aes(x, pmin(hazard,5), color=Parámetros))
 gridExtra::grid.arrange(p1, p2, ncol=2)
 ```
 
-::: {.callout-tip icon=false}
-## Ejemplo: Vida útil de una lámpara LED
+::: {#exm-cap03-vida-util-de-una-lampara-led}
+## Vida útil de una lámpara LED
 
 El fabricante de una lámpara LED afirma que su vida útil (en miles de horas) sigue una distribución $\text{Weibull}(k=2,\; \lambda=5)$.
 
@@ -1613,7 +1613,7 @@ cat("Mediana =", round(qweibull(0.50, shape=k, scale=lam), 4), "mil horas\n")
 
 :::
 
-::: {.callout-note icon=false}
+::: {#exr-cap03-propuestos-6}
 ## Ejercicios propuestos
 
 1. Los rodamientos de una máquina industrial tienen vida útil $\text{Weibull}(k=3,\; \lambda=2000)$ horas. Calcule la probabilidad de que un rodamiento falle antes de las 1500 horas y la vida útil media.
@@ -1696,8 +1696,8 @@ Cuando se estudian **dos o más variables aleatorias simultáneamente**, necesit
 
 ### Función de distribución conjunta
 
-::: {.callout-tip icon=false}
-## Definición: CDF conjunta
+::: {#def-cap03-cdf-conjunta}
+## CDF conjunta
 
 Sean $X$ e $Y$ dos variables aleatorias. La **función de distribución acumulada conjunta** se define como:
 
@@ -1715,8 +1715,8 @@ $$F_X(x) = F_{X,Y}(x, +\infty), \qquad F_Y(y) = F_{X,Y}(+\infty, y)$$
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: dos tetraedros (Magín Zúñiga)
+::: {#exm-cap03-dos-tetraedros-magin-zuniga}
+## dos tetraedros (Magín Zúñiga)
 
 Se lanzan dos tetraedros de cuatro caras. Sea $X$ la cara invertida del primer tetraedro e $Y$ el **mayor** de los dos valores. Los 16 resultados son equiprobables ($P = 1/16$ cada uno).
 
@@ -1737,8 +1737,8 @@ La tabla completa de la cdf conjunta:
 
 ### Función de masa de probabilidad conjunta (caso discreto)
 
-::: {.callout-tip icon=false}
-## Definición: PMF conjunta discreta
+::: {#def-cap03-pmf-conjunta-discreta}
+## PMF conjunta discreta
 
 Si $X$ e $Y$ son discretas con valores $\{x_1,\ldots,x_n\}$ y $\{y_1,\ldots,y_m\}$, la **función masa de probabilidad conjunta** es:
 
@@ -1755,8 +1755,8 @@ $$p_X(x) = \sum_j p(x, y_j), \qquad p_Y(y) = \sum_i p(x_i, y)$$
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: dos dados (Magín Zúñiga)
+::: {#exm-cap03-dos-dados-magin-zuniga}
+## dos dados (Magín Zúñiga)
 
 Sea $X$ el valor del primer dado e $Y$ el del segundo. La pmf conjunta es $p(i,j) = 1/36$ para $i,j \in \{1,\ldots,6\}$.
 
@@ -1785,8 +1785,8 @@ for(i in seq_along(S_vals))
 
 ### Función de densidad de probabilidad conjunta (caso continuo)
 
-::: {.callout-tip icon=false}
-## Definición: PDF conjunta continua
+::: {#def-cap03-pdf-conjunta-continua}
+## PDF conjunta continua
 
 Si $X$ e $Y$ son continuas, la **función de densidad de probabilidad conjunta** $f(x,y)$ satisface:
 
@@ -1803,8 +1803,8 @@ $$f_X(x) = \int_{-\infty}^{\infty} f(x,y)\,dy, \qquad f_Y(y) = \int_{-\infty}^{\
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: marginales continuas (Magín Zúñiga)
+::: {#exm-cap03-marginales-continuas-magin-zuniga}
+## marginales continuas (Magín Zúñiga)
 
 Sea $(X,Y)$ con densidad conjunta $f(x,y) = \frac{8}{3}x^3 y$ en $[0,1]\times[1,2]$.
 
@@ -1825,8 +1825,8 @@ cat("f_Y(1.5) = (2/3)*1.5 =", 2/3*1.5, "\n")
 
 :::
 
-::: {.callout-note icon=false}
-## Ejercicio: marginales continuas
+::: {#exr-cap03-marginales-continuas}
+## marginales continuas
 
 Sea $(X,Y)$ con densidad conjunta $f(x,y) = \frac{3}{2}(x^2 + y^2)$ en $[0,1]\times[0,1]$.
 
@@ -1843,8 +1843,8 @@ $$P(X < 0.5) = \int_0^{0.5}\left(\frac{3}{2}x^2 + \frac{1}{2}\right)dx = \frac{5
 
 ### Independencia de variables aleatorias
 
-::: {.callout-tip icon=false}
-## Definición: independencia
+::: {#def-cap03-independencia}
+## independencia
 
 Las variables aleatorias $X$ e $Y$ son **independientes** si y solo si:
 
@@ -1861,8 +1861,8 @@ $$F(x_1,\ldots,x_n) = \prod_{i=1}^n F_{X_i}(x_i)$$
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplos de independencia/dependencia (Magín Zúñiga)
+::: {#exm-cap03-s-de-independencia-dependencia-magin-zuniga}
+## s de independencia/dependencia (Magín Zúñiga)
 
 - **Independientes:** $f(x,y) = 96x^2 y^3$ en $[0,1/2]\times[0,1]$ — se factoriza como $f_X(x)\cdot f_Y(y)$.
 - **Dependientes:** $f(x,y) = 1.5(x^2+y^2)$ en $[0,1]^2$ — no se puede factorizar.
@@ -1920,8 +1920,8 @@ La idea se extiende naturalmente a dos variables. Sean $X$ e $Y$ con pmf/pdf con
 - **Caso discreto:** $E[g(X,Y)] = \displaystyle\sum_i\sum_j g(x_i,y_j)\,p(x_i,y_j)$.
 - **Caso continuo:** $E[g(X,Y)] = \displaystyle\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} g(x,y)\,f(x,y)\,dy\,dx$.
 
-::: {.callout-tip icon=false}
-## Ejemplo: función de ganancia en dados (Magín Zúñiga)
+::: {#exm-cap03-funcion-de-ganancia-en-dados-magin-zuniga}
+## función de ganancia en dados (Magín Zúñiga)
 
 Sea $X$ la suma de puntos al lanzar dos dados y $Y = X^2 - 6X + 1$ la función de ganancia.
 
@@ -1976,8 +1976,8 @@ Aunque la media proporciona el "centro" de la distribución, no es
 suficiente para caracterizarla. La **varianza** mide cuánto se dispersa
 la probabilidad alrededor de la media.
 
-::: {.callout-note icon=false}
-## Definición: Varianza
+::: {#def-cap03-varianza}
+## Varianza
 
 Si $X$ es una variable aleatoria con $E[X] = \mu$, entonces:
 $$\text{Var}(X) = E[(X-\mu)^2].$$
@@ -2065,8 +2065,8 @@ si estas se "mueven juntas" o de manera independiente.
 
 ### Covarianza
 
-::: {.callout-note icon=false}
-## Definición: Covarianza
+::: {#def-cap03-covarianza}
+## Covarianza
 
 Sean $X$ y $Y$ dos variables aleatorias. La **covarianza** entre $X$ y $Y$
 se define como:
@@ -2097,8 +2097,8 @@ La covarianza tiene unidades (producto de las unidades de $X$ y $Y$), lo
 que dificulta comparaciones. El **coeficiente de correlación de Pearson**
 es una versión estandarizada e **adimensional**:
 
-::: {.callout-note icon=false}
-## Definición: Correlación de Pearson
+::: {#def-cap03-correlacion-de-pearson}
+## Correlación de Pearson
 
 $$\rho(X,Y) = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\,\text{Var}(Y)}}.$$
 
@@ -2211,7 +2211,6 @@ medias poblacionales: con suficientes datos, el promedio muestral estará
 tan cerca de $\mu$ como se quiera. Esta es la base filosófica de la
 **estimación puntual** que se estudiará en el capítulo de inferencia.
 
-:::
 
 
 ## Estadísticos muestrales {#sec-estadisticos-muestrales}
@@ -2232,8 +2231,8 @@ para obtener conclusiones de la población. Dado que la muestra puede ser una
 larga lista de números difícil de interpretar, se calculan **estadísticos**
 — funciones de la muestra — que resumen sus características clave.
 
-::: {.callout-note icon=false}
-## Definición: Estadístico
+::: {#def-cap03-estadistico}
+## Estadístico
 
 Sea $X_1,\ldots,X_n$ una muestra aleatoria de tamaño $n$ de una población
 y $T(x_1,\ldots,x_n)$ una función de valor real con dominio en el espacio
@@ -2322,8 +2321,8 @@ estadísticos muestrales cuando el tamaño de muestra $n \to \infty$.
 
 ### Convergencia en probabilidad
 
-::: {.callout-note icon=false}
-## Definición: Convergencia en probabilidad
+::: {#def-cap03-convergencia-en-probabilidad}
+## Convergencia en probabilidad
 
 Una secuencia de variables aleatorias $X_1, X_2, \ldots$ **converge en
 probabilidad** a una variable aleatoria $X$ (se escribe
@@ -2348,8 +2347,8 @@ $$P(|\bar{X}_n - \mu| \geq \varepsilon) \leq
 
 :::
 
-::: {.callout-note icon=false}
-## Ejemplo: Consistencia de $S^2$
+::: {#exm-cap03-consistencia-de-s-2}
+## Consistencia de $S^2$
 
 Si $X_1, X_2, \ldots$ son iid con $E[X_i] = \mu$,
 $\text{Var}(X_i) = \sigma^2 < \infty$, entonces por Chebyshev:

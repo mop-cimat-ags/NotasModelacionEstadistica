@@ -216,7 +216,7 @@ ggplot() +
   )
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos}
 ## Ejercicios propuestos
 
 1. Una muestra aleatoria de tamaño $n=8$ pesos (en kg) de paquetes de arroz es: 1.02, 0.98, 1.01, 1.00, 0.99, 1.03, 0.97, 1.00. Calcule la estimación de la media $\bar{x}$ y de la varianza $s^2$.
@@ -457,7 +457,7 @@ round(prob_s2, 3)
 
 La probabilidad de que la varianza muestral sea mayor a 12.16 es de **0.791** (79.1%).
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos-2}
 ## Ejercicios propuestos
 
 1. El tiempo de vida de cierto componente se distribuye $N(\mu, \sigma^2)$ con $\sigma = 5$. Si se toma una muestra de $n=16$, calcule $P(\bar{X} > \mu + 2)$.
@@ -611,7 +611,7 @@ round(k_valor, 3)
 
 Al especificar `lower.tail = FALSE` en la función `qf`, le indicamos al software que considere el área de probabilidad en la cola derecha. En este caso, $k \approx 2.13$.
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos-3}
 ## Ejercicios propuestos
 
 1. Una muestra de $n=12$ observaciones normales tiene $\bar{x}=48$ y $s=6$. Pruebe si es razonable suponer $\mu=50$ calculando $P(\bar{X} \le 48)$ usando la distribución $t$ con los grados de libertad correspondientes.
@@ -762,7 +762,7 @@ ggplot(df_prop, aes(x = x, y = densidad)) +
   annotate("text", x = 0.055, y = 5, label = "Área \u2248 0.236", color = "darkred", fontface = "bold")
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos-4}
 ## Ejercicios propuestos
 
 1. El tiempo de ensamblaje de una pieza tiene media $\mu = 12$ minutos y desviación estándar $\sigma = 3$ minutos (distribución desconocida). Para una muestra de $n = 49$ piezas, use el TLC para calcular $P(\bar{X} > 12.5)$.
@@ -940,7 +940,7 @@ ggplot(df_F, aes(x = x, y = dens, color = dist)) +
 
 **Relación entre distribuciones:** $t_k^2 \sim F_{1,k}$.
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos-5}
 ## Ejercicios propuestos
 
 1. Si $S^2 = 5.2$ con $n = 25$ observaciones de $N(\mu, \sigma^2)$, construya un IC del 90% para $\sigma^2$.
@@ -958,8 +958,8 @@ ggplot(df_F, aes(x = x, y = dens, color = dist)) +
 
 Las **estadísticas de orden** desempeñan en la inferencia un papel análogo al de los cuantiles poblacionales: son cuantiles muestrales. Dado que los datos observados son una realización de variables aleatorias, las estadísticas de orden son en sí mismas variables aleatorias con distribuciones propias.
 
-::: {.callout-tip icon=false}
-## Definición: estadísticas de orden
+::: {#def-cap04-estadisticas-de-orden}
+## estadísticas de orden
 
 Sea $X_1, \ldots, X_n$ una muestra aleatoria de tamaño $n$ de una distribución con cdf $F$. Las **estadísticas de orden** $Y_1 \leq Y_2 \leq \cdots \leq Y_n$ son las observaciones ordenadas de menor a mayor:
 
@@ -1024,7 +1024,7 @@ ggplot(df_os, aes(x=valor, color=stat)) +
        x="y", y="F(y)")
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos-6}
 ## Ejercicios propuestos
 
 1. Sea $X_1,\ldots,X_5 \sim U(0,1)$. Calcula $P(Y_1 > 0.3)$ y $P(Y_5 \leq 0.8)$ usando la cdf de las estadísticas de orden.
@@ -1190,8 +1190,8 @@ estimadores.
 
 ### Sesgo (insesgamiento)
 
-::: {.callout-note icon=false}
-## Definición: Estimador insesgado y sesgo
+::: {#def-cap04-estimador-insesgado-y-sesgo}
+## Estimador insesgado y sesgo
 
 Un estimador $T(X_1,\ldots,X_n)$ es **insesgado** para $\theta$ si:
 $$E[T(X_1,\ldots,X_n)] = \theta.$$
@@ -1210,8 +1210,8 @@ $T$ es sesgado si y solo si $\text{Sesgo}(T) \neq 0$.
 $\hat{\sigma}^2 = \frac{1}{n}\sum(X_i-\bar{X})^2$ es sesgado para
 $\sigma^2$; el insesgado es $S^2 = \frac{1}{n-1}\sum(X_i-\bar{X})^2$.
 
-::: {.callout-note icon=false}
-## Definición: Estimador asintóticamente insesgado
+::: {#def-cap04-estimador-asintoticamente-insesgado}
+## Estimador asintóticamente insesgado
 
 $\hat{\theta}_n$ es **asintóticamente insesgado** para $\theta$ si:
 $$\lim_{n\to\infty} E[\hat{\theta}_n] = \theta.$$
@@ -1220,8 +1220,8 @@ $$\lim_{n\to\infty} E[\hat{\theta}_n] = \theta.$$
 
 ### Error cuadrático medio (ECM)
 
-::: {.callout-note icon=false}
-## Definición: CME
+::: {#def-cap04-cme}
+## CME
 
 El **cuadrado medio del error (CME)** o error cuadrático medio de un
 estimador $T$ para $\theta$ es:
@@ -1273,8 +1273,8 @@ cat(sprintf("CME teórico  — S1²: %.4f  S2²: %.4f\n",
 
 ### Consistencia
 
-::: {.callout-note icon=false}
-## Definición: Estimador consistente
+::: {#def-cap04-estimador-consistente}
+## Estimador consistente
 
 $\hat{\theta}_n$ es **consistente** para $\theta$ si:
 $$\lim_{n\to\infty} P(|\hat{\theta}_n - \theta| > \varepsilon) = 0
@@ -1301,8 +1301,8 @@ $E[\bar{X}]=\mu$ y $\text{Var}(\bar{X})=\sigma^2/n \to 0$).
 
 ### Estimadores insesgados de varianza uniformemente mínima (EIVUM)
 
-::: {.callout-note icon=false}
-## Definición: EIVUM (UMVUE)
+::: {#def-cap04-eivum-umvue}
+## EIVUM (UMVUE)
 
 Un estimador $\hat{\theta}_n$ para $\theta$ es un **estimador insesgado
 de varianza uniformemente mínima (EIVUM)** si:
@@ -1342,8 +1342,8 @@ Un estimador insesgado que **alcanza** la CICR es automáticamente EIVUM.
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: CICR para Bernoulli($\theta$)
+::: {#exm-cap04-cicr-para-bernoulli-theta}
+## CICR para Bernoulli($\theta$)
 
 Sea $X \sim \text{Ber}(\theta)$. La log-verosimilitud es
 $\ln f(X;\theta) = X\ln\theta + (1-X)\ln(1-\theta)$, luego:
@@ -1375,8 +1375,8 @@ for (i in seq_along(theta_vals)) {
 
 ### Eficiencia
 
-::: {.callout-note icon=false}
-## Definición: Estimador eficiente
+::: {#def-cap04-estimador-eficiente}
+## Estimador eficiente
 
 Un estimador insesgado es **eficiente** si su varianza alcanza la cota
 inferior de Cramér-Rao. La **eficiencia** de $\hat{\theta}$ es:
@@ -1389,8 +1389,8 @@ $$\lim_{n\to\infty} \text{Efi}(\hat{\theta}_n) = 1.$$
 
 ### Suficiencia
 
-::: {.callout-note icon=false}
-## Definición: Estadístico suficiente
+::: {#def-cap04-estadistico-suficiente}
+## Estadístico suficiente
 
 Una estadística $T(X_1,\ldots,X_n)$ es **suficiente** para $\theta$ si
 la distribución conjunta de la muestra $(X_1,\ldots,X_n)$ condicionada
@@ -1401,8 +1401,8 @@ información adicional sobre $\theta$.
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: Suficiencia de $T=\sum X_i$ para Bernoulli
+::: {#exm-cap04-suficiencia-de-t-sum-x-i-para-bernoulli}
+## Suficiencia de $T=\sum X_i$ para Bernoulli
 
 Sea $X_1,\ldots,X_n$ muestra de $\text{Ber}(\theta)$, $T=\sum X_i$.
 Como $T\sim\text{Bin}(n,\theta)$:
@@ -1464,8 +1464,8 @@ Las pruebas de bondad de ajuste responden la pregunta: **¿los datos observados 
 
 ### Prueba chi-cuadrada de Pearson
 
-::: {.callout-note icon=false}
-## Definición: Prueba $\chi^2$ de bondad de ajuste
+::: {#def-cap04-prueba-chi-2-de-bondad-de-ajuste}
+## Prueba $\chi^2$ de bondad de ajuste
 
 Sea $X_1, \ldots, X_n$ una muestra. Se divide el soporte de $X$ en $k$ clases (intervalos o categorías). Sea $O_i$ la frecuencia **observada** en la clase $i$ y $E_i = n \cdot p_i$ la frecuencia **esperada** bajo la hipótesis $H_0$.
 
@@ -1481,8 +1481,8 @@ Bajo $H_0$, este estadístico sigue aproximadamente una distribución $\chi^2$ c
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: ¿Los lanzamientos de un dado son uniformes?
+::: {#exm-cap04-los-lanzamientos-de-un-dado-son-uniformes}
+## ¿Los lanzamientos de un dado son uniformes?
 
 Se lanza un dado 120 veces y se registran los resultados:
 
@@ -1511,8 +1511,8 @@ cat("Valor crítico chi2(0.05, 5) =", round(qchisq(0.95, df=5), 4), "\n")
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: ¿Los tiempos de servicio siguen una Normal?
+::: {#exm-cap04-los-tiempos-de-servicio-siguen-una-normal}
+## ¿Los tiempos de servicio siguen una Normal?
 
 Un banco registra los tiempos de atención (en minutos) de $n=80$ clientes. Se agrupa en clases:
 
@@ -1552,8 +1552,8 @@ cat("\nEstadístico chi2 =", round(chi2_obs, 4),
 
 ### Prueba de Kolmogorov-Smirnov
 
-::: {.callout-note icon=false}
-## Definición: Prueba KS
+::: {#def-cap04-prueba-ks}
+## Prueba KS
 
 La prueba de **Kolmogorov-Smirnov** compara la función de distribución empírica $F_n(x)$ con la cdf teórica $F_0(x)$ propuesta en $H_0$.
 
@@ -1571,8 +1571,8 @@ Se rechaza $H_0$ si $D_n > d_{\alpha,n}$ (valor crítico de la tabla KS o p-valo
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: ¿Los tiempos entre llegadas son Exponenciales?
+::: {#exm-cap04-los-tiempos-entre-llegadas-son-exponenciales}
+## ¿Los tiempos entre llegadas son Exponenciales?
 
 Se registran 50 tiempos entre llegadas a una tienda (en minutos). Se propone $H_0: X \sim \text{Exp}(\lambda)$.
 
@@ -1619,7 +1619,7 @@ legend("bottomright", c("F_n(x) empírica", "F_0(x) = Exp(λ̂)"),
 
 :::
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos-7}
 ## Ejercicios propuestos
 
 1. En una empresa se registran el número de llamadas de soporte por día durante 100 días. Los resultados son: 0 llamadas (30 días), 1 llamada (35 días), 2 llamadas (20 días), 3 llamadas (10 días), 4 o más (5 días). Pruebe con $\alpha=0.05$ si los datos siguen una distribución $\text{Poisson}(\lambda)$. Estime $\lambda$ de los datos.
@@ -1693,8 +1693,8 @@ Las pruebas de razón de verosimilitud están íntimamente relacionadas con
 los estimadores de máxima verosimilitud y son aplicables en gran
 variedad de situaciones.
 
-::: {.callout-note icon=false}
-## Definición: Estadístico de razón de verosimilitud
+::: {#def-cap04-estadistico-de-razon-de-verosimilitud}
+## Estadístico de razón de verosimilitud
 
 Sea $X_1,\ldots,X_n$ muestra aleatoria con densidad $f(x;\theta)$ y
 función de verosimilitud $L(\theta;\mathbf{x})=\prod_{i=1}^n f(x_i;\theta)$.
@@ -1708,8 +1708,8 @@ con $0\leq c\leq 1$.
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: LRT para media normal con varianza conocida
+::: {#exm-cap04-lrt-para-media-normal-con-varianza-conocida}
+## LRT para media normal con varianza conocida
 
 Sea $X_1,\ldots,X_n \sim N(\theta,1)$. Para probar
 $H_0:\theta=\theta_0$ vs. $H_1:\theta\neq\theta_0$, el EMV es
@@ -1722,8 +1722,8 @@ que corresponde a la prueba bilateral usual sobre $\bar{X}$.
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: LRT para distribución exponencial desplazada
+::: {#exm-cap04-lrt-para-distribucion-exponencial-desplazada}
+## LRT para distribución exponencial desplazada
 
 Sea $X_i \sim f(x;\theta) = e^{-(x-\theta)} \mathbf{1}_{x\geq\theta}$
 y $H_0:\theta\leq\theta_0$ vs. $H_1:\theta>\theta_0$. El estadístico
@@ -1744,8 +1744,8 @@ equivalentes.
 
 ### Función potencia
 
-::: {.callout-note icon=false}
-## Definición: Función potencia
+::: {#def-cap04-funcion-potencia}
+## Función potencia
 
 Dada una región de rechazo $R$, la **función potencia** de la prueba es:
 $$\gamma(\theta) = P(\mathbf{X}\in R\mid\theta).$$
@@ -1761,8 +1761,8 @@ Una **prueba de nivel $\alpha$** satisface $\alpha \geq \sup_{\theta\in\Theta_0}
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: Función potencia para prueba binomial
+::: {#exm-cap04-funcion-potencia-para-prueba-binomial}
+## Función potencia para prueba binomial
 
 Sea $X\sim\text{Bin}(5,\theta)$. Para $H_0:\theta\leq 0.5$ vs.
 $H_1:\theta>0.5$:
@@ -1803,8 +1803,8 @@ ggplot(df_pot, aes(x=theta, y=gamma, color=Prueba)) +
 
 ### Pruebas uniformemente más potentes (UMP) — Lema de Neyman-Pearson
 
-::: {.callout-note icon=false}
-## Definición: Prueba UMP
+::: {#def-cap04-prueba-ump}
+## Prueba UMP
 
 Sea $\mathcal{C}$ una clase de pruebas de nivel $\alpha$ para
 $H_0:\theta\in\Theta_0$ vs. $H_1:\theta\in\Theta_0^c$. Una prueba en
@@ -1869,7 +1869,7 @@ ggplot(df_np, aes(x=theta, y=gamma)) +
        x="θ", y="γ(θ) = Potencia")
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap04-propuestos-8}
 ## Ejercicios propuestos
 
 1. Sea $X_1,\ldots,X_n \sim N(\theta,\sigma^2)$ con $\sigma^2$ conocida.

@@ -7,11 +7,39 @@
 \definecolor{cimatVerdeOsc}{HTML}{004D31}
 \definecolor{cimatDorado}{HTML}{C8962E}
 
-% ── Teoremas y definiciones ──────────────────────────────────────────
-\newtheorem{teorema}{Teorema}[chapter]
-\theoremstyle{definition}
-\newtheorem{definicion}[teorema]{Definición}
-\newtheorem{ejemplo}[teorema]{Ejemplo}
+% ── Colores para entornos theorem ────────────────────────────────────
+\definecolor{defFrame}{HTML}{B03A2E}
+\definecolor{defBack} {HTML}{FDF3F2}
+\definecolor{exmFrame}{HTML}{1A5276}
+\definecolor{exmBack} {HTML}{EAF2FB}
+\definecolor{exrFrame}{HTML}{1E8449}
+\definecolor{exrBack} {HTML}{EAFAF1}
+
+% ── tcolorbox para cajas de color ────────────────────────────────────
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% Aplicar color DESPUÉS de que Quarto defina los entornos
+\AtBeginDocument{%
+  % Definiciones → rojo
+  \tcolorboxenvironment{definition}{%
+    colback=defBack, colframe=defFrame,
+    arc=4pt, boxrule=0.6pt, left=6pt, right=6pt,
+    top=4pt, bottom=4pt, breakable, enhanced
+  }%
+  % Ejemplos → azul
+  \tcolorboxenvironment{example}{%
+    colback=exmBack, colframe=exmFrame,
+    arc=4pt, boxrule=0.6pt, left=6pt, right=6pt,
+    top=4pt, bottom=4pt, breakable, enhanced
+  }%
+  % Ejercicios → verde
+  \tcolorboxenvironment{exercise}{%
+    colback=exrBack, colframe=exrFrame,
+    arc=4pt, boxrule=0.6pt, left=6pt, right=6pt,
+    top=4pt, bottom=4pt, breakable, enhanced
+  }%
+}
 
 % ── Macros matemáticos ───────────────────────────────────────────────
 \newcommand{\E}{\mathbb{E}}

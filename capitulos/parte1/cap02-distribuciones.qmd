@@ -30,8 +30,8 @@ Una variable aleatoria (v.a) es aquella cuyos valores son números reales asigna
 
 ### Definición formal
 
-::: {.callout-tip icon=false}
-## Definición — Variable aleatoria
+::: {#def-cap02-variable-aleatoria}
+## Variable aleatoria
 Sea $\Omega$ un espacio muestral. Se define $X$ como una **variable aleatoria** si es una función:
 $$X : \Omega \longrightarrow \mathbb{R}$$
 que asigna un número real a cada resultado del experimento aleatorio. Se clasifica en:
@@ -53,7 +53,7 @@ Para cualquier valor $a$, la expresión $\{X = a\}$ denota el **evento** formado
 
 De igual forma, las desigualdades también describen eventos: $\{X \leq a\}$ es el conjunto de todos los $\omega$ tales que $X(\omega) \leq a$.
 
-:::: {.callout-note icon=false}
+::: {#exm-cap02-ejemplo-1}
 ## Ejemplo 1
 Se lanza una moneda tres veces. Denotamos cada resultado como **á** (águila) o **s** (sol). El espacio muestral es:
 $$S = \{(á,á,á),\,(á,s,á),\,(á,á,s),\,(s,á,á),\,(s,s,á),\,(s,á,s),\,(á,s,s),\,(s,s,s)\}$$
@@ -68,7 +68,7 @@ Se define la variable aleatoria $X$ como el **número de águilas** observadas e
 | $3$ | $(á,á,á)$ | Tres águilas |
 
 
-::::
+:::
 Es importante mencionar que en este ejemplo se supone que es posible distinguir cuál es la moneda 1, la moneda 2 y la moneda 3.
 
 La variable aleatoria traslada los eventos del espacio muestral al conjunto de los números reales, lo que permite aplicar herramientas matemáticas —cálculo, álgebra— y asignar a cada valor una probabilidad bien definida.
@@ -90,7 +90,7 @@ __Experimentos aleatorios con espacio muestral infinito contable__
 Un ejemplo de este tipo es el número de errores ortográficos que pueden existir en un libro, los errores ortográficos pueden ser
 0, 1, 2, … ; por supuesto que, en la vida real, no hay infinitos números de errores en un libro, pero si el libro es grande (su tamaño tiende a infinito) el número de errores posibles sería muy grande y considerarse infinito.
 
-:::: {.callout-note icon=false}
+::: {#exm-cap02-ejemplo-1-2}
 ## Ejemplo 1
 El número de terremotos que pueden ocurrir en un periodo de tiempo de 15 años se puede denotar con una variable aleatoria discreta con un espacio muestral infinito contable. Si denotamos con X la 
 variable aleatoria el número de terremotos la variable aleatoria puede considerar los siguientes 
@@ -98,7 +98,7 @@ valores
 
 X=1, 2, 3, 4, …
 
-::::
+:::
 
 ### Función de probabilidad y función de probabilidad acumulada
 La asignación de valores reales a cada evento del espacio completo de eventos lo hemos llamado _variable aleatoria_; como vimos, a cada evento del espacio completo de eventos le corresponde una probabilidad determinada, a este conjunto de probabilidades le llamaremos la ___distribución de probabilidad___, esto quiere decir que existe un rango de valores que puede tomar, por lo tanto, cualquier fenómeno aleatorio puede tomar valores en el intervalo (0,1).
@@ -337,7 +337,7 @@ Por lo tanto, los estudiantes recuerdan, en promedio, alrededor de 2 palabras.
 
 Lo invitamos a calcular $E[X]$, así como las correspondientes varianzas de cada variable.
 
-::: {.callout-note icon=false}
+::: {#exr-cap02-propuestos}
 ## Ejercicios propuestos
 
 1. Una variable aleatoria $X$ tiene la siguiente función de probabilidad: $P(X=0)=0.1$, $P(X=1)=0.3$, $P(X=2)=0.4$, $P(X=3)=0.2$. Verifique que es una función de probabilidad válida y calcule $E[X]$ y $\text{Var}(X)$.
@@ -536,8 +536,8 @@ $\text{Var}(X) = p(1-p)$
 
 ::::
 
-::: {.callout-tip icon=false}
-## Definición formal: distribución Bernoulli
+::: {#def-cap02-distribucion-bernoulli}
+## distribución Bernoulli
 
 Una variable aleatoria $X$ tiene distribución **Bernoulli** con parámetro $p$ cuando su espacio muestral es $\Omega = \{0, 1\}$ y:
 
@@ -826,7 +826,7 @@ La Binomial supone ensayos *independientes* con probabilidad de éxito constante
 
 
 
-::: {.callout-note icon=false}
+::: {#exr-cap02-propuestos-2}
 ## Ejercicios propuestos
 
 1. Una urna contiene 8 bolas rojas y 12 bolas azules. Se extraen 2 bolas sin reemplazo. Calcule la probabilidad de que ambas sean rojas.
@@ -842,8 +842,8 @@ La Binomial supone ensayos *independientes* con probabilidad de éxito constante
 
 ::::
 
-::: {.callout-tip icon=false}
-## Definición formal: distribución Binomial
+::: {#def-cap02-distribucion-binomial}
+## distribución Binomial
 
 Suponga $n$ ensayos Bernoulli independientes, cada uno con probabilidad de éxito $p$. La variable aleatoria $X$ = número de éxitos tiene distribución **binomial** con parámetros $(n, p)$, denotada $X \sim \text{Bin}(n, p)$. Su función masa de probabilidad es:
 
@@ -1196,8 +1196,8 @@ plot(
 
 ### Ejemplos adicionales: Distribución Binomial
 
-::: {.callout-tip icon=false}
-## Ejemplo: Ventas por teléfono
+::: {#exm-cap02-ventas-por-telefono}
+## Ventas por teléfono
 
 Una compañía de ventas por teléfono indica que de cada 11 llamadas realizadas, 3 resultan en ventas. Con base en esto, defina $p = 3/11 \approx 0.2727$. Se realiza una campaña con $n = 10$ llamadas.
 
@@ -1431,11 +1431,10 @@ $$
 
 
 
-:::
 
 
-::: {.callout-tip icon=false}
-## Ejemplo 3 (resuelto paso a paso)
+::: {#exm-cap02-resuelto-paso-a-paso}
+## (resuelto paso a paso)
 
 Una caja contiene **20 componentes electrónicos**: 12 en buen estado y 8 defectuosos. Se seleccionan **5 componentes al azar sin reemplazo**. Sea $X$ = número de defectuosos en la muestra.
 
@@ -1534,8 +1533,8 @@ ggplot(df, aes(x = x, y = Probabilidad)) +
 
 ### Ejemplos adicionales: Distribución Hipergeométrica
 
-::: {.callout-tip icon=false}
-## Ejemplo: Inspección de focos (Magín Zúñiga)
+::: {#exm-cap02-inspeccion-de-focos-magin-zuniga}
+## Inspección de focos (Magín Zúñiga)
 
 Una fábrica de focos tiene información histórica de que en cada lote de $N = 380$ focos, $K = 15$ son defectuosos. Un inspector toma una muestra sin reemplazo de $n = 18$ focos.
 
@@ -1568,8 +1567,8 @@ Se espera encontrar menos de 1 foco defectuoso en promedio ($E[X] \approx 0.71$)
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: Representantes políticos
+::: {#exm-cap02-representantes-politicos}
+## Representantes políticos
 
 En una convención política nacional, un estado tiene 20 representantes, de los cuales 15 apoyan al candidato A y 5 apoyan al candidato B. Se seleccionan aleatoriamente 4 representantes sin reemplazo.
 
@@ -1822,8 +1821,8 @@ ggplot(df, aes(x, prob)) +
 
 ### Ejemplos adicionales: Distribución Poisson
 
-::: {.callout-tip icon=false}
-## Ejemplo: Infracciones de parquímetro
+::: {#exm-cap02-infracciones-de-parquimetro}
+## Infracciones de parquímetro
 
 El número de infracciones expedidas por el lector de un parquímetro, por violaciones de estacionamiento, puede modelarse mediante un proceso Poisson con una tasa de $\lambda = 5$ infracciones por hora.
 
@@ -1859,8 +1858,8 @@ barplot(prob, names.arg = x,
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: Fuente radiactiva
+::: {#exm-cap02-fuente-radiactiva}
+## Fuente radiactiva
 
 Una fuente radiactiva emite partículas según una distribución Poisson con media $\lambda = 10$ partículas por minuto.
 
@@ -1894,7 +1893,7 @@ Los valores confirman que con $\lambda = 10$, obtener 0 partículas es un evento
 
 :::
 
-::: {.callout-note icon=false}
+::: {#exr-cap02-propuestos-3}
 ## Ejercicios propuestos
 
 1. Una máquina produce piezas defectuosas con probabilidad $p=0.04$. Si se inspeccionan 10 piezas, calcule la probabilidad de encontrar exactamente 2 defectuosas usando la distribución Binomial.
@@ -1917,8 +1916,8 @@ La **distribución geométrica** modela el número de fracasos que ocurren *ante
 
 ::::
 
-::: {.callout-tip icon=false}
-## Definición formal: distribución Geométrica
+::: {#def-cap02-distribucion-geometrica}
+## distribución Geométrica
 
 Una variable aleatoria $X$ tiene distribución **geométrica** con parámetro $p$ si modela el número de ensayos *antes* de obtener el primer éxito (probabilidad de éxito $p$, ensayos independientes). Se denota $X \sim \text{geo}(p)$.
 
@@ -1955,8 +1954,8 @@ ggplot(df_geom, aes(x = factor(x), y = prob, fill = p)) +
        y = "P(X = x)", fill = NULL)
 ```
 
-::: {.callout-tip icon=false}
-## Ejemplo: Planificación familiar (Magín Zúñiga)
+::: {#exm-cap02-planificacion-familiar-magin-zuniga}
+## Planificación familiar (Magín Zúñiga)
 
 Los habitantes de una isla tienen hijos hasta que nace la primera niña (cada embarazo: niña con $p = 0.5$, independiente). Sea $X$ = número de niños (varones) antes de la primera niña. Entonces $X \sim \text{geo}(0.5)$.
 
@@ -2006,8 +2005,8 @@ ggplot(df_nb, aes(x = x, y = prob, color = r)) +
   labs(title = "Binomial Negativa (p = 0.3)", x = "Fracasos (X)", y = "P(X = x)", color = NULL)
 ```
 
-::: {.callout-tip icon=false}
-## Ejemplo: Call center (Magín Zúñiga)
+::: {#exm-cap02-call-center-magin-zuniga}
+## Call center (Magín Zúñiga)
 
 Cada llamada concreta una venta con $p = 0.2$. Sea $X$ el número de rechazos antes de lograr $r = 3$ ventas. $X \sim \text{NegBin}(3, 0.2)$.
 
@@ -2025,8 +2024,8 @@ barplot(dnbinom(x_vals, size = r, prob = p),
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejemplo: Ensayo clínico (Magín Zúñiga)
+::: {#exm-cap02-ensayo-clinico-magin-zuniga}
+## Ensayo clínico (Magín Zúñiga)
 
 Tratamiento con probabilidad de respuesta positiva $p = 0.30$. Se desea lograr $r = 5$ respuestas positivas. Sea $X \sim \text{NegBin}(5, 0.3)$.
 
@@ -2041,8 +2040,8 @@ cat("E[X] =", 5*(1-0.3)/0.3, "\n")
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejercicio: Educación (Magín Zúñiga)
+::: {#exr-cap02-educacion-magin-zuniga}
+## Educación (Magín Zúñiga)
 
 Un profesor aplica un examen de opción múltiple. Cada pregunta se responde correctamente con probabilidad $p = 0.4$ (ensayos independientes). Se busca modelar el número de respuestas incorrectas antes de que un estudiante logre $r = 3$ correctas.
 
@@ -2060,8 +2059,8 @@ cat("Var[X] =", 3*0.6/0.16, "\n")
 
 :::
 
-::: {.callout-tip icon=false}
-## Ejercicio: Ventas en call center (Magín Zúñiga)
+::: {#exr-cap02-ventas-en-call-center-magin-zuniga}
+## Ventas en call center (Magín Zúñiga)
 
 Un agente tiene probabilidad $p = 0.15$ de concretar una venta por llamada. Se modela el número de llamadas sin venta antes de lograr $r = 4$ ventas.
 
@@ -2105,7 +2104,7 @@ cat("P(S = 7) =", 6/36, "\n")
 
 ::::
 
-::: {.callout-note icon=false}
+::: {#exr-cap02-ejercicios-de-pdf-y-cdf-magin-zuniga-estrada}
 ## Ejercicios de pdf y cdf (Magín Zúñiga Estrada)
 
 1. **Funciones de densidad.** Muestra que las siguientes son funciones de densidad y demuestra la propiedad de mezcla:

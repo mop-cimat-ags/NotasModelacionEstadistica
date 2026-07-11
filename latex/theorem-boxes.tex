@@ -1,0 +1,69 @@
+% ============================================================
+%  theorem-boxes.tex
+%  Cajas de color para entornos theorem en el PDF:
+%    Definición → rojo    (#B03A2E)
+%    Ejemplo    → azul    (#1A5276)
+%    Ejercicio  → verde   (#1E8449)
+% ============================================================
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems, skins, breakable}
+
+% ── Colores ─────────────────────────────────────────────
+\definecolor{def-frame}{HTML}{B03A2E}
+\definecolor{def-back} {HTML}{FDF3F2}
+\definecolor{exm-frame}{HTML}{1A5276}
+\definecolor{exm-back} {HTML}{EAF2FB}
+\definecolor{exr-frame}{HTML}{1E8449}
+\definecolor{exr-back} {HTML}{EAFAF1}
+
+% ── Estilo base ─────────────────────────────────────────
+\tcbset{
+  thm base/.style={
+    breakable,
+    enhanced,
+    arc=4pt,
+    boxrule=0pt,
+    left=6pt, right=6pt, top=6pt, bottom=6pt,
+    fonttitle=\bfseries\small,
+    attach boxed title to top left={xshift=8pt, yshift=-\tcboxedtitleheight/2},
+    boxed title style={
+      arc=3pt, boxrule=0pt,
+      left=4pt, right=4pt
+    },
+    before upper={\setlength{\parskip}{4pt}}
+  }
+}
+
+% ── DEFINICIONES (rojo) ──────────────────────────────────
+\newtcbtheorem[number within=chapter, list inside=definitions]%
+  {definition}{Definici\'on}{%
+    thm base,
+    colback=def-back,
+    colframe=def-frame,
+    borderline west={4pt}{0pt}{def-frame},
+    boxed title style={colback=def-frame, colframe=def-frame},
+    coltitle=white
+  }{def}
+
+% ── EJEMPLOS (azul) ──────────────────────────────────────
+\newtcbtheorem[number within=chapter, list inside=examples]%
+  {example}{Ejemplo}{%
+    thm base,
+    colback=exm-back,
+    colframe=exm-frame,
+    borderline west={4pt}{0pt}{exm-frame},
+    boxed title style={colback=exm-frame, colframe=exm-frame},
+    coltitle=white
+  }{exm}
+
+% ── EJERCICIOS (verde) ────────────────────────────────────
+\newtcbtheorem[number within=chapter, list inside=exercises]%
+  {exercise}{Ejercicio}{%
+    thm base,
+    colback=exr-back,
+    colframe=exr-frame,
+    borderline west={4pt}{0pt}{exr-frame},
+    boxed title style={colback=exr-frame, colframe=exr-frame},
+    coltitle=white
+  }{exr}

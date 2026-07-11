@@ -23,17 +23,78 @@
   --cimat-link-hover:  #C8962E;
 }
 
-.definicion {
-  border: 1px solid #2780e3;
-  border-left: 4px solid #2780e3;
-  border-radius: 4px;
-  padding: 1em 1.5em;
-  margin: 1em 0;
-  background-color: #f0f5ff;
+/* ============================================================
+   ENTORNOS THEOREM: DEFINICIONES (rojo), EJEMPLOS (azul),
+   EJERCICIOS (verde) — numeración automática por capítulo
+   ============================================================ */
+
+/* Base compartida */
+div.theorem {
+  border-radius: 6px;
+  padding: 0.9em 1.3em;
+  margin: 1.4em 0;
+  border-left: 5px solid;
+  page-break-inside: avoid;
 }
 
+div.theorem p:last-child { margin-bottom: 0; }
+
+/* Título del entorno */
+div.theorem .theorem-title {
+  font-weight: 700;
+  font-size: 0.97em;
+  display: block;
+  margin-bottom: 0.55em;
+  letter-spacing: 0.01em;
+}
+
+/* ── DEFINICIONES — rojo ─────────────────────────────── */
+div.definition {
+  border-left-color: #B03A2E;
+  background-color: #fdf3f2;
+}
+div.definition .theorem-title {
+  color: #922B21;
+}
+div.definition .theorem-title::before {
+  content: "Definición ";
+}
+
+/* ── EJEMPLOS — azul ─────────────────────────────────── */
+div.example {
+  border-left-color: #1A5276;
+  background-color: #eaf2fb;
+}
+div.example .theorem-title {
+  color: #1A5276;
+}
+div.example .theorem-title::before {
+  content: "Ejemplo ";
+}
+
+/* ── EJERCICIOS — verde ──────────────────────────────── */
+div.exercise {
+  border-left-color: #1E8449;
+  background-color: #eafaf1;
+}
+div.exercise .theorem-title {
+  color: #1E8449;
+}
+div.exercise .theorem-title::before {
+  content: "Ejercicio ";
+}
+
+/* Clase legacy .definicion (retrocompatibilidad) */
+.definicion {
+  border: 1px solid #B03A2E;
+  border-left: 5px solid #B03A2E;
+  border-radius: 6px;
+  padding: 0.9em 1.3em;
+  margin: 1.4em 0;
+  background-color: #fdf3f2;
+}
 .definicion h2 {
-  color: #2780e3;
+  color: #922B21;
   margin-top: 0;
 }
 

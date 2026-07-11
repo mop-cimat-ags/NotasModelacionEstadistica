@@ -517,7 +517,7 @@ resultado
 
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap01b-propuestos}
 ## Ejercicios propuestos
 
 1. Una placa vehicular consta de 3 letras (de un alfabeto de 26) seguidas de
@@ -902,7 +902,7 @@ grid.draw(venn.plot)
 
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap01b-propuestos-2}
 ## Ejercicios propuestos
 
 1. Se lanza un dado y luego una moneda. Describa el espacio muestral del
@@ -1344,7 +1344,7 @@ text(
 )
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap01b-propuestos-3}
 ## Ejercicios propuestos
 
 1. Una urna contiene 8 bolas rojas y 12 azules. Se extrae una bola al azar.
@@ -1707,7 +1707,7 @@ $$
 
 Por lo tanto, los eventos $E$ y $F$ son **independientes**.
 
-::: {.callout-note icon=false}
+::: {#exr-cap01b-propuestos-4}
 ## Ejercicios propuestos
 
 1. En una baraja de 52 cartas se extraen dos cartas sin reemplazo. Calcule
@@ -1851,7 +1851,7 @@ Podemos visualizar este proceso de decisión mediante un diagrama de árbol de p
 cat("Probabilidad Total de Positivo P(B):", (0.96 * 0.001) + (0.05 * 0.999))
 ```
 
-::: {.callout-note icon=false}
+::: {#exr-cap01b-propuestos-5}
 ## Ejercicios propuestos
 
 1. Una empresa recibe componentes de tres proveedores: el 50% del proveedor
